@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
-const Container = ({children}) => {
-  return (
-    <div className='xl:w-[1140px] mx-auto w-full'>{children}</div>
-  )
+interface ContainerProps {
+  children: React.ReactNode;
 }
 
-export default Container
+const Container = ({ children }: ContainerProps) => {
+  return <div className="xl:w-[1040px] mx-auto w-full">{children}</div>;
+};
+
+export default Container;

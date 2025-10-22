@@ -1,14 +1,23 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  JetBrains_Mono,
+  Space_Mono,
+} from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Container from "@/layouts/Container";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const jetBrainMono = JetBrains_Mono({
+  variable: "--font-jetBrain-mono",
+  weight: ["400", "500", "600", "700", "800"],
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const spaceMono = Space_Mono({
+  weight: ["400", "700"],
+  variable: "--font-space-mono",
   subsets: ["latin"],
 });
 
@@ -25,9 +34,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${spaceMono.variable} ${jetBrainMono.variable} antialiased`}
       >
-        {children}
+        <Navbar />
+        <Container>
+          <div className="border py-7 mt-5 px-10 border-[#6A727E] rounded-md">{children}</div>
+        </Container>
       </body>
     </html>
   );
