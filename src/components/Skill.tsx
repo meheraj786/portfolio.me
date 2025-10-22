@@ -6,7 +6,7 @@ import { skills } from "@/layouts/seed";
 
 const Skill = () => {
   return (
-    <div className="min-h-screen  py-20 px-8">
+    <div className="py-10">
       <div className="max-w-6xl mx-auto">
         <h2
           className='relative text-3xl font-bold text-black mb-12
@@ -17,7 +17,7 @@ const Skill = () => {
         </h2>
 
         <Flex className="gap-5">
-          {skills.slice(0,14).map((skill, index) => (
+          {skills.slice(0,8).map((skill, index) => (
             <SkillCard
               key={index}
               icon={skill.icon}
