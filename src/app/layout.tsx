@@ -8,6 +8,7 @@ import {
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Container from "@/layouts/Container";
+import MouseFollower from "@/components/MouseFollower";
 
 const jetBrainMono = JetBrains_Mono({
   variable: "--font-jetBrain-mono",
@@ -38,7 +39,10 @@ export default function RootLayout({
       >
         <Navbar />
         <Container>
-          <div className="border py-7 mt-5 px-10 border-[#6A727E] rounded-md">{children}</div>
+          <MouseFollower />
+          <div className="border py-7 mt-5 px-10 border-[#6A727E] rounded-md">
+            {children}
+          </div>
         </Container>
       </body>
     </html>
