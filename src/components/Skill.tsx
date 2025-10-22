@@ -9,7 +9,7 @@ const Skill = () => {
     <div className="py-10">
       <div className="max-w-6xl mx-auto">
         <h2
-          className='relative text-3xl font-bold text-black mb-12
+          className='relative font-primary text-3xl font-bold text-black mb-12
           after:content-[""] after:absolute after:left-0 after:bottom-0 pb-3 after:h-[3px] after:bg-black after:w-0
           hover:after:w-60 after:transition-all after:duration-300'
         >
@@ -26,7 +26,7 @@ const Skill = () => {
             />
           ))}
         </Flex>
-        <button className='text-white cursor-pointer bg-background px-5 py-1 mt-10 rounded-sm transition-colors duration-200 border border-white hover:border-black hover:border hover:bg-white hover:text-black'>View More</button>
+        <button className='text-white font-body cursor-pointer bg-background px-5 py-1 mt-10 rounded-sm transition-colors duration-200 border border-white hover:border-black hover:border hover:bg-white hover:text-black'>View More</button>
       </div>
     </div>
   );

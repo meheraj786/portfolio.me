@@ -1,5 +1,6 @@
 import About from "@/components/About";
 import Banner from "@/components/Banner";
+import Projects from "@/components/Projects";
 import Resume from "@/components/Resume";
 import Skill from "@/components/Skill";
 
@@ -10,6 +11,7 @@ export default function Home() {
     <Resume/>
     <Skill/>
     <About/>
+    <Projects/>
     </>
   );
 }
