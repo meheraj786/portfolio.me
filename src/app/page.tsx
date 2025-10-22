@@ -1,13 +1,14 @@
 import About from "@/components/About";
 import Banner from "@/components/Banner";
 import Resume from "@/components/Resume";
-import Image from "next/image";
+import Skill from "@/components/Skill";
 
 export default function Home() {
   return (
     <>
     <Banner/>
     <Resume/>
+    <Skill/>
     <About/>
     </>
   );
