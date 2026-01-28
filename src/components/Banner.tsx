@@ -1,7 +1,7 @@
 import Flex from "@/layouts/Flex";
 import Image from "next/image";
 import React from "react";
-import img from "../../public/bannerImg.jpg";
+import img from "../../public/banner.jpg";
 import { FaGithub, FaLinkedin, FaTwitter, FaFacebook } from "react-icons/fa";
 
 const socials = [

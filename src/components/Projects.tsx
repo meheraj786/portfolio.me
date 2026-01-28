@@ -4,7 +4,7 @@ import ProjectCard from "./ProjectCard";
 
 const Projects = () => {
   return (
-    <div className="py-10">
+    <div className="py-5">
       <h2
         className='relative text-3xl font-primary text-left  font-bold text-black
           after:content-[""] after:absolute after:left-0 after:bottom-0 pb-3 after:h-[3px] after:bg-black after:w-0

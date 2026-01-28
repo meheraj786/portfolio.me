@@ -41,7 +41,7 @@ const Navbar = () => {
     },
   ];
   return (
-    <div className="py-5 font-body">
+    <div className="py-5 fixed top-0 bg-white/10 backdrop-blur-xs left-0 right-0 z-50 font-body">
       <Container>
         <Flex>
           <Link href="/"  className="text-black font-primary font-bold">

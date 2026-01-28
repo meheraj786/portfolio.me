@@ -40,9 +40,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       <div className="flex-1">
         {/* Title & Date */}
         <div className="flex justify-between items-start">
-          <h2 className="text-lg font-semibold font-primary text-black">
+          <h3 className="text-lg font-semibold font-primary text-black">
             {title}
-          </h2>
+          </h3>
           <span className="text-xs text-background">{duration}</span>
         </div>
 

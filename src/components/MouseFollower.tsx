@@ -1,37 +1,56 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
-const MouseFollower: React.FC = () => {
-  const [pos, setPos] = useState({ x: 0, y: 0 });
-  const [target, setTarget] = useState({ x: 0, y: 0 });
+const MouseFollower = () => {
+  const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setTarget({ x: e.clientX, y: e.clientY });
+    const cursor = cursorRef.current;
+    if (!cursor) return;
+
+    let targetX = window.innerWidth / 2;  // শুরুতে মাঝখানে রাখা
+    let targetY = window.innerHeight / 2;
+    let currentX = targetX;
+    let currentY = targetY;
+
+    const onMouseMove = (e: MouseEvent) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
     };
-    window.addEventListener("mousemove", handleMouseMove);
 
-    const frame = () => {
-      setPos(prev => ({
-        x: prev.x + (target.x - prev.x) * 0.15,
-        y: prev.y + (target.y - prev.y) * 0.15,
-      }));
-      requestAnimationFrame(frame);
+    const animate = () => {
+      const easing = 0.16;
+
+      currentX += (targetX - currentX) * easing;
+      currentY += (targetY - currentY) * easing;
+
+      cursor.style.transform = `translate(${currentX - 20}px, ${currentY - 20}px)`;
+
+      requestAnimationFrame(animate);
     };
 
-    frame(); 
+    window.addEventListener("mousemove", onMouseMove);
+    animate(); 
 
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [target]);
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+    };
+  }, []);
 
   return (
     <div
-      className="fixed top-0 left-0 w-10 h-10 rounded-full border-2 border-black pointer-events-none z-[9999]"
-      style={{
-        transform: `translate(${pos.x - 20}px, ${pos.y - 20}px)`,
-        backgroundColor: "transparent",
-      }}
-    ></div>
+      ref={cursorRef}
+      className={`
+        fixed top-0 left-0 
+        w-10 h-10 
+        rounded-full 
+        border-2 border-background 
+        pointer-events-none 
+        z-[9999]
+        will-change-transform
+        bg-transparent
+      `}
+    />
   );
 };
 

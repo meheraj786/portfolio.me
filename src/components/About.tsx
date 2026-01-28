@@ -1,11 +1,11 @@
 import Flex from "@/layouts/Flex";
 import Image from "next/image";
 import React from "react";
-import image from "../../public/aboutImage.jpg"
+import image from "../../public/bannerImg.jpg"
 
 const About = () => {
   return (
-    <Flex className="w-full py-10">
+    <Flex className="w-full py-5">
       <Flex className="w-full justify-end">
         <h2
           className='relative font-primary text-3xl text-center  font-bold text-black

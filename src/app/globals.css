@@ -22,3 +22,13 @@
 body {
   color: var(--foreground);
 }
+
+h2{
+  font-size: 24px;
+}
+
+@layer components { 
+  h2 {
+    @apply md:text-2xl text-xl font-bold ;
+  }
+}
