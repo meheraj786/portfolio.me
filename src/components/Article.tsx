@@ -14,7 +14,7 @@ const Article = () => {
         &#91;My Articles&#93;
       </h2>
       <div className="flex flex-col gap-y-3">
-        {articles.map((p, idx) => (
+        {articles.slice(0, 3).map((p, idx) => (
           <ArticleCard
             key={idx}
             title={p.title}
