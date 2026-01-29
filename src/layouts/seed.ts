@@ -193,3 +193,29 @@ export const articles = [
   },
 ];
 
+// npmPackagesData.ts
+export const npmPackages = [
+  {
+    title: "smooth-cursor-follower",
+    description: "A lightweight, performant custom mouse follower for React apps with buttery-smooth easing using requestAnimationFrame and direct DOM updates. No re-renders, GPU-accelerated.",
+    tags: ["React", "Animation", "UI", "Performance"],
+    github: "https://github.com/yourusername/smooth-cursor-follower",
+    npm: "https://www.npmjs.com/package/smooth-cursor-follower",
+    downloads: "2.5k weekly",
+  },
+  {
+    title: "react-jwt-utils",
+    description: "Utility hooks and functions for handling JWT authentication in React/Next.js apps. Includes token refresh, storage strategies, and secure decoding without exposing sensitive data.",
+    tags: ["JWT", "Auth", "React Hooks", "Security"],
+    github: "https://github.com/yourusername/react-jwt-utils",
+    npm: "https://www.npmjs.com/package/react-jwt-utils",
+    downloads: "1.8k weekly",
+  },
+  {
+    title: "nextjs-api-helpers",
+    description: "Collection of helper functions for Next.js API routes: rate limiting, error handling, validation, CORS, and common response patterns to speed up backend development.",
+    tags: ["Next.js", "API", "Backend", "Utilities"],
+    github: "https://github.com/yourusername/nextjs-api-helpers",
+    npm: "https://www.npmjs.com/package/nextjs-api-helpers",
+  },
+];

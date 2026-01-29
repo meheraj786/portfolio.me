@@ -2,9 +2,11 @@ import About from "@/components/About";
 import Article from "@/components/Article";
 import Banner from "@/components/Banner";
 import Edu from "@/components/Edu";
+import NpmPackages from "@/components/NpmPackages";
 import Projects from "@/components/Projects";
 import Resume from "@/components/Resume";
 import Skill from "@/components/Skill";
+import SystemDesignCaseStudies from "@/components/SystemDesigns";
 
 export default function Home() {
   return (
@@ -21,6 +23,8 @@ export default function Home() {
     <Projects/>
     <Edu/>
     <Article/>
+    <NpmPackages/>
+    <SystemDesignCaseStudies/>
     </>
   );
 }
