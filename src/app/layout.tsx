@@ -9,6 +9,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Container from "@/layouts/Container";
 import MouseFollower from "@/components/MouseFollower";
+import Footer from "@/components/Footer";
 
 const jetBrainMono = JetBrains_Mono({
   variable: "--font-jetBrain-mono",
@@ -40,9 +41,10 @@ export default function RootLayout({
         <Navbar />
         <Container>
           <MouseFollower />
-          <div className="border mt-20 py-7  px-10 border-[#6A727E] rounded-md">
+          <div className="border mt-20 py-7  px-10 border-foreground rounded-md">
             {children}
           </div>
+          <Footer/>
         </Container>
       </body>
     </html>

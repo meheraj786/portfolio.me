@@ -1,6 +1,7 @@
 import About from "@/components/About";
 import Article from "@/components/Article";
 import Banner from "@/components/Banner";
+import Contact from "@/components/Contact";
 import Edu from "@/components/Edu";
 import NpmPackages from "@/components/NpmPackages";
 import Projects from "@/components/Projects";
@@ -23,11 +24,12 @@ export default function Home() {
       <Resume />
       <Skill />
       <About />
+      <Edu />
       <Projects />
       <SystemDesignCaseStudies />
       <Article />
       <NpmPackages />
-      <Edu />
+      <Contact />
     </>
   );
 }
