@@ -32,8 +32,8 @@ const Navbar = () => {
       link: "/projects",
     },
     {
-      title: "Blogs",
-      link: "/blogs",
+      title: "Articles",
+      link: "/articles",
     },
     {
       title: "Contact",

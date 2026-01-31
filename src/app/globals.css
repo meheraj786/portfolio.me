@@ -47,13 +47,17 @@
   --radius-4xl: calc(var(--radius) + 16px);
 }
 
-h2{
-  font-size: 24px;
-}
+
 
 @layer components { 
+  h1{
+    @apply md:text-3xl text-2xl font-bold ; 
+  };
   h2 {
     @apply md:text-2xl text-xl font-bold ;
+  };
+  h3 {
+    @apply md:text-lg text-base font-semibold ;
   }
 }
 

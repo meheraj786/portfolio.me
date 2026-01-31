@@ -25,7 +25,7 @@ const NpmPackageCard: React.FC<NpmPackageCardProps> = ({
     <div className="flex flex-col bg-white rounded-2xl p-6 pb-2 hover:shadow-xl transition-all duration-300 border border-gray-100">
       {/* Title & Downloads/Date */}
       <div className="flex justify-between items-start mb-2">
-        <h3 className="text-xl font-semibold font-primary text-black">
+        <h3 className=" font-semibold font-primary text-black">
           {title}
         </h3>
         {downloads && (

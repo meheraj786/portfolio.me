@@ -1,7 +1,7 @@
 import Flex from "@/layouts/Flex";
 import Image from "next/image";
 import React from "react";
-import image from "../../public/bannerImg.jpg"
+import image from "../../../public/bannerImg.jpg";
 
 const About = () => {
   return (

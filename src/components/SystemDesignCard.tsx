@@ -35,7 +35,7 @@ const SystemDesignCard: React.FC<SystemDesignCardProps> = ({
 
       {/* Right: Content */}
       <div className="flex-1">
-        <h3 className="text-xl font-semibold font-primary text-black mb-2">
+        <h3 className=" font-semibold font-primary text-black mb-2">
           {title}
         </h3>
 

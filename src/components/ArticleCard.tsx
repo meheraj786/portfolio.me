@@ -12,7 +12,8 @@ interface ArticleCardProps {
   tags: string[];            
   date: string;               
   github?: string;            
-  link: string;               
+  link: string;  
+  slug: string;             
   author?: string;             
 }
 
@@ -24,9 +25,11 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   date,
   github,
   link,
+  slug,
   author = "By Meheraj Hosen",  
 }) => {
   return (
+    <Link href={"/articles/" + slug} >
     <div className="flex group flex-col md:flex-row cursor-pointer items-start gap-4 bg-white rounded-2xl p-4 hover:shadow-xl transition-all duration-300">
       {/* Left: Thumbnail / Cover Image */}
       <div className="w-full md:w-48 h-32 relative shrink-0 rounded-xl overflow-hidden">
@@ -78,6 +81,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
         </Flex>
       </div>
     </div>
+    </Link>
   );
 };
 

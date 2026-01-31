@@ -7,7 +7,7 @@ const Article = () => {
   return (
     <div className="py-5">
       <h2
-        className='relative text-3xl font-primary text-left  font-bold text-black
+        className='relative mb-3 font-primary text-left  font-bold text-black
           after:content-[""] after:absolute after:left-0 after:bottom-0 pb-3 after:h-[3px] after:bg-black after:w-0
           hover:after:w-60 after:transition-all after:duration-300'
       >
@@ -21,10 +21,11 @@ const Article = () => {
             description={p.description}
             image={p.image}
             tags={p.tags}
+            author={p.author}
+            slug={p.slug}
             date={p.date}
             link={p.link}
             github="https://github.com/your-repo/jwt-handbook"
-            author={p.author}
           />
         ))}
       </div>

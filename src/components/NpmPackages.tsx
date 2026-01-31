@@ -59,7 +59,7 @@ const NpmPackages = () => {
   return (
     <div className="py-5">
       <h2
-        className="relative text-3xl font-primary text-left font-bold text-black
+        className="relative  font-primary text-left font-bold text-black
           after:content-[''] after:absolute after:left-0 after:bottom-0 pb-3 after:h-[3px] after:bg-black after:w-0
           hover:after:w-60 after:transition-all after:duration-300"
       >
@@ -67,13 +67,13 @@ const NpmPackages = () => {
       </h2>
 
       {loading ? (
-        <p className="text-center mt-10">Loading your NPM packages...</p>
+        <p className="text-center mt-3">Loading your NPM packages...</p>
       ) : error ? (
         <p className="text-red-500 text-center mt-10">Error: {error}</p>
       ) : packages.length === 0 ? (
         <p className="text-center mt-10">No packages found yet! Publish some 🚀</p>
       ) : (
-        <div className="flex flex-col mt-6 gap-y-3">
+        <div className="flex flex-col mt-3 gap-y-3">
           {packages.slice(0, 3).map((p, idx) => (
             <NpmPackageCard
               key={idx}

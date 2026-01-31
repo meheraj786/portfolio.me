@@ -24,7 +24,7 @@ const Contact = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          access_key: "YOUR_WEB3FORMS_ACCESS_KEY", // https://web3forms.com থেকে free key নাও
+          access_key: "YOUR_WEB3FORMS_ACCESS_KEY", 
           name: formData.name,
           email: formData.email,
           message: formData.message,

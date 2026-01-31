@@ -1,6 +1,6 @@
+import ProjectCard from "@/components/ProjectCard";
 import { projects } from "@/layouts/seed";
 import React from "react";
-import ProjectCard from "./ProjectCard";
 
 const Projects = () => {
   return (
@@ -26,7 +26,6 @@ const Projects = () => {
           />
         ))}
       </div>
-              <button className='text-white text-right font-body mx-auto cursor-pointer bg-background px-5 py-1 mt-10 rounded-sm transition-colors duration-200 border border-white hover:border-black hover:border hover:bg-white hover:text-black'>View More</button>
     </div>
   );
 };

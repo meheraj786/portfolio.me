@@ -33,7 +33,7 @@ const Edu = () => {
     <Flex className="w-full  py-5">
       <Flex className="w-full ">
         <h2
-          className='relative font-primary text-3xl text-center  font-bold text-black
+          className='relative font-primary mb-3 text-center  font-bold text-black
           after:content-[""] after:absolute after:left-0 after:bottom-0 pb-3 after:h-[3px] after:bg-black after:w-0
           hover:after:w-80 after:transition-all after:duration-300'
         >
