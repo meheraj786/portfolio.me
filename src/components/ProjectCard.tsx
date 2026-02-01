@@ -21,8 +21,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   image,
   tags,
   duration,
-  git,
-  link,
 }) => {
   return (
     <div className="flex flex-col md:flex-row items-start gap-4 bg-white rounded-2xl p-4 hover:shadow-xl transition-all duration-300 ">

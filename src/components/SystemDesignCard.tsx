@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa";
 
@@ -11,17 +10,19 @@ interface SystemDesignCardProps {
   diagramUrl: string;
   github?: string | null;
   learnings: string;
+  slug: string;
 }
 
 const SystemDesignCard: React.FC<SystemDesignCardProps> = ({
   title,
   description,
   keyFeatures,
-  diagramUrl,
   github,
+  slug,
   learnings,
 }) => {
   return (
+    <Link href={`/system-designes/${slug}`}>
     <div className="flex flex-col md:flex-row items-start gap-6 bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-300 border border-gray-100">
       {/* Left: Diagram Image */}
       {/* <div className="w-full md:w-64 h-48 relative shrink-0 rounded-xl overflow-hidden">
@@ -73,6 +74,7 @@ const SystemDesignCard: React.FC<SystemDesignCardProps> = ({
         )}
       </div>
     </div>
+    </Link>
   );
 };
 

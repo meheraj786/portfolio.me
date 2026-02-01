@@ -40,6 +40,7 @@ const Contact = () => {
       }
     } catch (err) {
       setStatus("error");
+      console.error(err);
     }
   };
 
@@ -170,7 +171,7 @@ const Contact = () => {
             </button>
 
             {status === "success" && (
-              <p className="text-green-600 text-center mt-2">Thanks! I'll get back to you soon 🚀</p>
+              <p className="text-green-600 text-center mt-2">Thanks! I&apos;ll get back to you soon 🚀</p>
             )}
             {status === "error" && (
               <p className="text-red-600 text-center mt-2">Something went wrong. Please try again.</p>

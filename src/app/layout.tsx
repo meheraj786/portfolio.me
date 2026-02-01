@@ -8,7 +8,6 @@ import Navbar from "@/components/Navbar";
 import Container from "@/layouts/Container";
 import MouseFollower from "@/components/MouseFollower";
 import Footer from "@/components/Footer";
-import img from "../../public/bannerImg.jpg"
 
 const jetBrainMono = JetBrains_Mono({
   variable: "--font-jetBrain-mono",

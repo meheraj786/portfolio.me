@@ -2,7 +2,6 @@
 import React from "react";
 import Image, { StaticImageData } from "next/image";
 import Flex from "@/layouts/Flex";
-import { FaGithub, FaLink } from "react-icons/fa";
 import Link from "next/link";
 
 interface ArticleCardProps {
@@ -23,8 +22,6 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   image,
   tags,
   date,
-  github,
-  link,
   slug,
   author = "By Meheraj Hosen",  
 }) => {

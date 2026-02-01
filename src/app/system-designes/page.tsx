@@ -1,7 +1,7 @@
 "use client";
-import React from "react";
-import SystemDesignCard from "./SystemDesignCard";
+import SystemDesignCard from "@/components/SystemDesignCard";
 import { caseStudies } from "@/layouts/seed";
+import React from "react";
 
 
 const SystemDesignCaseStudies = () => {
@@ -23,13 +23,6 @@ const SystemDesignCaseStudies = () => {
         ))}
       </div>
 
-      {caseStudies.length > 3 && (
-        <button
-          className="text-white font-body mx-auto cursor-pointer bg-background px-6 py-2 mt-10 rounded-sm transition-colors duration-200 border border-white hover:border-black hover:bg-white hover:text-black"
-        >
-          View More
-        </button>
-      )}
       
     </div>
   );

@@ -1,13 +1,14 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { Calendar, Clock, User, Share2, Twitter, Linkedin, Facebook, Link as LinkIcon, MessageCircle } from "lucide-react";
+import { Calendar, Clock, User } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button"; // shadcn/ui button (যদি না থাকে তাহলে tailwind দিয়ে বানানো যাবে)
+import { Button } from "@/components/ui/button"; 
 
 import { articles } from "@/layouts/seed";
 import Link from "next/link";
 import { SlUserFollowing } from "react-icons/sl";
+import ShareButtons from "@/components/ShareButtons";
 
 interface Article {
   slug: string;
@@ -34,23 +35,9 @@ export default async function ArticleDetailPage({
     notFound();
   }
 
-  // Share URLs (dynamic)
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-  const articleUrl = `${baseUrl}/articles/${article.slug}`;
-  const shareText = encodeURIComponent(`${article.title} by Meheraj Hosen\n${article.description}\nRead more:`);
 
-  const shareLinks = {
-    twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(articleUrl)}&text=${shareText}&via=meheraj786`,
-    linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(articleUrl)}`,
-    facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(articleUrl)}`,
-    whatsapp: `https://wa.me/?text=${shareText} ${encodeURIComponent(articleUrl)}`,
-    copy: articleUrl,
-  };
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(articleUrl);
-    alert("Link copied to clipboard!");
-  };
+
 
   return (
     <main className="min-h-screen bg-white py-12 px-4 md:px-8">
@@ -67,7 +54,7 @@ export default async function ArticleDetailPage({
         </div>
 
         {/* Title & Meta */}
-        <h1 className="font-primary font-bold text-black mb-6 leading-tight text-3xl md:text-4xl">
+        <h1 className="font-primary font-bold text-black mb-6 leading-tight">
           {article.title}
         </h1>
 
@@ -107,64 +94,11 @@ export default async function ArticleDetailPage({
         </div>
 
         {/* Social Share Buttons */}
-        <div className="mt-12 mb-8 flex flex-wrap items-center justify-center gap-4">
-          <p className="text-gray-600 font-body text-sm mr-2 flex items-center gap-2">
-            <Share2 className="w-5 h-5" /> Share this article:
-          </p>
-
-          <Button
-            variant="outline"
-            size="icon"
-            className="rounded-full hover:bg-blue-50 transition-colors"
-            asChild
-          >
-            <a href={shareLinks.twitter} target="_blank" rel="noopener noreferrer">
-              <Twitter className="w-5 h-5 text-blue-500" />
-            </a>
-          </Button>
-
-          <Button
-            variant="outline"
-            size="icon"
-            className="rounded-full hover:bg-blue-50 transition-colors"
-            asChild
-          >
-            <a href={shareLinks.linkedin} target="_blank" rel="noopener noreferrer">
-              <Linkedin className="w-5 h-5 text-blue-700" />
-            </a>
-          </Button>
-
-          <Button
-            variant="outline"
-            size="icon"
-            className="rounded-full hover:bg-blue-50 transition-colors"
-            asChild
-          >
-            <a href={shareLinks.facebook} target="_blank" rel="noopener noreferrer">
-              <Facebook className="w-5 h-5 text-blue-600" />
-            </a>
-          </Button>
-
-          <Button
-            variant="outline"
-            size="icon"
-            className="rounded-full hover:bg-green-50 transition-colors"
-            asChild
-          >
-            <a href={shareLinks.whatsapp} target="_blank" rel="noopener noreferrer">
-              <MessageCircle className="w-5 h-5 text-green-600" />
-            </a>
-          </Button>
-
-          <Button
-            variant="outline"
-            size="icon"
-            className="rounded-full hover:bg-gray-100 transition-colors"
-            onClick={copyToClipboard}
-          >
-            <LinkIcon className="w-5 h-5 text-gray-600" />
-          </Button>
-        </div>
+<ShareButtons 
+  articleUrl={`${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/articles/${article.slug}`}
+  title={article.title}
+  description={article.description}
+/>
 
         {/* Back to Articles */}
         <div className="mt-8 text-center">
@@ -172,8 +106,10 @@ export default async function ArticleDetailPage({
             href="/articles"
             className="inline-flex items-center gap-2 text-sm font-body text-gray-600 hover:text-gray-800 transition-colors"
           >
-            <SlUserFollowing className="w-5 h-5" />
+<Button variant="outline" size="sm">
+  <SlUserFollowing className="w-5 h-5" />
             <span>Back to Articles</span>
+          </Button>
           </Link>
         </div>
       </article>

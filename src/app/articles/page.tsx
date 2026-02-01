@@ -21,7 +21,7 @@ const Articles = () => {
         >
           All
         </span>
-        {articles.map((article, idx) =>
+        {articles.map((article) =>
           article.tags.map((tag, tagIdx) => (
             <span
               key={tagIdx}

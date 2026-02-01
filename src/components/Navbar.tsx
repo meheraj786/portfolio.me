@@ -1,11 +1,9 @@
 "use client";
 import Container from "@/layouts/Container";
 import Flex from "@/layouts/Flex";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-import img from "../../public/bannerImg.jpg";
 
 const Navbar = () => {
   const pathname = usePathname();

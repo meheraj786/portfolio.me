@@ -1,6 +1,5 @@
-import { articles, projects } from "@/layouts/seed";
+import { articles } from "@/layouts/seed";
 import React from "react";
-import ProjectCard from "./ProjectCard";
 import ArticleCard from "./ArticleCard";
 
 const Article = () => {
