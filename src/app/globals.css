@@ -51,13 +51,13 @@
 
 @layer components { 
   h1{
-    @apply md:text-3xl text-2xl font-bold ; 
+    @apply md:text-3xl text-2xl font-bold font-primary ; 
   };
   h2 {
-    @apply md:text-2xl text-xl font-bold ;
+    @apply md:text-2xl text-xl font-bold font-primary ;
   };
   h3 {
-    @apply md:text-lg text-base font-semibold ;
+    @apply md:text-lg text-base font-semibold font-primary ;
   }
 }
 
