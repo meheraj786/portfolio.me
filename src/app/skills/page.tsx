@@ -26,7 +26,7 @@ const Skills = () => {
             />
           ))}
         </Flex>
-    </div>
+      </div>
     </div>
   );
 };

@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { Calendar, Clock, User } from "lucide-react"; 
-import { Separator } from "@/components/ui/separator"; 
-import { Badge } from "@/components/ui/badge"; 
+import { Calendar, Clock, User } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge";
 
-import { articles } from "@/layouts/seed"; 
+import { articles } from "@/layouts/seed";
 import { SlUserFollowing } from "react-icons/sl";
 
 interface Article {
@@ -19,12 +19,17 @@ interface Article {
   tags: string[];
 }
 
-export default async function ArticleDetailPage({ params }: { params: { slug: string } }) {
-  const article = articles.find((a) => a.slug === params.slug) as Article | undefined;
-  
+export default async function ArticleDetailPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const article = articles.find((a) => a.slug === params.slug) as
+    | Article
+    | undefined;
 
   if (!article) {
-    notFound(); 
+    notFound();
   }
 
   return (

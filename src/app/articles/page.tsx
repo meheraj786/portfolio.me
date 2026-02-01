@@ -15,24 +15,22 @@ const Articles = () => {
       </h2>
       {/* tags  */}
       <Flex className="flex-row justify-start gap-3 mb-4">
-                <span
+        <span
           key={"All"}
           className="text-foreground text-sm font-body cursor-pointer font-medium px-3 py-1 bg-background rounded-md border border-gray-300"
         >
           All
         </span>
-{articles.map((article, idx) => (
-      article.tags.map((tag, tagIdx) => (
-        <span
-          key={tagIdx}
-          className="text-black text-sm font-body cursor-pointer font-medium px-3 py-1 bg-foreground rounded-md border border-gray-300"
-        >
-          {tag}
-        </span>
-      ))
-))}
-        
-
+        {articles.map((article, idx) =>
+          article.tags.map((tag, tagIdx) => (
+            <span
+              key={tagIdx}
+              className="text-black text-sm font-body cursor-pointer font-medium px-3 py-1 bg-foreground rounded-md border border-gray-300"
+            >
+              {tag}
+            </span>
+          )),
+        )}
       </Flex>
       <div className="flex flex-col gap-y-3">
         {articles.map((p, idx) => (

@@ -17,7 +17,7 @@ const Skill = () => {
         </h2>
 
         <Flex className="gap-5">
-          {skills.slice(0,8).map((skill, index) => (
+          {skills.slice(0, 8).map((skill, index) => (
             <SkillCard
               key={index}
               icon={skill.icon}
@@ -26,7 +26,9 @@ const Skill = () => {
             />
           ))}
         </Flex>
-        <button className='text-white font-body cursor-pointer bg-background px-5 py-1 mt-10 rounded-sm transition-colors duration-200 border border-white hover:border-black hover:border hover:bg-white hover:text-black'>View More</button>
+        <button className="text-white font-body cursor-pointer bg-background px-5 py-1 mt-10 rounded-sm transition-colors duration-200 border border-white hover:border-black hover:border hover:bg-white hover:text-black">
+          View More
+        </button>
       </div>
     </div>
   );

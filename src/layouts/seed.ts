@@ -114,29 +114,41 @@ export const articles = [
   {
     title: "Building a Smooth Custom Mouse Follower in React & Tailwind",
     description:
-      "A deep dive into creating buttery-smooth cursor animations using requestAnimationFrame, useRef, and direct DOM manipulation to avoid re-renders. Includes performance tips and CSS alternatives.",
+      "Learn how to create buttery-smooth custom cursors using requestAnimationFrame, useRef, and GPU-accelerated transforms without unnecessary React re-renders.",
     content: `
-# Building a Smooth Custom Mouse Follower in React & Tailwind
+<h1>Building a Smooth Custom Mouse Follower in React & Tailwind</h1>
 
-Custom mouse followers add a premium, interactive feel to modern websites — think creative agencies, portfolios, or SaaS landing pages. But most implementations feel laggy or cause unnecessary re-renders.
+<p>
+Custom mouse followers add a premium, interactive feel to modern websites like
+portfolios, creative agencies, and SaaS landing pages.
+</p>
 
-In this guide, we'll build one that's **buttery smooth**, performant, and GPU-accelerated using React + Tailwind.
+<p>
+Most implementations feel laggy because they rely on React state updates on every
+<code>mousemove</code> event.
+</p>
 
-## Why Traditional Approaches Lag
+<h2>Why Traditional Approaches Lag</h2>
+<ul>
+  <li>React state updates cause frequent re-renders</li>
+  <li>Mouse events fire dozens of times per second</li>
+  <li>Layout and paint operations slow things down</li>
+</ul>
 
-- Using React state + mousemove → frequent re-renders kill performance.
-- CSS :hover tricks → limited control over easing/trails.
+<h2>The Solution</h2>
+<p>
+We use <strong>requestAnimationFrame</strong>, <strong>useRef</strong>, and direct DOM
+manipulation to keep React out of the animation loop.
+</p>
 
-Solution: **requestAnimationFrame + direct DOM style updates** (no state in loop).
+<h2>MouseFollower Component</h2>
 
-## The Code (MouseFollower Component)
-
-\`\`\`tsx
+<pre><code>
 "use client";
 import { useEffect, useRef } from "react";
 
 export default function MouseFollower() {
-  const cursorRef = useRef<HTMLDivElement>(null);
+  const cursorRef = useRef(null);
 
   useEffect(() => {
     const cursor = cursorRef.current;
@@ -145,17 +157,15 @@ export default function MouseFollower() {
     let tx = 0, ty = 0;
     let cx = 0, cy = 0;
 
-    const move = (e: MouseEvent) => {
+    const move = (e) => {
       tx = e.clientX;
       ty = e.clientY;
     };
 
     const raf = () => {
-      cx += (tx - cx) * 0.16; // easing factor
+      cx += (tx - cx) * 0.16;
       cy += (ty - cy) * 0.16;
-
       cursor.style.transform = \`translate(\${cx - 20}px, \${cy - 20}px)\`;
-
       requestAnimationFrame(raf);
     };
 
@@ -165,25 +175,21 @@ export default function MouseFollower() {
     return () => window.removeEventListener("mousemove", move);
   }, []);
 
-  return (
-    <div
-      ref={cursorRef}
-      className="fixed top-0 left-0 w-10 h-10 rounded-full border-2 border-black pointer-events-none z-[9999] will-change-transform bg-transparent hidden md:block"
-    />
-  );
+  return &lt;div ref={cursorRef} /&gt;;
 }
-\`\`\`
+</code></pre>
 
-## Pro Tips
+<h2>Performance Tips</h2>
+<ul>
+  <li>Use <code>will-change: transform</code> for GPU acceleration</li>
+  <li>Easing between 0.12–0.18 feels most natural</li>
+  <li>Hide custom cursor on mobile devices</li>
+</ul>
 
-- **will-change: transform** → enables GPU acceleration.
-- Easing: 0.12–0.18 feels most natural.
-- Mobile: hide with \`hidden md:block\`.
-- Bonus: add scale on hover with CSS variables or IntersectionObserver.
-
-Try it — your cursor will thank you!
-
-Happy coding!
+<p>
+This approach results in native-level smooth cursor animation without hurting
+performance.
+</p>
     `,
     slug: "building-a-smooth-custom-mouse-follower-in-react-tailwind",
     image: "/images/blog/mouse-follower.jpg",
@@ -198,64 +204,65 @@ Happy coding!
   {
     title: "The JWT Handbook: Secure Authentication in Modern Web Apps",
     description:
-      "JWT stands for JSON Web Token — learn how to implement secure token-based auth, handle refresh tokens, avoid common pitfalls like XSS/CSRF, and best practices for frontend-backend integration.",
+      "A complete JWT guide covering access tokens, refresh tokens, XSS/CSRF protection, secure storage, and best practices.",
     content: `
-# The JWT Handbook: Secure Authentication in Modern Web Apps
+<h1>The JWT Handbook: Secure Authentication in Modern Web Apps</h1>
 
-JWT (JSON Web Token) is the de-facto standard for stateless authentication in APIs and SPAs. This handbook covers theory, implementation, security, and common mistakes.
+<p>
+JWT (JSON Web Token) is the de-facto standard for authentication in modern SPAs and APIs.
+</p>
 
-## JWT Structure
+<h2>JWT Structure</h2>
+<p><code>Header.Payload.Signature</code></p>
 
-\`\`\`text
-Header.Payload.Signature
-\`\`\`
+<ul>
+  <li><strong>Header</strong>: Algorithm and token type</li>
+  <li><strong>Payload</strong>: User claims</li>
+  <li><strong>Signature</strong>: Verifies integrity</li>
+</ul>
 
-- Header: algorithm & type (base64)
-- Payload: claims (sub, iat, exp, roles...)
-- Signature: HMAC/SHA with secret
+<h2>Secure Login Implementation</h2>
 
-## Secure Implementation (Next.js + Express)
+<pre><code>
+const jwt = require("jsonwebtoken");
 
-**Backend (login route):**
+app.post("/login", (req, res) => {
+  const accessToken = jwt.sign(
+    { userId: user.id },
+    process.env.JWT_SECRET,
+    { expiresIn: "15m" }
+  );
 
-\`\`\`js
-const jwt = require('jsonwebtoken');
+  const refreshToken = jwt.sign(
+    { userId: user.id },
+    process.env.REFRESH_SECRET,
+    { expiresIn: "7d" }
+  );
 
-app.post('/login', (req, res) => {
-  // validate credentials...
-  const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '15m' });
-  const refresh = jwt.sign({ userId: user.id }, process.env.REFRESH_SECRET, { expiresIn: '7d' });
+  res.cookie("refreshToken", refreshToken, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "strict",
+  });
 
-  res.cookie('refreshToken', refresh, { httpOnly: true, secure: true });
-  res.json({ accessToken: token });
+  res.json({ accessToken });
 });
-\`\`\`
+</code></pre>
 
-**Frontend (Axios interceptor for refresh):**
+<h2>Security Best Practices</h2>
+<ul>
+  <li>Never store JWT in localStorage</li>
+  <li>Use HttpOnly cookies for refresh tokens</li>
+  <li>Keep access tokens short-lived</li>
+</ul>
 
-Use a library like \`axios-auth-refresh\` or custom logic.
-
-## Security Checklist
-
-- Never store JWT in localStorage → XSS risk.
-- Use httpOnly + secure cookies for refresh token.
-- Short access token lifetime (5-15 min).
-- Validate alg ≠ 'none'.
-- Use strong secrets & rotate them.
-
-## Common Attacks & Fixes
-
-- **XSS** → Sanitize inputs, use CSP.
-- **CSRF** → SameSite=Strict/Lax cookies.
-- **Token theft** → Short expiry + refresh rotation.
-
-Master JWT — build secure apps!
-
-Stay safe!
+<p>
+Proper JWT handling is critical for application security.
+</p>
     `,
     slug: "the-jwt-handbook-secure-authentication-in-modern-web-apps",
     image: "/images/blog/jwt-handbook.jpg",
-    tags: ["JWT", "Authentication", "Security", "Node.js", "React"],
+    tags: ["JWT", "Authentication", "Security"],
     date: "October 2025",
     link: "https://yourblog.com/jwt-handbook",
     github: "https://github.com/yourusername/jwt-auth-guide",
@@ -264,56 +271,41 @@ Stay safe!
   },
 
   {
-    title: "Frontend Trends to Master in 2026: Astro, TanStack & React Compiler",
+    title: "Frontend Trends to Master in 2026",
     description:
-      "Exploring the biggest shifts — from Islands architecture in Astro, TanStack ecosystem expansion, to how React Compiler eliminates manual memoization. What to learn next for performant UIs.",
+      "A look into Astro, TanStack, React Compiler, and performance-first frontend trends.",
     content: `
-# Frontend Trends to Master in 2026: Astro, TanStack & React Compiler
+<h1>Frontend Trends to Master in 2026</h1>
 
-2026 is here — and frontend is evolving faster than ever. Here's what you need to learn to stay ahead.
+<p>
+Frontend development in 2026 focuses heavily on performance, DX, and scalability.
+</p>
 
-## 1. Astro Islands Architecture
+<h2>Astro Islands Architecture</h2>
+<p>
+Astro ships zero JavaScript by default and hydrates only what is needed.
+</p>
 
-Astro 4+ brings "Islands" to the next level — partial hydration, zero-JS by default.
+<h2>TanStack Ecosystem</h2>
+<ul>
+  <li>TanStack Query</li>
+  <li>TanStack Table</li>
+  <li>TanStack Router</li>
+</ul>
 
-**Why it wins:**
-- 90% faster TTI
-- SEO + performance out of the box
-- Framework-agnostic (React/Vue/Svelte islands)
+<h2>React Compiler</h2>
+<p>
+React Compiler automatically memoizes components, removing the need for manual
+<code>useMemo</code> and <code>useCallback</code>.
+</p>
 
-## 2. TanStack Ecosystem Explosion
-
-TanStack Query v5, TanStack Table v8, TanStack Router — all unified under TanStack brand.
-
-**Key features:**
-- Infinite queries + suspense
-- Server-state + client-state unification
-- Type-safe routers
-
-## 3. React Compiler (Forget useMemo/useCallback)
-
-React 19+ Compiler auto-memoizes components — no more manual optimization hell.
-
-**Before:**
-\`\`\`tsx
-const memoized = useMemo(() => expensiveCalc(), [dep]);
-\`\`\`
-
-**After:** Compiler does it for you.
-
-## Other Trends
-
-- React Server Components (RSC) everywhere
-- Edge-first deployment (Vercel, Netlify Edge)
-- AI-assisted coding (Cursor, GitHub Copilot Workspace)
-
-Start experimenting today — 2026 belongs to performant & smart UIs.
-
-Which trend excites you most?
+<p>
+2026 rewards developers who focus on performance-first thinking.
+</p>
     `,
-    slug: "frontend-trends-to-master-in-2026-astro-tanstack-react-compiler",
+    slug: "frontend-trends-to-master-in-2026",
     image: "/images/blog/frontend-trends-2026.jpg",
-    tags: ["Frontend", "Astro", "React", "TanStack", "Trends"],
+    tags: ["Frontend", "React", "Astro"],
     date: "December 2025",
     link: "https://yourblog.com/frontend-trends-2026",
     github: null,
@@ -324,48 +316,39 @@ Which trend excites you most?
   {
     title: "System Design for Beginners: From Monolith to Microservices",
     description:
-      "A practical guide covering load balancers, caching (Redis), queues (Kafka), fault tolerance, and real-world patterns like SAGA/CQRS — inspired by ride-sharing apps like Pathao/Uber.",
+      "A beginner-friendly system design guide covering scaling, caching, queues, and architecture patterns.",
     content: `
-# System Design for Beginners: From Monolith to Microservices
+<h1>System Design for Beginners</h1>
 
-Many developers jump straight into microservices without understanding trade-offs. This guide starts from basics and builds up to production patterns.
+<p>
+System design is about understanding trade-offs and evolving systems gradually.
+</p>
 
-## Phase 1: Monolith (Good for MVP)
+<h2>Monolith Architecture</h2>
+<p>
+Single codebase and single database—great for MVPs.
+</p>
 
-Single codebase, single DB — fast iteration.
+<h2>Scaling Strategies</h2>
+<ul>
+  <li>Vertical Scaling</li>
+  <li>Horizontal Scaling</li>
+  <li>Load Balancers</li>
+</ul>
 
-**Pros:** Simple deployment, easy transactions  
-**Cons:** Scaling bottleneck, tech debt
+<h2>Caching Layer</h2>
+<p>
+Redis helps reduce database load significantly.
+</p>
 
-## Phase 2: Vertical Scaling → Horizontal Scaling
-
-Add servers → introduce **Load Balancer** (Nginx, AWS ALB).
-
-## Phase 3: Caching Layer
-
-**Redis** for hot data — reduce DB load by 70-90%.
-
-## Phase 4: Message Queues & Async
-
-**Kafka / RabbitMQ** for order processing, notifications.
-
-## Advanced Patterns (Ride-Sharing Example)
-
-- **SAGA** for distributed transactions (booking → payment → driver assign)
-- **CQRS** — separate read/write models
-- **Circuit Breaker** + Retry (Resilience4j / Polly)
-
-## When to Go Microservices?
-
-Only when monolith hurts team velocity or scaling.
-
-Key: Start simple, evolve gradually.
-
-Happy designing!
+<h2>Message Queues</h2>
+<p>
+Use Kafka or RabbitMQ for asynchronous processing.
+</p>
     `,
-    slug: "system-design-for-beginners-from-monolith-to-microservices",
+    slug: "system-design-for-beginners",
     image: "/images/blog/system-design-basics.jpg",
-    tags: ["System Design", "Microservices", "Distributed Systems", "Backend"],
+    tags: ["System Design", "Backend"],
     date: "November 2025",
     link: "https://yourblog.com/system-design-intro",
     github: "https://github.com/yourusername/system-design-examples",
@@ -373,63 +356,46 @@ Happy designing!
     readTime: "10 min read",
   },
 
-
   {
-    title: "Building Progressive Web Apps (PWAs) in 2025: The Complete Guide",
-    description: "...",
-    content: `... (full Markdown content similar style-এ লিখো: headings, lists, code examples সহ) ...`,
-    slug: "building-progressive-web-apps-pwas-in-2025-the-complete-guide",
+    title: "Building Progressive Web Apps (PWAs) in 2025",
+    description:
+      "A complete guide to offline-first, installable web apps using service workers.",
+    content: `
+<h1>Building Progressive Web Apps (PWAs)</h1>
+
+<p>
+PWAs combine the best features of web and native applications.
+</p>
+
+<h2>Core Features</h2>
+<ul>
+  <li>Offline support</li>
+  <li>Installable</li>
+  <li>Fast loading</li>
+</ul>
+
+<h2>Service Worker Example</h2>
+<pre><code>
+self.addEventListener("fetch", event => {
+  event.respondWith(caches.match(event.request));
+});
+</code></pre>
+
+<p>
+PWAs significantly improve user experience on slow networks.
+</p>
+    `,
+    slug: "building-progressive-web-apps",
     image: "/images/blog/pwa-guide.jpg",
-    tags: ["PWA", "Offline", "Service Worker", "Performance"],
+    tags: ["PWA", "Offline"],
     date: "September 2025",
     link: "https://yourblog.com/pwa-complete-guide",
     github: "https://github.com/yourusername/pwa-starter",
     author: "Meheraj Hosen",
     readTime: "12 min read",
   },
-
-  {
-    title: "TypeScript Best Practices for Large-Scale React Apps",
-    description: "...",
-    content: `... (generics, utility types, discriminated unions, TanStack integration ইত্যাদি) ...`,
-    slug: "typescript-best-practices-for-large-scale-react-apps",
-    image: "/images/blog/typescript-react.jpg",
-    tags: ["TypeScript", "React", "Best Practices", "Scalability"],
-    date: "October 2025",
-    link: "https://yourblog.com/typescript-react-advanced",
-    github: null,
-    author: "Meheraj Hosen",
-    readTime: "8 min read",
-  },
-
-  {
-    title: "AI-Powered Frontend: Integrating ChatGPT & Image Generation APIs",
-    description: "...",
-    content: `... (OpenAI API calls, rate limiting, streaming responses, error handling) ...`,
-    slug: "ai-powered-frontend-integrating-chatgpt-image-generation-apis",
-    image: "/images/blog/ai-frontend.jpg",
-    tags: ["AI", "OpenAI", "Next.js", "Frontend"],
-    date: "November 2025",
-    link: "https://yourblog.com/ai-frontend-integration",
-    github: "https://github.com/yourusername/ai-chat-app",
-    author: "Meheraj Hosen",
-    readTime: "9 min read",
-  },
-
-  {
-    title: "Edge Computing & Serverless: The Future of Fast Web Apps",
-    description: "...",
-    content: `... (Vercel Edge, Cloudflare Workers, global latency reduction, examples) ...`,
-    slug: "edge-computing-serverless-the-future-of-fast-web-apps",
-    image: "/images/blog/edge-computing.jpg",
-    tags: ["Edge", "Serverless", "Next.js", "Performance"],
-    date: "December 2025",
-    link: "https://yourblog.com/edge-serverless-future",
-    github: null,
-    author: "Meheraj Hosen",
-    readTime: "7 min read",
-  },
 ];
+
 
 // npmPackagesData.ts
 export const npmPackages = [
