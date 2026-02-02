@@ -34,7 +34,7 @@ export default async function CaseStudyDetailPage({
       <article className="max-w-5xl mx-auto">
         {/* Back Button */}
         <Link
-          href="/system-designs"
+          href="/system-designes"
           className="inline-flex items-center gap-2 text-gray-600 hover:text-black mb-8 transition-colors font-body"
         >
           <ArrowLeft className="w-5 h-5" />

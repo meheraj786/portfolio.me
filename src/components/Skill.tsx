@@ -16,7 +16,7 @@ const Skill = () => {
           &#123; My Skills &#125;
         </h2>
 
-        <Flex className="gap-5">
+        <Flex className="md:gap-5 gap-2 justify-center md:justify-between flex-row flex-wrap">
           {skills.slice(0, 8).map((skill, index) => (
             <SkillCard
               key={index}

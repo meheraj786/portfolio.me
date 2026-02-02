@@ -104,7 +104,7 @@ export default function RootLayout({
         <Navbar />
         <Container>
           <MouseFollower />
-          <div className="border mt-20 py-7 px-10 border-background/50 rounded-md min-h-[calc(100vh-200px)]">
+          <div className="border mt-20 py-7 md:px-10 px-3 border-background/50 rounded-md min-h-[calc(100vh-200px)]">
             {children}
           </div>
           <Footer />

@@ -13,9 +13,9 @@ const socials = [
 
 const Banner = () => {
   return (
-    <Flex className="w-full">
-      <div className="w-1/2">
-        <h1 className="text-black font-medium text-4xl font-primary">
+    <Flex className="w-full gap-y-5 md:gap-y-0">
+      <div className="md:w-1/2 ">
+        <h1 className="text-black font-medium  md:text-4xl text-3xl font-primary">
           &lt;Meheraj Hosen/&gt;
         </h1>
         <p className="text-background/90 text-sm my-5 font-body">
@@ -42,8 +42,8 @@ const Banner = () => {
           ))}
         </div>
       </div>
-      <div className="w-1/2">
-        <div className="relative w-[260px] h-[260px] ms-auto">
+      <div className="md:w-1/2 ">
+        <div className="relative w-[260px] h-[260px] md:ml-auto mx-auto md:mx-0">
           <div
             className="absolute animate-spin duration-60000 inset-0 rounded-full"
             style={{

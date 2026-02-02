@@ -7,7 +7,7 @@ interface FlexProps{
 
 const Flex = ({className, children} : FlexProps) => {
   return (
-    <div className={`flex justify-between items-center flex-wrap ${className}`}>{children}</div>
+    <div className={`flex justify-between flex-col md:flex-row items-center flex-wrap ${className}`}>{children}</div>
   )
 }
 

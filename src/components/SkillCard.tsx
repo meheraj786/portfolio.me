@@ -12,7 +12,7 @@ const SkillCard: React.FC<SkillCardProps> = ({ icon: Icon, name, link }) => {
     <Link
       href={link}
       target="_blank"
-      className="relative font-body group w-48 h-24 cursor-pointer"
+      className="relative font-body group md:w-48 md:h-24 w-40 h-20 cursor-pointer"
     >
       <div className="absolute inset-0 bg-background rounded-sm translate-x-1 translate-y-1 transition-transform duration-500 group-hover:translate-x-2 group-hover:translate-y-2"></div>
 

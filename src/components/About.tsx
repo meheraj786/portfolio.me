@@ -16,7 +16,7 @@ const About = () => {
         </h2>
       </Flex>
 
-      <div className="w-1/2">
+      <div className="md:w-1/2">
         <div className="relative w-[260px] h-[260px]">
           <div className=" rounded-sm bg-offWhite flex justify-center items-center overflow-hidden">
             <Image
@@ -29,8 +29,8 @@ const About = () => {
           </div>
         </div>
       </div>
-      <div className="flex-1">
-        <p className="text-background/90 text-sm my-5 text-right font-body">
+      <div className="md:flex-1">
+        <p className="text-background/90 text-sm my-5 md:text-right text-left font-body">
           Hi, I’m Meheraj Hosen — a passionate MERN stack developer from Dhaka,
           Bangladesh. I love building modern, responsive web applications and
           exploring new technologies. Skilled in HTML, CSS, JavaScript, React,
