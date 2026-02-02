@@ -57,7 +57,7 @@ const NpmPackageCard: React.FC<NpmPackageCardProps> = ({
       )}
 
       {/* Links */}
-      <Flex className=" justify-end items-center gap-x-4 text-background text-[20px]">
+      <Flex className=" flex-row justify-end items-center gap-x-4 text-background text-[20px]">
         <Link
           href={github}
           target="_blank"

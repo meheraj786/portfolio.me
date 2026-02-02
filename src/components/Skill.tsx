@@ -7,7 +7,7 @@ import { skills } from "@/layouts/seed";
 const Skill = () => {
   return (
     <div className="py-10">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto text-center">
         <h2
           className='relative font-primary  font-bold text-black mb-3
           after:content-[""] after:absolute after:left-0 after:bottom-0 pb-3 after:h-[3px] after:bg-black after:w-0
@@ -26,7 +26,7 @@ const Skill = () => {
             />
           ))}
         </Flex>
-        <button className="text-white font-body cursor-pointer bg-background px-5 py-1 mt-10 rounded-sm transition-colors duration-200 border border-white hover:border-black hover:border hover:bg-white hover:text-black">
+        <button className="text-white font-body cursor-pointer bg-background px-5 py-1 mt-10 mx-auto rounded-sm transition-colors duration-200 border border-white hover:border-black hover:border hover:bg-white hover:text-black">
           View More
         </button>
       </div>

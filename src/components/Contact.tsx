@@ -45,7 +45,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="py-12 px-4 md:px-8 bg-white rounded-md transition-colors duration-300">
+    <div className="py-12  md:px-8  rounded-md transition-colors duration-300">
       <div className="max-w-6xl mx-auto">
         <h2
           className="relative  font-primary font-bold text-black text-center mb-12

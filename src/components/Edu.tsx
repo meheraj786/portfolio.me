@@ -1,32 +1,34 @@
-import Flex from '@/layouts/Flex'
-import Image from 'next/image'
-import React from 'react'
-import image from "../../public/icCer.png"
+import Flex from "@/layouts/Flex";
+import Image from "next/image";
+import React from "react";
+import image from "../../public/icCer.png";
 
-const edu=[
+const edu = [
   {
-    id:1,
-    title:"MERN Stack Development",
-    duration:"2025-2026",
-    institute:"Creative IT Institute",
-    certificate: "https://drive.google.com/file/d/1CmEoU1kZ1o4lFbXV6UoYj2rW6Vn2Ck0o/view?usp=share_link"
+    id: 1,
+    title: "MERN Stack Development",
+    duration: "2025-2026",
+    institute: "Creative IT Institute",
+    certificate:
+      "https://drive.google.com/file/d/1CmEoU1kZ1o4lFbXV6UoYj2rW6Vn2Ck0o/view?usp=share_link",
   },
   {
-    id:2,
-    title:"MERN Stack Development",
-    duration:"2025-2025",
-    institute:"Interactive Cares",
-    certificate: "https://drive.google.com/file/d/1CmEoU1kZ1o4lFbXV6UoYj2rW6Vn2Ck0o/view?usp=share_link"
+    id: 2,
+    title: "MERN Stack Development",
+    duration: "2025-2025",
+    institute: "Interactive Cares",
+    certificate:
+      "https://drive.google.com/file/d/1CmEoU1kZ1o4lFbXV6UoYj2rW6Vn2Ck0o/view?usp=share_link",
   },
   {
-    id:3,
-    title:"System Design: Theory to Implementation",
-    duration:"2026-2026",
-    institute:"Interactive Cares",
-    certificate: "https://drive.google.com/file/d/1CmEoU1kZ1o4lFbXV6UoYj2rW6Vn2Ck0o/view?usp=share_link"
-  }
-
-]
+    id: 3,
+    title: "System Design: Theory to Implementation",
+    duration: "2026-2026",
+    institute: "Interactive Cares",
+    certificate:
+      "https://drive.google.com/file/d/1CmEoU1kZ1o4lFbXV6UoYj2rW6Vn2Ck0o/view?usp=share_link",
+  },
+];
 
 const Edu = () => {
   return (
@@ -40,31 +42,31 @@ const Edu = () => {
           Education & Trainings;
         </h2>
       </Flex>
-{
-  edu.map((item)=>(
-          <Flex key={item.id} className='justify-between group hover:border-l-5 hover:pl-3 transition-all duration-300 border-background my-2 w-full'>
-        <div className="left">
-          <h3 className='text-black font-medium'>{item.title}</h3>
-          <p className='text-background/90 my-1 text-sm'>{item.institute}</p>
-          <span className='bg-foreground/90 px-2 py-1 rounded-sm text-background text-xs'>{item.duration}</span>
-        </div>
-        <div>
-          <Image
-            width={100}
-            height={100}
-            src={image}
-            alt="certificate"
-            className="group-hover:scale-110 transition-all duration-300"
-            
-          />
-        </div>
-      </Flex>
-  ))
-}
-      
+      {edu.map((item) => (
+        <Flex
+          key={item.id}
+          className="justify-between flex-row group hover:border-l-5 hover:pl-3 transition-all duration-300 border-background my-2 w-full"
+        >
+          <div className="left flex-1">
+            <h3 className="text-black font-medium">{item.title}</h3>
+            <p className="text-background/90 my-1 text-sm">{item.institute}</p>
+            <span className="bg-foreground/90 px-2 py-1 rounded-sm text-background text-xs">
+              {item.duration}
+            </span>
+          </div>
+          <div>
+            <Image
+              width={100}
+              height={100}
+              src={image}
+              alt="certificate"
+              className="group-hover:scale-110 transition-all duration-300"
+            />
+          </div>
+        </Flex>
+      ))}
+    </Flex>
+  );
+};
 
-      </Flex>
-  )
-}
-
-export default Edu
+export default Edu;
