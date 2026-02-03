@@ -98,6 +98,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="google-site-verification" content="pdYx49GsWSFyOUpO0Rbwu-PV59o545NSyO_9hpdgiQI" />
+      </head>
       <body
         className={`${spaceMono.variable} ${jetBrainMono.variable} antialiased`}
       >
