@@ -31,7 +31,9 @@ export const metadata: Metadata = {
     template: "%s | Meheraj Hosen",
   },
   description: "Passionate MERN stack developer from Dhaka, Bangladesh. Building scalable web apps, exploring system design, and sharing knowledge through blogs and open-source.",
-
+    verification: {
+    google: "pdYx49GsWSFyOUpO0Rbwu-PV59o545NSyO_9hpdgiQI",
+  },
   openGraph: {
     title: "Meheraj Hosen - MERN & System Design Portfolio",
     description: "Explore projects, system design case studies, NPM packages, articles, and more.",
