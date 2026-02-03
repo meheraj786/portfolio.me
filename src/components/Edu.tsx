@@ -2,6 +2,8 @@ import Flex from "@/layouts/Flex";
 import Image from "next/image";
 import React from "react";
 import image from "../../public/icCer.png";
+import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
+import { SquareArrowOutUpRight } from "lucide-react";
 
 const edu = [
   {
@@ -10,7 +12,7 @@ const edu = [
     duration: "2025-2026",
     institute: "Creative IT Institute",
     certificate:
-      "https://drive.google.com/file/d/1CmEoU1kZ1o4lFbXV6UoYj2rW6Vn2Ck0o/view?usp=share_link",
+      image,
   },
   {
     id: 2,
@@ -43,9 +45,9 @@ const Edu = () => {
         </h2>
       </Flex>
       {edu.map((item) => (
+        <Dialog key={item.id}>
         <Flex
-          key={item.id}
-          className="justify-between flex-row group hover:border-l-5 hover:pl-3 transition-all duration-300 border-background my-2 w-full"
+          className="justify-between  flex-row group hover:border-l-5 hover:pl-3 transition-all duration-300 border-background my-2 w-full"
         >
           <div className="left flex-1">
             <h3 className="text-black font-medium">{item.title}</h3>
@@ -54,7 +56,8 @@ const Edu = () => {
               {item.duration}
             </span>
           </div>
-          <div>
+          <DialogTrigger>
+          <div className="relative cursor-pointer">
             <Image
               width={100}
               height={100}
@@ -62,8 +65,22 @@ const Edu = () => {
               alt="certificate"
               className="group-hover:scale-110 transition-all duration-300"
             />
+            <div className="hidden group-hover:flex justify-center transition-all duration-300 items-center z-50 absolute group-hover:scale-110 w-full h-full top-0 left-0 bg-white/10 backdrop-blur-[2px]">
+            <SquareArrowOutUpRight className="text-background text-xl" />
+            </div>
           </div>
+          </DialogTrigger>
+          <DialogContent>
+            <Image
+              src={image}
+              alt="certificate"
+              className="w-full h-full"
+              width={500}
+              height={500}
+            />
+          </DialogContent>
         </Flex>
+        </Dialog>
       ))}
     </Flex>
   );
