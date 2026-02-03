@@ -4,6 +4,7 @@ import Flex from "@/layouts/Flex";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
+import MobileNav from "./MobileNav";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -39,10 +40,11 @@ const Navbar = () => {
     },
   ];
   return (
+<>
     <div className="py-5 hidden md:block fixed top-0 bg-white/10 backdrop-blur-xs left-0 right-0 z-50 font-body">
       <Container>
         <Flex>
-          <Link href="/"  className="text-black font-primary font-bold">
+          <Link href="/"  className="text-black text-xl font-primary font-medium">
              &lt;Meheraj/&gt;
           </Link>
           <ul className="flex justify-end gap-x-10 text-sm items-center flex-1">
@@ -63,6 +65,8 @@ const Navbar = () => {
         </Flex>
       </Container>
     </div>
+    <MobileNav/>
+</>
   );
 };
 

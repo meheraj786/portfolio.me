@@ -7,7 +7,7 @@ import { skills } from "@/layouts/seed";
 const Skill = () => {
   return (
     <div className="py-10">
-      <div className="max-w-6xl mx-auto text-center">
+      <div className="max-w-6xl mx-auto text-center md:text-left">
         <h2
           className='relative font-primary  font-bold text-black mb-3
           after:content-[""] after:absolute after:left-0 after:bottom-0 pb-3 after:h-[3px] after:bg-black after:w-0

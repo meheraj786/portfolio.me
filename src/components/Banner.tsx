@@ -13,8 +13,8 @@ const socials = [
 
 const Banner = () => {
   return (
-    <Flex className="w-full gap-y-5 md:gap-y-0">
-      <div className="md:w-1/2 ">
+    <Flex className="w-full overflow-hidden gap-y-5 md:gap-y-0">
+      <div className="md:w-1/2">
         <h1 className="text-black font-medium  md:text-4xl text-3xl font-primary">
           &lt;Meheraj Hosen/&gt;
         </h1>
