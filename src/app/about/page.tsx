@@ -16,7 +16,7 @@ const About = () => {
         </h2>
       </Flex>
 
-      <div className="w-1/2">
+      <div className="md:w-1/2">
         <div className="relative w-[260px] h-[260px]">
           <div className=" rounded-sm bg-offWhite flex justify-center items-center overflow-hidden">
             <Image
@@ -29,13 +29,18 @@ const About = () => {
           </div>
         </div>
       </div>
-      <div className="flex-1">
-        <p className="text-background/90 text-sm my-5 text-right font-body">
-          Hi, I’m Meheraj Hosen — a passionate MERN stack developer from Dhaka,
-          Bangladesh. I love building modern, responsive web applications and
-          exploring new technologies. Skilled in HTML, CSS, JavaScript, React,
-          Tailwind, Node.js, Express, and MongoDB. Always eager to learn,
-          create, and share ideas through real-world projects.
+      <div className="md:flex-1">
+        <p className="text-background/90 text-sm my-5 md:text-right text-left font-body">
+
+Hello! I'm Meheraj, a dedicated full-stack developer and freelance professional with deep expertise in the JavaScript ecosystem — particularly MERN and PERN stacks.
+
+On the frontend, I craft pixel-perfect, responsive, and fast-loading interfaces using React (with hooks, Context API, Redux/Redux Toolkit), Tailwind CSS, Material UI, and modern best practices. On the backend, I design secure, scalable RESTful/GraphQL APIs with Node.js + Express, handling authentication (JWT, OAuth), authorization, rate limiting, error handling, and more — all production-grade.
+
+I'm comfortable with both NoSQL (MongoDB) and SQL (PostgreSQL) databases, choosing the right one based on project needs. I also have strong experience in system design topics like microservices, caching strategies, load balancing, and database scaling.
+
+To date, I've successfully completed 10+ freelance projects — ranging from e-commerce solutions and booking platforms to complex admin dashboards and real-time applications. Every project prioritizes clean architecture, maintainable code, thorough documentation, and on-time delivery.
+
+My goal is simple: deliver technical solutions that help businesses grow — scalable, maintainable, and future-proof. If you have an exciting idea or challenging project, feel free to reach out — I'm ready to bring it to life together!
         </p>
       </div>
     </Flex>

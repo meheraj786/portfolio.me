@@ -1,6 +1,7 @@
 import { articles } from "@/layouts/seed";
 import React from "react";
 import ArticleCard from "./ArticleCard";
+import Link from "next/link";
 
 const Article = () => {
   return (
@@ -29,9 +30,11 @@ const Article = () => {
         ))}
       </div>
       <div className="md:text-left text-center">
+      <Link href="/articles">
       <button className="text-white text-right font-body mx-auto cursor-pointer bg-background px-5 py-1 mt-10 rounded-sm transition-colors duration-200 border border-white hover:border-black hover:border hover:bg-white hover:text-black">
         View More
       </button>
+      </Link>
       </div>
     </div>
   );

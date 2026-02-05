@@ -34,7 +34,7 @@ export default async function CaseStudyDetailPage({
       <article className="max-w-5xl mx-auto">
         {/* Back Button */}
         <Link
-          href="/system-designes"
+          href="/system-designs"
           className="inline-flex items-center gap-2 text-gray-600 hover:text-black mb-8 transition-colors font-body"
         >
           <ArrowLeft className="w-5 h-5" />
@@ -139,10 +139,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
       title: study.title,
       description: study.description,
       images: [{ url: `${baseUrl}${study.diagramUrl}` }],
-      url: `${baseUrl}/system-design/${study.slug}`,
+      url: `${baseUrl}/system-designs/${study.slug}`,
     },
     alternates: {
-      canonical: `${baseUrl}/system-design/${study.slug}`,
+      canonical: `${baseUrl}/system-designs/${study.slug}`,
     },
   };
 }

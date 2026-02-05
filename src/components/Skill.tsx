@@ -3,6 +3,7 @@ import React from "react";
 import SkillCard from "./SkillCard";
 import Flex from "@/layouts/Flex";
 import { skills } from "@/layouts/seed";
+import Link from "next/link";
 
 const Skill = () => {
   return (
@@ -26,9 +27,11 @@ const Skill = () => {
             />
           ))}
         </Flex>
+        <Link href="/skills">
         <button className="text-white font-body cursor-pointer bg-background px-5 py-1 mt-10 mx-auto rounded-sm transition-colors duration-200 border border-white hover:border-black hover:border hover:bg-white hover:text-black">
           View More
         </button>
+        </Link>
       </div>
     </div>
   );

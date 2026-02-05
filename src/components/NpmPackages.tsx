@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import NpmPackageCard from "./NpmPackageCard";
+import Link from "next/link";
 
 interface NpmPackage {
   title: string;
@@ -74,7 +75,7 @@ const NpmPackages = () => {
         <p className="text-center mt-10">No packages found yet! Publish some 🚀</p>
       ) : (
         <div className="flex flex-col mt-3 gap-y-3">
-          {packages.slice(0, 3).map((p, idx) => (
+          {packages.slice(0, 2).map((p, idx) => (
             <NpmPackageCard
               key={idx}
               title={p.title}
@@ -86,11 +87,18 @@ const NpmPackages = () => {
           ))}
         </div>
       )}
+      {
+        packages.length > 2 && (
       <div className="md:text-left text-center">
+      <Link href="/npm-packages">
       <button className="text-white text-right font-body mx-auto cursor-pointer bg-background px-5 py-1 mt-10 rounded-sm transition-colors duration-200 border border-white hover:border-black hover:border hover:bg-white hover:text-black">
         View More
       </button>
+      </Link>
       </div>
+        )
+      }
+
     </div>
   );
 };

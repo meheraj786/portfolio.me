@@ -31,6 +31,10 @@ const Navbar = () => {
       link: "/projects",
     },
     {
+      title: "System Design",
+      link: "/system-designs",
+    },
+    {
       title: "Articles",
       link: "/articles",
     },
@@ -40,33 +44,36 @@ const Navbar = () => {
     },
   ];
   return (
-<>
-    <div className="py-5 hidden md:block fixed top-0 bg-white/10 backdrop-blur-xs left-0 right-0 z-50 font-body">
-      <Container>
-        <Flex>
-          <Link href="/"  className="text-black text-xl font-primary font-medium">
-             &lt;Meheraj/&gt;
-          </Link>
-          <ul className="flex justify-end gap-x-10 text-sm items-center flex-1">
-            {menuItems.map((item, idx) => (
-              <Link
-                className={
-                  pathname == item.link
-                    ? "text-white bg-background px-2 py-1 rounded-sm transition-colors duration-200 border border-white hover:border-black hover:border hover:bg-white hover:text-black"
-                    : "text-black px-2 py-1 rounded-sm transition-colors duration-200 hover:bg-background hover:text-white"
-                }
-                href={item.link}
-                key={idx}
-              >
-                {item.title}
-              </Link>
-            ))}
-          </ul>
-        </Flex>
-      </Container>
-    </div>
-    <MobileNav/>
-</>
+    <>
+      <div className="py-5 hidden md:block fixed top-0 bg-white/10 backdrop-blur-xs left-0 right-0 z-50 font-body">
+        <Container>
+          <Flex>
+            <Link
+              href="/"
+              className="text-black text-xl font-primary font-medium"
+            >
+              &lt;Meheraj/&gt;
+            </Link>
+            <ul className="flex justify-end gap-x-10 text-sm items-center flex-1">
+              {menuItems.map((item, idx) => (
+                <Link
+                  className={
+                    pathname == item.link
+                      ? "text-white bg-background px-2 py-1 rounded-sm transition-colors duration-200 border border-white hover:border-black hover:border hover:bg-white hover:text-black"
+                      : "text-black px-2 py-1 rounded-sm transition-colors duration-200 hover:bg-background hover:text-white"
+                  }
+                  href={item.link}
+                  key={idx}
+                >
+                  {item.title}
+                </Link>
+              ))}
+            </ul>
+          </Flex>
+        </Container>
+      </div>
+      <MobileNav />
+    </>
   );
 };
 

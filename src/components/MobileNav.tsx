@@ -32,6 +32,10 @@ const MobileNav = () => {
       link: "/projects",
     },
     {
+      title: "System Design",
+      link: "/system-designs",
+    },
+    {
       title: "Articles",
       link: "/articles",
     },
@@ -44,7 +48,10 @@ const MobileNav = () => {
     <div className="py-5 px-3 md:hidden fixed top-0 bg-white/10 backdrop-blur-xs left-0 right-0 z-50 font-body">
       <Container>
         <Flex className={`flex-row ${isOpen ? "items-start" : "items-center"}`}>
-          <Link href="/" className="text-black text-xl font-primary font-medium">
+          <Link
+            href="/"
+            className="text-black text-xl font-primary font-medium"
+          >
             &lt;Meheraj/&gt;
           </Link>
 
@@ -52,7 +59,7 @@ const MobileNav = () => {
             <ul className="flex flex-col justify-end gap-x-10 text-sm items-center flex-1">
               {menuItems.map((item, idx) => (
                 <Link
-                onClick={() => setIsOpen(false)}
+                  onClick={() => setIsOpen(false)}
                   className={
                     pathname == item.link
                       ? "text-white bg-background px-2 py-1 rounded-sm transition-colors duration-200 border border-white hover:border-black hover:border hover:bg-white hover:text-black"
@@ -66,10 +73,16 @@ const MobileNav = () => {
               ))}
             </ul>
           )}
-                    {isOpen ? (
-            <X className="w-6 h-6 text-background" onClick={() => setIsOpen(false)} />
+          {isOpen ? (
+            <X
+              className="w-6 h-6 text-background"
+              onClick={() => setIsOpen(false)}
+            />
           ) : (
-            < Menu className="w-6 text-background h-6" onClick={() => setIsOpen(true)} />
+            <Menu
+              className="w-6 text-background h-6"
+              onClick={() => setIsOpen(true)}
+            />
           )}
         </Flex>
       </Container>

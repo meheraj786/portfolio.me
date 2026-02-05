@@ -22,7 +22,7 @@ const SystemDesignCard: React.FC<SystemDesignCardProps> = ({
   learnings,
 }) => {
   return (
-    <Link href={`/system-designes/${slug}`}>
+    <Link href={`/system-designs/${slug}`}>
     <div className="flex flex-col md:flex-row items-start gap-6 bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-300 border border-gray-100">
       {/* Left: Diagram Image */}
       {/* <div className="w-full md:w-64 h-48 relative shrink-0 rounded-xl overflow-hidden">

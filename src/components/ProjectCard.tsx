@@ -61,7 +61,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               </span>
             ))}
           </div>
-          <Flex className="text-background flex-row text-[18px] justify-end  w-full gap-x-3">
+          <Flex className="text-background flex-row text-[18px] justify-end mt-3 w-full gap-x-3">
             <Link href="#">
               <FaGithub />
             </Link>

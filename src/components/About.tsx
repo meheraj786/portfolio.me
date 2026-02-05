@@ -1,7 +1,7 @@
 import Flex from "@/layouts/Flex";
 import Image from "next/image";
 import React from "react";
-import image from "../../public/bannerImg.jpg"
+import image from "../../public/bannerImg.jpg";
 
 const About = () => {
   return (
@@ -31,11 +31,18 @@ const About = () => {
       </div>
       <div className="md:flex-1">
         <p className="text-background/90 text-sm my-5 md:text-right text-left font-body">
-          Hi, I’m Meheraj Hosen — a passionate MERN stack developer from Dhaka,
-          Bangladesh. I love building modern, responsive web applications and
-          exploring new technologies. Skilled in HTML, CSS, JavaScript, React,
-          Tailwind, Node.js, Express, and MongoDB. Always eager to learn,
-          create, and share ideas through real-world projects.
+          Full-Stack Developer | MERN & PERN Specialist | Freelancer Hi, I'm
+          Meheraj — a passionate full-stack developer specializing in MERN
+          (MongoDB, Express, React, Node.js) and PERN (PostgreSQL, Express,
+          React, Node.js) stacks. I build scalable, high-performance web
+          applications with clean code, responsive UIs, and robust backends.
+          I've successfully delivered multiple freelance projects — from
+          startups to mid-sized businesses — including e-commerce platforms,
+          SaaS dashboards, admin panels, and real-time features. I also enjoy
+          system design, performance optimization, API architecture, and turning
+          client visions into production-ready products quickly and reliably.
+          Love solving challenging problems and delivering value. Let's
+          collaborate and build something impactful!
         </p>
       </div>
     </Flex>

@@ -2,6 +2,7 @@
 import React from "react";
 import SystemDesignCard from "./SystemDesignCard";
 import { caseStudies } from "@/layouts/seed";
+import Link from "next/link";
 
 
 const SystemDesignCaseStudies = () => {
@@ -25,11 +26,13 @@ const SystemDesignCaseStudies = () => {
 
       {caseStudies.length > 3 && (
         <div className="md:text-left text-center">
+          <Link href="/system-designs">
         <button
           className="text-white font-body mx-auto cursor-pointer bg-background px-6 py-2 mt-10 rounded-sm transition-colors duration-200 border border-white hover:border-black hover:bg-white hover:text-black"
         >
           View More
         </button>
+          </Link>
         </div>
       )}
       

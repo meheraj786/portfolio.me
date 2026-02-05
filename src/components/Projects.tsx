@@ -1,6 +1,7 @@
 import { projects } from "@/layouts/seed";
 import React from "react";
 import ProjectCard from "./ProjectCard";
+import Link from "next/link";
 
 const Projects = () => {
   return (
@@ -13,7 +14,7 @@ const Projects = () => {
         &#91;My Projects&#93;
       </h2>
       <div className="flex flex-col gap-y-3">
-        {projects.map((p, idx) => (
+        {projects.slice(0, 3).map((p, idx) => (
           <ProjectCard
             title={p.title}
             description={p.desc}
@@ -27,9 +28,11 @@ const Projects = () => {
         ))}
       </div>
       <div className="md:text-left text-center">
+        <Link href="/projects">
       <button className="text-white text-right font-body mx-auto cursor-pointer bg-background px-5 py-1 mt-10 rounded-sm transition-colors duration-200 border border-white hover:border-black hover:border hover:bg-white hover:text-black">
         View More
       </button>
+        </Link>
       </div>
 
     </div>
