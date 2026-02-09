@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Calendar, Clock, User } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button"; 
+import { Button } from "@/components/ui/button";
 
 import { articles } from "@/layouts/seed";
 import Link from "next/link";
@@ -27,17 +27,13 @@ export default async function ArticleDetailPage({
 }: {
   params: { slug: string };
 }) {
-  const article = articles.find((a) => a.slug === params.slug) as Article | undefined;
-
-
+  const article = articles.find((a) => a.slug === params.slug) as
+    | Article
+    | undefined;
 
   if (!article) {
     notFound();
   }
-
-
-
-
 
   return (
     <main className="min-h-screen bg-white py-12 px-4 md:px-8">
@@ -94,11 +90,11 @@ export default async function ArticleDetailPage({
         </div>
 
         {/* Social Share Buttons */}
-<ShareButtons 
-  articleUrl={`${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/articles/${article.slug}`}
-  title={article.title}
-  description={article.description}
-/>
+        <ShareButtons
+          articleUrl={`${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/articles/${article.slug}`}
+          title={article.title}
+          description={article.description}
+        />
 
         {/* Back to Articles */}
         <div className="mt-8 text-center">
@@ -106,10 +102,10 @@ export default async function ArticleDetailPage({
             href="/articles"
             className="inline-flex items-center gap-2 text-sm font-body text-gray-600 hover:text-gray-800 transition-colors"
           >
-<Button variant="outline" size="sm">
-  <SlUserFollowing className="w-5 h-5" />
-            <span>Back to Articles</span>
-          </Button>
+            <Button variant="outline" size="sm">
+              <SlUserFollowing className="w-5 h-5" />
+              <span>Back to Articles</span>
+            </Button>
           </Link>
         </div>
       </article>
@@ -123,23 +119,38 @@ export async function generateStaticParams() {
   }));
 }
 
-// export async function generateMetadata({ params }: { params: { slug: string } }) {
-//   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-//   const article = articles.find((a) => a.slug === params.slug);
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+  const article = articles.find((a) => a.slug === params.slug);
 
-//   if (!article) return { title: "Not Found" };
+  if (!article) return { title: "Not Found" };
 
-//   return {
-//     title: `${article.title} | Meheraj Hosen`,
-//     description: article.description,
-//     openGraph: {
-//       title: article.title,
-//       description: article.description,
-//       images: [{ url: `${baseUrl}${article.image}` }],
-//       url: `${baseUrl}/articles/${article.slug}`,
-//     },
-//     alternates: {
-//       canonical: `${baseUrl}/articles/${article.slug}`,
-//     },
-//   };
-// }
+  const imageUrl =
+    article.image && article.image.toString().startsWith("http")
+      ? article.image.toString()
+      : `${baseUrl}${article.image}`;
+
+  return {
+    title: `${article.title} | Meheraj Hosen`,
+    description: article.description,
+    openGraph: {
+      title: article.title,
+      description: article.description,
+      images: [{ url: imageUrl }],
+      url: `${baseUrl}/articles/${article.slug}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.description,
+      images: [imageUrl],
+    },
+    alternates: {
+      canonical: `${baseUrl}/articles/${article.slug}`,
+    },
+  };
+}
