@@ -6,7 +6,7 @@ import Link from "next/link";
 interface NpmPackage {
   title: string;
   description: string;
-  tags?: string[]; // optional, যদি keywords থেকে নিতে চাও
+  tags?: string[]; 
   github: string;
   npm: string;
 }
@@ -22,7 +22,7 @@ const NpmPackages = () => {
         const response = await fetch(
           "https://registry.npmjs.org/-/v1/search?text=author:meheraj786&size=250",
           {
-            next: { revalidate: 86400 }, // Next.js cache: 24 hours
+            next: { revalidate: 86400 },
           }
         );
 
