@@ -6,9 +6,11 @@ import Link from "next/link";
 interface NpmPackage {
   title: string;
   description: string;
-  tags?: string[]; 
+  tags: string[]; 
   github: string;
   npm: string;
+  downloads: string;
+
 }
 
 const NpmPackages = () => {
@@ -33,7 +35,6 @@ const NpmPackages = () => {
         const data = await response.json();
         const objects = data.objects || [];
 
-        // Map to your NpmPackageCard props
         const formattedPackages: NpmPackage[] = objects.map((item: any) => {
           const pkg = item.package;
           return {
