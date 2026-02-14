@@ -8,7 +8,7 @@ const socials = [
   { id: 1, icon: <FaGithub />, link: "https://github.com/meheraj786" },
   { id: 2, icon: <FaLinkedin />, link: "https://www.linkedin.com/in/mehraj-h" },
   { id: 3, icon: <FaTwitter />, link: "https://twitter.com/meherajhosen" },
-  { id: 4, icon: <FaFacebook />, link: "https://facebook.com/meherajhosen" },
+  { id: 4, icon: <FaFacebook />, link: "https://www.facebook.com/mehrajh786" },
 ];
 
 const Banner = () => {
