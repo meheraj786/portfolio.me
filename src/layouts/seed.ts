@@ -27,51 +27,36 @@ import chat from "../../public/chat.png";
 import collabrix from "../../public/collabrix.png";
 import cookpal from "../../public/cookpal.png";
 
+
+
 export const skills = [
-  {
-    icon: FaHtml5,
-    name: "HTML5",
-    link: "https://developer.mozilla.org/en-US/docs/Web/HTML",
-  },
-  {
-    icon: FaCss3Alt,
-    name: "CSS3",
-    link: "https://developer.mozilla.org/en-US/docs/Web/CSS",
-  },
-  {
-    icon: FaJs,
-    name: "JavaScript",
-    link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-  },
-  {
-    icon: SiTypescript,
-    name: "TypeScript",
-    link: "https://www.typescriptlang.org/",
-  },
-  { icon: SiMongodb, name: "MongoDB", link: "https://www.mongodb.com/" },
-  { icon: SiExpress, name: "Express.js", link: "https://expressjs.com/" },
-  { icon: FaReact, name: "React.js", link: "https://react.dev/" },
-  { icon: FaNodeJs, name: "Node.js", link: "https://nodejs.org/" },
-  { icon: SiNextdotjs, name: "Next.js", link: "https://nextjs.org/" },
-  { icon: SiMysql, name: "MySQL", link: "https://www.mysql.com/" },
-  {
-    icon: SiBeekeeperstudio,
-    name: "Beekeeper",
-    link: "https://www.beekeeperstudio.io/",
-  },
-  { icon: SiPrisma, name: "Prisma", link: "https://www.prisma.io/" },
-  { icon: SiAstro, name: "Astro", link: "https://astro.build/" },
-  { icon: SiJest, name: "Jest", link: "https://jestjs.io/" },
-  { icon: SiPostman, name: "Postman", link: "https://www.postman.com/" },
-  {
-    icon: SiTailwindcss,
-    name: "TailwindCSS",
-    link: "https://tailwindcss.com/",
-  },
-  { icon: SiRedux, name: "Redux", link: "https://redux.js.org/" },
-  { icon: FaGitAlt, name: "Git", link: "https://git-scm.com/" },
-  { icon: FaDocker, name: "Docker", link: "https://www.docker.com/" },
-  { icon: FaFigma, name: "Figma", link: "https://www.figma.com/" },
+  // Frontend
+  { icon: FaHtml5, name: "HTML5", link: "#", color: "#E34F26", category: "Frontend" },
+  { icon: FaCss3Alt, name: "CSS3", link: "#", color: "#1572B6", category: "Frontend" },
+  { icon: FaJs, name: "JavaScript", link: "#", color: "#323330", category: "Frontend" },
+  { icon: SiTypescript, name: "TypeScript", link: "#", color: "#3178C6", category: "Frontend" },
+  { icon: FaReact, name: "React.js", link: "#", color: "#20232A", category: "Frontend" },
+  { icon: SiNextdotjs, name: "Next.js", link: "#", color: "#000000", category: "Frontend" },
+  { icon: SiTailwindcss, name: "TailwindCSS", link: "#", color: "#38B2AC", category: "Frontend" },
+  { icon: SiRedux, name: "Redux", link: "#", color: "#764ABC", category: "Frontend" },
+  { icon: SiAstro, name: "Astro", link: "#", color: "#FF5D01", category: "Frontend" },
+
+  // Backend
+  { icon: SiExpress, name: "Express.js", link: "#", color: "#000000", category: "Backend" },
+  { icon: FaNodeJs, name: "Node.js", link: "#", color: "#339933", category: "Backend" },
+  { icon: SiJest, name: "Jest", link: "#", color: "#C21325", category: "Backend" },
+
+  // Database
+  { icon: SiMongodb, name: "MongoDB", link: "#", color: "#47A248", category: "Database" },
+  { icon: SiMysql, name: "MySQL", link: "#", color: "#4479A1", category: "Database" },
+  { icon: SiPrisma, name: "Prisma", link: "#", color: "#2D3748", category: "Database" },
+  { icon: SiBeekeeperstudio, name: "Beekeeper", link: "#", color: "#FFB300", category: "Database" },
+
+  // Tools / Others
+  { icon: SiPostman, name: "Postman", link: "#", color: "#FF6C37", category: "Tools" },
+  { icon: FaGitAlt, name: "Git", link: "#", color: "#F05032", category: "Tools" },
+  { icon: FaDocker, name: "Docker", link: "#", color: "#2496ED", category: "Tools" },
+  { icon: FaFigma, name: "Figma", link: "#", color: "#F24E1E", category: "Tools" },
 ];
 
 export const projects = [

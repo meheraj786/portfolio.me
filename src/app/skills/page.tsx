@@ -7,7 +7,7 @@ import SkillCard from "@/components/SkillCard";
 const Skill = () => {
   return (
     <div className="py-10">
-      <div className="max-w-6xl mx-auto text-center md:text-left">
+      <div className="max-w-6xl mx-auto text-left md:text-left">
         <h2
           className='relative font-primary  font-bold text-black mb-3
           after:content-[""] after:absolute after:left-0 after:bottom-0 pb-3 after:h-[3px] after:bg-black after:w-0
@@ -23,6 +23,7 @@ const Skill = () => {
               icon={skill.icon}
               name={skill.name}
               link={skill.link}
+              bgColor="black"
             />
           ))}
         </Flex>
