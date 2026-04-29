@@ -33,7 +33,7 @@ export const skills = [
   // Frontend
   { icon: FaHtml5, name: "HTML5", link: "#", color: "#E34F26", category: "Frontend" },
   { icon: FaCss3Alt, name: "CSS3", link: "#", color: "#1572B6", category: "Frontend" },
-  { icon: FaJs, name: "JavaScript", link: "#", color: "#323330", category: "Frontend" },
+  { icon: FaJs, name: "JavaScript", link: "#", color: "#F7DF1E", category: "Frontend" },
   { icon: SiTypescript, name: "TypeScript", link: "#", color: "#3178C6", category: "Frontend" },
   { icon: FaReact, name: "React.js", link: "#", color: "#20232A", category: "Frontend" },
   { icon: SiNextdotjs, name: "Next.js", link: "#", color: "#000000", category: "Frontend" },

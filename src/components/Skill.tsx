@@ -6,32 +6,50 @@ import { skills } from "@/layouts/seed";
 import Link from "next/link";
 
 const Skill = () => {
+  const categories = ["Frontend", "Backend", "Database", "Tools"];
+
   return (
-    <div className="py-10">
-      <div className="max-w-6xl mx-auto text-center md:text-left">
+    <div className="py-10 ">
+      <div className="max-w-6xl mx-auto px-4">
         <h2
-          className='relative font-primary  font-bold text-black mb-3
-          after:content-[""] after:absolute after:left-0 after:bottom-0 pb-3 after:h-[3px] after:bg-black after:w-0
-          hover:after:w-60 after:transition-all after:duration-300'
+          className='relative font-primary font-bold text-primary mb-10 inline-block
+          after:content-[""] after:absolute after:left-0 after:bottom-0 pb-3 after:h-[3px] after:bg-primary after:w-0
+          hover:after:w-full after:transition-all after:duration-300'
         >
           &#123; My Skills &#125;
         </h2>
 
-        <Flex className="md:gap-5 gap-2 justify-center md:justify-between flex-row flex-wrap">
-          {skills.slice(0, 8).map((skill, index) => (
-            <SkillCard
-              key={index}
-              icon={skill.icon}
-              name={skill.name}
-              link={skill.link}
-            />
+        <div className="space-y-10">
+          {categories.map((cat) => (
+            <div key={cat} className="space-y-4">
+              <h3 className="text-gray-400 text-xs font-semibold uppercase tracking-[3px]">
+                {cat}
+              </h3>
+
+              <Flex className="gap-3 flex-wrap justify-start">
+                {skills
+                  .filter((skill) => skill.category === cat)
+                  .map((skill, index) => (
+                    <SkillCard
+                      key={index}
+                      icon={skill.icon}
+                      name={skill.name}
+                      link={skill.link}
+                      color={skill.color || "#333"}
+                    />
+                  ))}
+              </Flex>
+            </div>
           ))}
-        </Flex>
-        <Link href="/skills">
-        <button className="text-white font-body cursor-pointer bg-background px-5 py-1 mt-10 mx-auto rounded-sm transition-colors duration-200 border border-white hover:border-black hover:border hover:bg-white hover:text-black">
-          View More
-        </button>
-        </Link>
+        </div>
+
+        <div className="text-center md:text-left mt-10">
+          <Link href="/skills">
+            <button className="text-primary font-primary cursor-pointer bg-transparent px-6 py-2 rounded-sm transition-all duration-200 border border-primary hover:bg-primary hover:text-white uppercase text-sm font-bold tracking-widest">
+              View All Skills
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );

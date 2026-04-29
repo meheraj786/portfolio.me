@@ -32,30 +32,71 @@
 
 // export default SkillCard;
 
+// import Link from "next/link";
+// import React from "react";
+
+// interface SkillCardProps {
+//   icon: React.ElementType;
+//   name: string;
+//   link: string;
+//   color: string;
+// }
+
+// const SkillCard: React.FC<SkillCardProps> = ({ icon: Icon, name, link, color }) => {
+//   return (
+//     <Link
+//       href={link}
+//       target="_blank"
+//       style={{ backgroundColor: color }} 
+//       className="flex items-center gap-2 px-3 py-1.5 transition-all duration-300 hover:scale-105 active:scale-95 rounded-sm"
+//     >
+//       <div className="text-white text-lg flex items-center">
+//         <Icon />
+//       </div>
+//       <p className="text-[12px] md:text-[14px] text-white font-bold font-primary uppercase tracking-wider whitespace-nowrap">
+//         {name}
+//       </p>
+//     </Link>
+//   );
+// };
+
+// export default SkillCard;
+
+"use client";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 interface SkillCardProps {
   icon: React.ElementType;
   name: string;
   link: string;
-  bgColor: string;
+  color: string;
 }
 
-const SkillCard = ({ icon: Icon, name, link, color }: any) => {
+const SkillCard: React.FC<SkillCardProps> = ({ icon: Icon, name, link, color }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const primaryColor = "#171717"; 
+
   return (
-    <a
+    <Link
       href={link}
       target="_blank"
-      rel="noopener noreferrer"
-      style={{ backgroundColor: color }}
-      className="flex items-center gap-2 px-3 py-1.5 text-white rounded-sm hover:opacity-90 transition-all duration-300 active:scale-95"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{ 
+        backgroundColor: isHovered ? color : primaryColor,
+        border: `1px solid ${isHovered ? color : "#333"}` 
+      }}
+      className="flex items-center gap-2 px-3 py-1.5 transition-all duration-400 ease-in-out hover:scale-105 active:scale-95 rounded-sm shadow-sm"
     >
-      <Icon className="text-lg" />
-      <span className="text-[13px] font-bold uppercase tracking-wider whitespace-nowrap">
+      <div className="text-white text-lg flex items-center transition-transform duration-300">
+        <Icon />
+      </div>
+      <p className="text-[13px] text-white font-bold uppercase tracking-wider whitespace-nowrap">
         {name}
-      </span>
-    </a>
+      </p>
+    </Link>
   );
 };
 
