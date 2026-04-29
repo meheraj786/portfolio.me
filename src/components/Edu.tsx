@@ -20,7 +20,7 @@ const edu = [
     duration: "2025-2025",
     institute: "Interactive Cares",
     certificate:
-      "https://drive.google.com/file/d/1CmEoU1kZ1o4lFbXV6UoYj2rW6Vn2Ck0o/view?usp=share_link",
+      "https://res.cloudinary.com/dlrycnxnh/image/upload/v1777489532/Certificate_tomvqg.png",
   },
   {
     id: 3,
@@ -28,7 +28,7 @@ const edu = [
     duration: "2026-2026",
     institute: "Interactive Cares",
     certificate:
-      "https://drive.google.com/file/d/1CmEoU1kZ1o4lFbXV6UoYj2rW6Vn2Ck0o/view?usp=share_link",
+      "https://res.cloudinary.com/dlrycnxnh/image/upload/v1777489528/Certificate_1_q2qs9q.png",
   },
 ];
 
@@ -61,7 +61,7 @@ const Edu = () => {
             <Image
               width={100}
               height={100}
-              src={image}
+              src={item.certificate}
               alt="certificate"
               className="group-hover:scale-110 transition-all duration-300"
             />
@@ -72,7 +72,7 @@ const Edu = () => {
           </DialogTrigger>
           <DialogContent>
             <Image
-              src={image}
+              src={item.certificate}
               alt="certificate"
               className="w-full h-full"
               width={500}
