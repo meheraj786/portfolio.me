@@ -43,13 +43,13 @@ const Skill = () => {
           ))}
         </div>
 
-        <div className="text-center md:text-left mt-10">
+        {/* <div className="text-center md:text-left mt-10">
           <Link href="/skills">
             <button className="text-primary font-primary cursor-pointer bg-transparent px-6 py-2 rounded-sm transition-all duration-200 border border-primary hover:bg-primary hover:text-white uppercase text-sm font-bold tracking-widest">
               View All Skills
             </button>
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );

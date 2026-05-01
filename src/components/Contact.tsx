@@ -45,7 +45,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="py-12  md:px-8  rounded-md transition-colors duration-300">
+    <div className="py-12  md:px-0  rounded-md transition-colors duration-300">
       <div className="max-w-6xl mx-auto">
         <h2
           className="relative  font-primary font-bold text-black text-center mb-12
@@ -81,8 +81,8 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Phone</p>
-                  <a href="tel:+88017xxxxxxxx" className="text-black hover:text-blue-600 transition-colors">
-                    +880 17XXXXXXXX
+                  <a href="tel:+8801989162543" className="text-black hover:text-blue-600 transition-colors">
+                    +880 1989162543
                   </a>
                 </div>
               </div>

@@ -6,7 +6,7 @@ import image from "../../public/meherajImg.png";
 const About = () => {
   return (
     <Flex className="w-full py-5">
-      <Flex className="w-full justify-end">
+      <Flex className="w-full justify-end items-start">
         <h2
           className='relative font-primary  text-center  font-bold text-black
           after:content-[""] after:absolute after:right-0 after:bottom-0 pb-3 after:h-[3px] after:bg-black after:w-0
@@ -20,9 +20,9 @@ const About = () => {
         <div className="relative w-[260px] h-[260px]">
           <div className=" rounded-sm bg-offWhite flex justify-center items-center overflow-hidden">
             <Image
-              width="230"
-              height="230"
-              className="rounded-sm  object-cover"
+              width="200"
+              height="200"
+              className="rounded-sm  object-fill"
               src={image}
               alt="bannerImage"
             />
