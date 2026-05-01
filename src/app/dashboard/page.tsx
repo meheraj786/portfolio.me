@@ -4,19 +4,16 @@ import { useQuery } from '@tanstack/react-query';
 import {
   getProjects,
   createProject,
-  updateProject,
   deleteProject,
 } from '@/app/actions/project';
 import {
   getSystemDesigns,
   createSystemDesign,
-  updateSystemDesign,
   deleteSystemDesign,
 } from '@/app/actions/systemDesign';
 import {
   getArticles,
   createArticle,
-  updateArticle,
   deleteArticle,
 } from '@/app/actions/article';
 import { getContactMessages, deleteContactMessage } from '@/app/actions/contact';
@@ -126,23 +123,15 @@ const Dashboard = () => {
             {projectsData?.success && projectsData.projects?.map((project: any) => (
               <div key={project._id} className="border border-gray-300 p-4 mb-4 rounded-lg hover:shadow-lg transition">
                 <h4 className="text-lg font-bold mb-2">{project.title}</h4>
-                <p className="text-gray-700 mb-2">{project.description}</p>
+                <div className="text-gray-700 mb-2 prose max-w-none" dangerouslySetInnerHTML={{ __html: project.description }} />
                 <p className="text-sm text-gray-600 mb-2">Tags: {project.tags?.join(', ')}</p>
-                <p className="mb-2">
-                  <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-                    GitHub Link
-                  </a>
-                </p>
-                <p className="mb-3">
-                  <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-                    Live Link
-                  </a>
-                </p>
-                <div className="flex gap-3">
+                <div className="flex gap-3 mt-4">
                   <button
                     onClick={async () => {
-                      await deleteProject(project._id);
-                      refetchProjects();
+                      if (confirm('Are you sure you want to delete this project?')) {
+                        await deleteProject(project._id);
+                        refetchProjects();
+                      }
                     }}
                     className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
                   >
@@ -168,16 +157,13 @@ const Dashboard = () => {
             {systemDesignsData?.success && systemDesignsData.systemDesigns?.map((design: any) => (
               <div key={design._id} className="border border-gray-300 p-4 mb-4 rounded-lg hover:shadow-lg transition">
                 <h4 className="text-lg font-bold mb-2">{design.title}</h4>
-                <p className="text-gray-700 mb-3">{design.description}</p>
-                <p className="mb-3">
-                  <a href={design.githubLink} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-                    GitHub Link
-                  </a>
-                </p>
+                <div className="text-gray-700 mb-3 prose max-w-none" dangerouslySetInnerHTML={{ __html: design.description }} />
                 <button
                   onClick={async () => {
-                    await deleteSystemDesign(design._id);
-                    refetchSystemDesigns();
+                    if (confirm('Are you sure you want to delete this system design?')) {
+                      await deleteSystemDesign(design._id);
+                      refetchSystemDesigns();
+                    }
                   }}
                   className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
                 >
@@ -202,12 +188,14 @@ const Dashboard = () => {
             {articlesData?.success && articlesData.articles?.map((article: any) => (
               <div key={article._id} className="border border-gray-300 p-4 mb-4 rounded-lg hover:shadow-lg transition">
                 <h4 className="text-lg font-bold mb-2">{article.title}</h4>
-                <p className="text-gray-700 mb-2">{article.description}</p>
+                <div className="text-gray-700 mb-2 prose max-w-none" dangerouslySetInnerHTML={{ __html: article.description }} />
                 <p className="text-sm text-gray-600 mb-3">Slug: {article.slug}</p>
                 <button
                   onClick={async () => {
-                    await deleteArticle(article._id);
-                    refetchArticles();
+                    if (confirm('Are you sure you want to delete this article?')) {
+                      await deleteArticle(article._id);
+                      refetchArticles();
+                    }
                   }}
                   className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
                 >
@@ -232,8 +220,10 @@ const Dashboard = () => {
                 <br />
                 <button
                   onClick={async () => {
-                    await deleteContactMessage(message._id);
-                    refetchMessages();
+                    if (confirm('Are you sure you want to delete this message?')) {
+                      await deleteContactMessage(message._id);
+                      refetchMessages();
+                    }
                   }}
                   className="mt-3 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
                 >
@@ -281,7 +271,7 @@ function ProjectForm({ onSuccess }: { onSuccess: () => void }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 bg-gray-50 p-6 rounded-lg">
+    <form onSubmit={handleSubmit} className="space-y-4 bg-gray-50 p-6 rounded-lg text-black">
       <div>
         <label className="block text-sm font-medium mb-2">Title:</label>
         <input
@@ -294,13 +284,8 @@ function ProjectForm({ onSuccess }: { onSuccess: () => void }) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-2">Description (HTML):</label>
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-24"
-        />
+        <label className="block text-sm font-medium mb-2">Description:</label>
+        <TextEditor content={description} setContent={setDescription} />
       </div>
 
       <div>
@@ -383,7 +368,7 @@ function SystemDesignForm({ onSuccess }: { onSuccess: () => void }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 bg-gray-50 p-6 rounded-lg">
+    <form onSubmit={handleSubmit} className="space-y-4 bg-gray-50 p-6 rounded-lg text-black">
       <div>
         <label className="block text-sm font-medium mb-2">Title:</label>
         <input
@@ -396,13 +381,8 @@ function SystemDesignForm({ onSuccess }: { onSuccess: () => void }) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-2">Description (HTML):</label>
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-24"
-        />
+        <label className="block text-sm font-medium mb-2">Description:</label>
+        <TextEditor content={description} setContent={setDescription} />
       </div>
 
       <div>
@@ -453,7 +433,7 @@ function ArticleForm({ onSuccess }: { onSuccess: () => void }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 bg-gray-50 p-6 rounded-lg">
+    <form onSubmit={handleSubmit} className="space-y-4 bg-gray-50 p-6 rounded-lg text-black">
       <div>
         <label className="block text-sm font-medium mb-2">Title:</label>
         <input
@@ -466,13 +446,8 @@ function ArticleForm({ onSuccess }: { onSuccess: () => void }) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-2">Description (HTML):</label>
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-24"
-        />
+        <label className="block text-sm font-medium mb-2">Description:</label>
+        <TextEditor content={description} setContent={setDescription} />
       </div>
 
       <div>
