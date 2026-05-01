@@ -3,10 +3,13 @@
 import { connectDB } from "@/lib/db/connect";
 import User from "@/models/User";
 import { cookies } from "next/headers";
-import jwt from "jsonwebtoken";
+import { SignJWT, jwtVerify } from "jose";
 
 const JWT_SECRET =
-  process.env.JWT_SECRET || "your-secret-key-change-in-production";
+  process.env.NEXT_JWT_SECRET ||
+  process.env.JWT_SECRET ||
+  "your-secret-key-change-in-production";
+const secret = new TextEncoder().encode(JWT_SECRET);
 
 export async function registerUser(
   email: string,
@@ -24,11 +27,11 @@ export async function registerUser(
     const user = new User({ email, password, name });
     await user.save();
 
-    const token = jwt.sign(
-      { userId: (user as any)._id, email: user.email },
-      JWT_SECRET,
-      { expiresIn: "7d" },
-    );
+    const token = await new SignJWT({ userId: (user as any)._id, email: user.email })
+      .setProtectedHeader({ alg: "HS256" })
+      .setIssuedAt()
+      .setExpirationTime("7d")
+      .sign(secret);
 
     const cookieStore = await cookies();
     cookieStore.set("auth_token", token, {
@@ -40,29 +43,37 @@ export async function registerUser(
 
     return { success: true, user: { email: user.email, name: user.name } };
   } catch (error) {
+    console.error("Registration failed:", error);
     return { success: false, error: "Registration failed" };
   }
 }
 
 export async function loginUser(email: string, password: string) {
   try {
+    console.log("Login attempt for:", email);
+    console.log("Connecting to DB...");
     await connectDB();
+    console.log("DB connected.");
 
     const user = await (User as any).findOne({ email });
     if (!user) {
+      console.log("User not found:", email);
       return { success: false, error: "User not found" };
     }
 
+    console.log("Verifying password...");
     const isPasswordValid = await (user as any).comparePassword(password);
     if (!isPasswordValid) {
+      console.log("Invalid password for:", email);
       return { success: false, error: "Invalid password" };
     }
 
-    const token = jwt.sign(
-      { userId: (user as any)._id, email: user.email },
-      JWT_SECRET,
-      { expiresIn: "7d" },
-    );
+    console.log("Generating token...");
+    const token = await new SignJWT({ userId: (user as any)._id, email: user.email })
+      .setProtectedHeader({ alg: "HS256" })
+      .setIssuedAt()
+      .setExpirationTime("7d")
+      .sign(secret);
 
     const cookieStore = await cookies();
     cookieStore.set("auth_token", token, {
@@ -72,9 +83,11 @@ export async function loginUser(email: string, password: string) {
       maxAge: 7 * 24 * 60 * 60,
     });
 
+    console.log("Login successful for:", email);
     return { success: true, user: { email: user.email, name: user.name } };
-  } catch (error) {
-    return { success: false, error: "Login failed" };
+  } catch (error: any) {
+    console.error("Login error:", error);
+    return { success: false, error: error.message || "Login failed" };
   }
 }
 
@@ -93,14 +106,15 @@ export async function getAuthUser() {
       return { user: null };
     }
 
-    const decoded = jwt.verify(token, JWT_SECRET) as any;
+    const { payload } = await jwtVerify(token, secret);
     await connectDB();
     const user = await (User as any)
-      .findById(decoded.userId)
+      .findById(payload.userId)
       .select("-password");
 
     return { user };
   } catch (error) {
+    console.error("Auth check failed:", error);
     return { user: null };
   }
 }

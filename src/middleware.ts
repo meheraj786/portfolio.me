@@ -1,37 +1,42 @@
 import { type NextRequest, NextResponse } from "next/server";
-import jwt from "jsonwebtoken";
+import { jwtVerify } from "jose";
 
 const JWT_SECRET =
-  process.env.JWT_SECRET || "your-secret-key-change-in-production";
-const PUBLIC_ROUTES = ["/login", "/api"];
+  process.env.NEXT_JWT_SECRET ||
+  process.env.JWT_SECRET ||
+  "your-secret-key-change-in-production";
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const token = request.cookies.get("auth_token")?.value;
   const { pathname } = request.nextUrl;
 
-  // Allow api routes
-  if (pathname.startsWith("/api")) {
-    return NextResponse.next();
+  console.log("Middleware triggered for:", pathname);
+
+  // Only protect dashboard routes
+  if (pathname.startsWith("/dashboard")) {
+    console.log("Checking auth for dashboard route...");
+    if (!token) {
+      console.log("No token found, redirecting to /login");
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
+
+    try {
+      const secret = new TextEncoder().encode(JWT_SECRET);
+      await jwtVerify(token, secret);
+      console.log("Token verified successfully");
+      return NextResponse.next();
+    } catch (error: any) {
+      console.error("Token verification failed:", error.message);
+      // If token is invalid, redirect to login
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
   }
 
-  // Check if route is public
-  if (PUBLIC_ROUTES.some((route) => pathname.startsWith(route))) {
-    return NextResponse.next();
-  }
-
-  // Verify token for protected routes
-  if (!token) {
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
-
-  try {
-    jwt.verify(token, JWT_SECRET);
-    return NextResponse.next();
-  } catch (error) {
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
+  // For all other routes, allow the request
+  return NextResponse.next();
 }
 
+// Only run middleware for dashboard routes to improve performance and avoid protecting the whole site
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/dashboard", "/dashboard/:path*"],
 };
