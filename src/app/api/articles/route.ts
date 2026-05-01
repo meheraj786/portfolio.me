@@ -2,10 +2,18 @@ import { connectDB } from "@/lib/db/connect";
 import Article from "@/models/Article";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
     await connectDB();
-    const articles = await Article.find().sort({ createdAt: -1 });
+    const { searchParams } = new URL(request.url);
+    const category = searchParams.get("category") || "ALL";
+
+    let query: any = {};
+    if (category && category !== "ALL") {
+      query.category = category;
+    }
+
+    const articles = await (Article as any).find(query).sort({ createdAt: -1 });
     return NextResponse.json({ success: true, articles }, { status: 200 });
   } catch (error) {
     return NextResponse.json(

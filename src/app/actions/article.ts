@@ -8,6 +8,7 @@ export async function createArticle(data: {
   description: string;
   image: string;
   slug: string;
+  category: string;
 }) {
   try {
     await connectDB();
@@ -19,13 +20,27 @@ export async function createArticle(data: {
   }
 }
 
-export async function getArticles() {
+export async function getArticles(category: string = "ALL") {
   try {
     await connectDB();
-    const articles = await (Article as any).find().sort({ createdAt: -1 });
+    let query: any = {};
+    if (category && category !== "ALL") {
+      query.category = category;
+    }
+    const articles = await (Article as any).find(query).sort({ createdAt: -1 });
     return { success: true, articles };
   } catch (error) {
     return { success: false, error: "Failed to fetch articles" };
+  }
+}
+
+export async function getAllCategories() {
+  try {
+    await connectDB();
+    const categories = await (Article as any).distinct("category");
+    return { success: true, categories: ["ALL", ...categories] };
+  } catch (error) {
+    return { success: false, error: "Failed to fetch categories" };
   }
 }
 

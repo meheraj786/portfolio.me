@@ -19,6 +19,11 @@ const ArticleSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    category: {
+      type: String,
+      required: true,
+      default: "General",
+    },
   },
   { timestamps: true },
 );
