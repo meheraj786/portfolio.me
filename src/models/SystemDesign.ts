@@ -12,7 +12,6 @@ const SystemDesignSchema = new mongoose.Schema(
     },
     githubLink: {
       type: String,
-      required: true,
     },
   },
   { timestamps: true },

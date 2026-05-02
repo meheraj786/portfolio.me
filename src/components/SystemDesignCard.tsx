@@ -16,10 +16,10 @@ interface SystemDesignCardProps {
 const SystemDesignCard: React.FC<SystemDesignCardProps> = ({
   title,
   description,
-  keyFeatures,
+  // keyFeatures,
   github,
   slug,
-  learnings,
+  // learnings,
 }) => {
   return (
     <Link href={`/system-designs/${slug}`}>
@@ -41,23 +41,23 @@ const SystemDesignCard: React.FC<SystemDesignCardProps> = ({
         </h3>
 
         <p className="text-sm text-background font-body mb-4 line-clamp-3">
-          {description}
+          <div dangerouslySetInnerHTML={{ __html: description }}/>
         </p>
 
         {/* Key Features */}
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <h4 className="text-sm font-semibold text-background mb-2">Key Components & Choices:</h4>
           <ul className="list-disc pl-5 text-sm text-background font-body">
             {keyFeatures.map((feature, idx) => (
               <li key={idx}>{feature}</li>
             ))}
           </ul>
-        </div>
+        </div> */}
 
         {/* Learnings */}
-        <p className="text-sm text-gray-600 italic mb-4">
+        {/* <p className="text-sm text-gray-600 italic mb-4">
           <strong>Learnings:</strong> {learnings}
-        </p>
+        </p> */}
 
         {/* Links */}
         {github && (
