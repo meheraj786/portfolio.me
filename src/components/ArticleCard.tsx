@@ -8,22 +8,22 @@ interface ArticleCardProps {
   title: string;
   description: string;
   image: string | StaticImageData;
-  tags: string[];            
-  date: string;               
-  github?: string;            
-  link: string;  
-  slug: string;             
-  author?: string;             
+  tags?: string[];
+  date: string;
+  github?: string;
+  link: string;
+  slug: string;
+  author?: string;
 }
 
 const ArticleCard: React.FC<ArticleCardProps> = ({
   title,
   description,
   image,
-  tags,
+  tags = [],
   date,
   slug,
-  author = "By Meheraj Hosen",  
+  author = "By Meheraj Hosen",
 }) => {
   return (
     <Link href={"/articles/" + slug} >
@@ -57,7 +57,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
 
         {/* Description */}
         <p className="text-sm text-background mt-2 font-body line-clamp-3">
-          {description}
+          <div dangerouslySetInnerHTML={{ __html: description }} />
         </p>
 
         {/* Tags + Links */}

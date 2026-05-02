@@ -6,6 +6,11 @@ const SystemDesignSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    slug: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     description: {
       type: String,
       required: true,
@@ -16,6 +21,8 @@ const SystemDesignSchema = new mongoose.Schema(
   },
   { timestamps: true },
 );
+
+delete mongoose.models.SystemDesign;
 
 export default mongoose.models.SystemDesign ||
   mongoose.model("SystemDesign", SystemDesignSchema);

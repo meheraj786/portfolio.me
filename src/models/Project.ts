@@ -6,6 +6,11 @@ const ProjectSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    slug: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     description: {
       type: String,
       required: true,
@@ -33,6 +38,8 @@ const ProjectSchema = new mongoose.Schema(
   },
   { timestamps: true },
 );
+
+delete mongoose.models.Project;
 
 export default mongoose.models.Project ||
   mongoose.model("Project", ProjectSchema);

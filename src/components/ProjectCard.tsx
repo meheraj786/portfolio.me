@@ -13,6 +13,7 @@ interface ProjectCardProps {
   duration: string;
   git: string;
   link: string;
+  slug: string;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -21,32 +22,40 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   image,
   tags,
   duration,
+  git,
+  link,
+  slug,
 }) => {
   return (
     <div className="flex flex-col md:flex-row items-start gap-4 bg-white rounded-2xl p-4 hover:shadow-xl transition-all duration-300 ">
       {/* Left: Thumbnail */}
-      <div className="w-full mr-5 md:w-48 h-32 relative shrink-0 rounded-xl overflow-hidden">
+      <Link
+        href={`/projects/${slug}`}
+        className="w-full mr-5 md:w-48 h-32 relative shrink-0 rounded-xl overflow-hidden"
+      >
         <Image
           src={image}
           alt={title}
           fill
           className="object-cover rounded-xl hover:scale-105 transition-transform duration-500"
         />
-      </div>
+      </Link>
 
       {/* Right: Content */}
       <div className="flex-1">
         {/* Title & Date */}
         <div className="flex justify-between items-start">
-          <h3 className="text-lg font-semibold font-primary text-black">
-            {title}
-          </h3>
+          <Link href={`/projects/${slug}`}>
+            <h3 className="text-lg font-semibold font-primary text-black hover:text-blue-600 transition-colors">
+              {title}
+            </h3>
+          </Link>
           <span className="text-xs text-background">{duration}</span>
         </div>
 
         {/* Description */}
         <p className="text-sm text-background mt-1 font-body line-clamp-2">
-          {description}
+          <span dangerouslySetInnerHTML={{ __html: description }} />
         </p>
 
         {/* Tags */}
@@ -61,11 +70,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               </span>
             ))}
           </div>
-          <Flex className="text-background flex-row text-[18px] justify-end mt-3 w-full gap-x-3">
-            <Link href="#">
+          <Flex className="text-background flex-row text-[18px] justify-end  w-full gap-x-3">
+            <Link href={git} target="_blank">
               <FaGithub />
             </Link>
-            <Link href="#">
+            <Link href={link} target="_blank">
               <FaLink />
             </Link>
           </Flex>

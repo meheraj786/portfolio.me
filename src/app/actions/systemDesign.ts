@@ -5,15 +5,20 @@ import SystemDesign from "@/models/SystemDesign";
 
 export async function createSystemDesign(data: {
   title: string;
+  slug: string;
   description: string;
-  githubLink: string;
+  githubLink?: string;
 }) {
   try {
     await connectDB();
     const systemDesign = new SystemDesign(data);
-    await systemDesign.save();
-    return { success: true, systemDesign };
+    const savedSystemDesign = await systemDesign.save();
+    return {
+      success: true,
+      systemDesign: JSON.parse(JSON.stringify(savedSystemDesign)),
+    };
   } catch (error) {
+    console.error("Create System Design Error:", error);
     return { success: false, error: "Failed to create system design" };
   }
 }
@@ -23,22 +28,48 @@ export async function getSystemDesigns() {
     await connectDB();
     const systemDesigns = await (SystemDesign as any)
       .find()
-      .sort({ createdAt: -1 });
-    return { success: true, systemDesigns };
+      .sort({ createdAt: -1 })
+      .lean();
+    return {
+      success: true,
+      systemDesigns: JSON.parse(JSON.stringify(systemDesigns)),
+    };
   } catch (error) {
     return { success: false, error: "Failed to fetch system designs" };
   }
 }
 
-export async function updateSystemDesign(id: string, data: any) {
+export async function getSystemDesignBySlug(slug: string) {
   try {
     await connectDB();
-    const systemDesign = await (SystemDesign as any).findByIdAndUpdate(
-      id,
-      data,
-      { new: true },
-    );
-    return { success: true, systemDesign };
+    const systemDesign = await (SystemDesign as any).findOne({ slug }).lean();
+    return {
+      success: true,
+      systemDesign: JSON.parse(JSON.stringify(systemDesign)),
+    };
+  } catch (error) {
+    return { success: false, error: "Failed to fetch system design" };
+  }
+}
+
+export async function updateSystemDesign(
+  id: string,
+  data: {
+    title: string;
+    slug: string;
+    description: string;
+    githubLink?: string;
+  },
+) {
+  try {
+    await connectDB();
+    const systemDesign = await (SystemDesign as any)
+      .findByIdAndUpdate(id, data, { new: true })
+      .lean();
+    return {
+      success: true,
+      systemDesign: JSON.parse(JSON.stringify(systemDesign)),
+    };
   } catch (error) {
     return { success: false, error: "Failed to update system design" };
   }

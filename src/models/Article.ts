@@ -28,5 +28,7 @@ const ArticleSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
+delete mongoose.models.Article;
+
 export default mongoose.models.Article ||
   mongoose.model("Article", ArticleSchema);

@@ -1,9 +1,18 @@
 import ArticleCard from "@/components/ArticleCard";
 import Flex from "@/layouts/Flex";
-import { articles } from "@/layouts/seed";
 import React from "react";
+import { getArticles, getAllCategories } from "@/app/actions/article";
+import Link from "next/link";
 
-const Articles = () => {
+const Articles = async ({
+  searchParams,
+}: {
+  searchParams: { category?: string };
+}) => {
+  const category = searchParams.category || "ALL";
+  const { articles = [] } = await getArticles(category);
+  const { categories = [] } = await getAllCategories();
+
   return (
     <div className="py-5">
       <h2
@@ -14,39 +23,43 @@ const Articles = () => {
         &#91;My Articles&#93;
       </h2>
       {/* tags  */}
-      <Flex className="flex-row justify-start gap-3 mb-4">
-        <span
-          key={"All"}
-          className="text-foreground text-sm font-body cursor-pointer font-medium px-3 py-1 bg-background rounded-md border border-gray-300"
-        >
-          All
-        </span>
-        {articles.map((article) =>
-          article.tags.map((tag, tagIdx) => (
-            <span
-              key={tagIdx}
-              className="text-black text-sm font-body cursor-pointer font-medium px-3 py-1 bg-foreground rounded-md border border-gray-300"
-            >
-              {tag}
-            </span>
-          )),
-        )}
+      <Flex className="flex-row justify-start gap-3 mb-4 overflow-x-auto">
+        {categories.map((cat: string) => (
+          <Link
+            key={cat}
+            href={`/articles?category=${cat}`}
+            className={`text-sm font-body cursor-pointer font-medium px-3 py-1 rounded-md border border-gray-300 transition-colors ${
+              category === cat
+                ? "bg-black text-white"
+                : "bg-background text-foreground hover:bg-gray-100 hover:text-black"
+            }`}
+          >
+            {cat}
+          </Link>
+        ))}
       </Flex>
       <div className="flex flex-col gap-y-3">
-        {articles.map((p, idx) => (
-          <ArticleCard
-            key={idx}
-            title={p.title}
-            description={p.description}
-            image={p.image}
-            tags={p.tags}
-            slug={p.slug}
-            date={p.date}
-            link={p.link}
-            github="https://github.com/your-repo/jwt-handbook"
-            author={p.author}
-          />
-        ))}
+        {articles.length > 0 ? (
+          articles.map((p: any, idx: number) => (
+            <ArticleCard
+              key={idx}
+              title={p.title}
+              description={p.description}
+              image={p.image}
+              tags={p.tags || []}
+              slug={p.slug}
+              date={new Date(p.createdAt).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+              })}
+              link={p.link || ""}
+              github={p.github || ""}
+              author={p.author}
+            />
+          ))
+        ) : (
+          <p className="text-gray-500 text-center py-10">No articles found.</p>
+        )}
       </div>
     </div>
   );

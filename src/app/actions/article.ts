@@ -13,9 +13,13 @@ export async function createArticle(data: {
   try {
     await connectDB();
     const article = new Article(data);
-    await article.save();
-    return { success: true, article };
+    const savedArticle = await article.save();
+    return {
+      success: true,
+      article: JSON.parse(JSON.stringify(savedArticle)),
+    };
   } catch (error) {
+    console.error("Create Article Error:", error);
     return { success: false, error: "Failed to create article" };
   }
 }
@@ -27,8 +31,11 @@ export async function getArticles(category: string = "ALL") {
     if (category && category !== "ALL") {
       query.category = category;
     }
-    const articles = await (Article as any).find(query).sort({ createdAt: -1 });
-    return { success: true, articles };
+    const articles = await (Article as any)
+      .find(query)
+      .sort({ createdAt: -1 })
+      .lean();
+    return { success: true, articles: JSON.parse(JSON.stringify(articles)) };
   } catch (error) {
     return { success: false, error: "Failed to fetch articles" };
   }
@@ -47,20 +54,31 @@ export async function getAllCategories() {
 export async function getArticleBySlug(slug: string) {
   try {
     await connectDB();
-    const article = await (Article as any).findOne({ slug });
-    return { success: true, article };
+    const article = await (Article as any).findOne({ slug }).lean();
+    return { success: true, article: JSON.parse(JSON.stringify(article)) };
   } catch (error) {
     return { success: false, error: "Failed to fetch article" };
   }
 }
 
-export async function updateArticle(id: string, data: any) {
+export async function updateArticle(
+  id: string,
+  data: {
+    title: string;
+    description: string;
+    image: string;
+    slug: string;
+    category: string;
+  },
+) {
   try {
     await connectDB();
-    const article = await (Article as any).findByIdAndUpdate(id, data, {
-      new: true,
-    });
-    return { success: true, article };
+    const article = await (Article as any)
+      .findByIdAndUpdate(id, data, {
+        new: true,
+      })
+      .lean();
+    return { success: true, article: JSON.parse(JSON.stringify(article)) };
   } catch (error) {
     return { success: false, error: "Failed to update article" };
   }

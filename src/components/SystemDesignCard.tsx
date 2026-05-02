@@ -6,10 +6,10 @@ import { FaGithub } from "react-icons/fa";
 interface SystemDesignCardProps {
   title: string;
   description: string;
-  keyFeatures: string[];
-  diagramUrl: string;
+  keyFeatures?: string[];
+  diagramUrl?: string;
   github?: string | null;
-  learnings: string;
+  learnings?: string;
   slug: string;
 }
 
@@ -40,7 +40,7 @@ const SystemDesignCard: React.FC<SystemDesignCardProps> = ({
           {title}
         </h3>
 
-        <p className="text-sm text-background font-body mb-4 line-clamp-3">
+        <p className="text-sm text-background font-body  line-clamp-3">
           <div dangerouslySetInnerHTML={{ __html: description }}/>
         </p>
 

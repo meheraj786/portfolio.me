@@ -22,10 +22,10 @@ const Navbar = () => {
       title: "About",
       link: "/about",
     },
-    {
-      title: "Skills",
-      link: "/skills",
-    },
+    // {
+    //   title: "Skills",
+    //   link: "/skills",
+    // },
     {
       title: "Projects",
       link: "/projects",
@@ -54,7 +54,7 @@ const Navbar = () => {
             >
               &lt;Meheraj/&gt;
             </Link>
-            <ul className="flex justify-end gap-x-10 text-sm items-center flex-1">
+            <ul className="flex justify-end gap-x-3 text-sm items-center flex-1">
               {menuItems.map((item, idx) => (
                 <Link
                   className={
