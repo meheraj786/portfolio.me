@@ -16,7 +16,7 @@ async function seedDatabase() {
     }
 
     // Check if user already exists
-    const existingUser = await (User as any).findOne({
+    const existingUser = await User.findOne({
       email: email,
     });
 

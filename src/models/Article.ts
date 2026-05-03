@@ -1,6 +1,16 @@
-import mongoose from "mongoose";
+import mongoose, { Schema, model, models, Model, Document } from "mongoose";
 
-const ArticleSchema = new mongoose.Schema(
+export interface IArticle extends Document {
+  title: string;
+  description: string;
+  image: string;
+  slug: string;
+  category: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const ArticleSchema = new Schema<IArticle>(
   {
     title: {
       type: String,
@@ -28,7 +38,7 @@ const ArticleSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-delete mongoose.models.Article;
+const Article: Model<IArticle> =
+  models.Article || model<IArticle>("Article", ArticleSchema);
 
-export default mongoose.models.Article ||
-  mongoose.model("Article", ArticleSchema);
+export default Article;

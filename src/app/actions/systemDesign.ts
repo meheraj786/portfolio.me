@@ -26,7 +26,7 @@ export async function createSystemDesign(data: {
 export async function getSystemDesigns() {
   try {
     await connectDB();
-    const systemDesigns = await (SystemDesign as any)
+    const systemDesigns = await SystemDesign
       .find()
       .sort({ createdAt: -1 })
       .lean();
@@ -42,7 +42,7 @@ export async function getSystemDesigns() {
 export async function getSystemDesignBySlug(slug: string) {
   try {
     await connectDB();
-    const systemDesign = await (SystemDesign as any).findOne({ slug }).lean();
+    const systemDesign = await SystemDesign.findOne({ slug }).lean();
     return {
       success: true,
       systemDesign: JSON.parse(JSON.stringify(systemDesign)),
@@ -63,7 +63,7 @@ export async function updateSystemDesign(
 ) {
   try {
     await connectDB();
-    const systemDesign = await (SystemDesign as any)
+    const systemDesign = await SystemDesign
       .findByIdAndUpdate(id, data, { new: true })
       .lean();
     return {
@@ -78,7 +78,7 @@ export async function updateSystemDesign(
 export async function deleteSystemDesign(id: string) {
   try {
     await connectDB();
-    await (SystemDesign as any).findByIdAndDelete(id);
+    await SystemDesign.findByIdAndDelete(id);
     return { success: true };
   } catch (error) {
     return { success: false, error: "Failed to delete system design" };

@@ -47,9 +47,11 @@ export default async function ArticleDetailPage({
         </h1>
 
         <div className="flex flex-wrap items-center gap-6 text-gray-600 mb-8">
-          <div className="flex items-center gap-2">
-            <User className="w-5 h-5" />
-            <span className="font-body text-sm">Meheraj Hosen</span>
+          <div className="flex items-center justify-center gap-2">
+            <div className="w-5 h-5 rounded-full " >
+              <Image src="/meherajImg.png" alt="Meheraj Hosen" width={24} height={24} className="rounded-full" />
+            </div>
+            <Link href="/about" className="font-body cursor-pointer text-sm">Meheraj H.</Link>
           </div>
           <div className="flex items-center gap-2">
             <Calendar className="w-5 h-5" />

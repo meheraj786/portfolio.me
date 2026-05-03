@@ -19,7 +19,7 @@ export async function registerUser(
   try {
     await connectDB();
 
-    const existingUser = await (User as any).findOne({ email });
+    const existingUser = await User.findOne({ email });
     if (existingUser) {
       return { success: false, error: "User already exists" };
     }
@@ -27,7 +27,7 @@ export async function registerUser(
     const user = new User({ email, password, name });
     await user.save();
 
-    const token = await new SignJWT({ userId: (user as any)._id, email: user.email })
+    const token = await new SignJWT({ userId: user._id, email: user.email })
       .setProtectedHeader({ alg: "HS256" })
       .setIssuedAt()
       .setExpirationTime("7d")
@@ -55,21 +55,21 @@ export async function loginUser(email: string, password: string) {
     await connectDB();
     console.log("DB connected.");
 
-    const user = await (User as any).findOne({ email });
+    const user = await User.findOne({ email });
     if (!user) {
       console.log("User not found:", email);
       return { success: false, error: "User not found" };
     }
 
     console.log("Verifying password...");
-    const isPasswordValid = await (user as any).comparePassword(password);
+    const isPasswordValid = await user.comparePassword(password);
     if (!isPasswordValid) {
       console.log("Invalid password for:", email);
       return { success: false, error: "Invalid password" };
     }
 
     console.log("Generating token...");
-    const token = await new SignJWT({ userId: (user as any)._id, email: user.email })
+    const token = await new SignJWT({ userId: user._id, email: user.email })
       .setProtectedHeader({ alg: "HS256" })
       .setIssuedAt()
       .setExpirationTime("7d")
@@ -108,7 +108,7 @@ export async function getAuthUser() {
 
     const { payload } = await jwtVerify(token, secret);
     await connectDB();
-    const user = await (User as any)
+    const user = await User
       .findById(payload.userId)
       .select("-password");
 

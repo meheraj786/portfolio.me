@@ -1,6 +1,15 @@
-import mongoose from "mongoose";
+import mongoose, { Schema, model, models, Model, Document } from "mongoose";
 
-const SystemDesignSchema = new mongoose.Schema(
+export interface ISystemDesign extends Document {
+  title: string;
+  slug: string;
+  description: string;
+  githubLink?: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const SystemDesignSchema = new Schema<ISystemDesign>(
   {
     title: {
       type: String,
@@ -22,7 +31,7 @@ const SystemDesignSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-delete mongoose.models.SystemDesign;
+const SystemDesign: Model<ISystemDesign> =
+  models.SystemDesign || model<ISystemDesign>("SystemDesign", SystemDesignSchema);
 
-export default mongoose.models.SystemDesign ||
-  mongoose.model("SystemDesign", SystemDesignSchema);
+export default SystemDesign;

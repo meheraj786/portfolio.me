@@ -1,6 +1,18 @@
-import mongoose from "mongoose";
+import mongoose, { Schema, model, models, Model, Document } from "mongoose";
 
-const ProjectSchema = new mongoose.Schema(
+export interface IProject extends Document {
+  title: string;
+  slug: string;
+  description: string;
+  images: string[];
+  tags: string[];
+  githubLink: string;
+  liveLink: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const ProjectSchema = new Schema<IProject>(
   {
     title: {
       type: String,
@@ -39,7 +51,7 @@ const ProjectSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-delete mongoose.models.Project;
+const Project: Model<IProject> =
+  models.Project || model<IProject>("Project", ProjectSchema);
 
-export default mongoose.models.Project ||
-  mongoose.model("Project", ProjectSchema);
+export default Project;

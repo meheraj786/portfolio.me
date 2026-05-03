@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
       query.category = category;
     }
 
-    const articles = await (Article as any).find(query).sort({ createdAt: -1 });
+    const articles = await Article.find(query).sort({ createdAt: -1 });
     return NextResponse.json({ success: true, articles }, { status: 200 });
   } catch (error) {
     return NextResponse.json(

@@ -31,7 +31,7 @@ export async function getArticles(category: string = "ALL") {
     if (category && category !== "ALL") {
       query.category = category;
     }
-    const articles = await (Article as any)
+    const articles = await Article
       .find(query)
       .sort({ createdAt: -1 })
       .lean();
@@ -44,7 +44,7 @@ export async function getArticles(category: string = "ALL") {
 export async function getAllCategories() {
   try {
     await connectDB();
-    const categories = await (Article as any).distinct("category");
+    const categories = await Article.distinct("category");
     return { success: true, categories: ["ALL", ...categories] };
   } catch (error) {
     return { success: false, error: "Failed to fetch categories" };
@@ -54,7 +54,7 @@ export async function getAllCategories() {
 export async function getArticleBySlug(slug: string) {
   try {
     await connectDB();
-    const article = await (Article as any).findOne({ slug }).lean();
+    const article = await Article.findOne({ slug }).lean();
     return { success: true, article: JSON.parse(JSON.stringify(article)) };
   } catch (error) {
     return { success: false, error: "Failed to fetch article" };
@@ -73,7 +73,7 @@ export async function updateArticle(
 ) {
   try {
     await connectDB();
-    const article = await (Article as any)
+    const article = await Article
       .findByIdAndUpdate(id, data, {
         new: true,
       })
@@ -87,7 +87,7 @@ export async function updateArticle(
 export async function deleteArticle(id: string) {
   try {
     await connectDB();
-    await (Article as any).findByIdAndDelete(id);
+    await Article.findByIdAndDelete(id);
     return { success: true };
   } catch (error) {
     return { success: false, error: "Failed to delete article" };

@@ -23,7 +23,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   tags = [],
   date,
   slug,
-  author = "By Meheraj Hosen",
+  author = "By Meheraj H.",
 }) => {
   return (
     <Link href={"/articles/" + slug} >

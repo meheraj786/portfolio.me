@@ -1,6 +1,14 @@
-import mongoose from "mongoose";
+import mongoose, { Schema, model, models, Model, Document } from "mongoose";
 
-const ContactMessageSchema = new mongoose.Schema(
+export interface IContactMessage extends Document {
+  name: string;
+  email: string;
+  message: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const ContactMessageSchema = new Schema<IContactMessage>(
   {
     name: {
       type: String,
@@ -18,5 +26,7 @@ const ContactMessageSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-export default mongoose.models.ContactMessage ||
-  mongoose.model("ContactMessage", ContactMessageSchema);
+const ContactMessage: Model<IContactMessage> =
+  models.ContactMessage || model<IContactMessage>("ContactMessage", ContactMessageSchema);
+
+export default ContactMessage;
