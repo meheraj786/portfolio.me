@@ -17,20 +17,35 @@ const SystemDesignCaseStudies = async () => {
 
       <div className="flex flex-col gap-y-6 mt-3">
         {systemDesigns.length > 0 ? (
-          systemDesigns.map((study: any, idx: number) => (
-            <SystemDesignCard
-              key={idx}
-              title={study.title}
-              description={study.description}
-              keyFeatures={study.keyFeatures || []}
-              diagramUrl={study.diagramUrl || ""}
-              github={study.githubLink}
-              learnings={study.learnings || ""}
-              slug={study.slug}
-            />
-          ))
+          systemDesigns.map(
+            (
+              study: {
+                title: string;
+                description: string;
+                keyFeatures: string[];
+                diagramUrl: string;
+                githubLink: string;
+                learnings: string;
+                slug: string;
+              },
+              idx: number,
+            ) => (
+              <SystemDesignCard
+                key={idx}
+                title={study.title}
+                description={study.description}
+                keyFeatures={study.keyFeatures || []}
+                diagramUrl={study.diagramUrl || ""}
+                github={study.githubLink}
+                learnings={study.learnings || ""}
+                slug={study.slug}
+              />
+            ),
+          )
         ) : (
-          <p className="text-gray-500 text-center py-10">No system designs found.</p>
+          <p className="text-gray-500 text-center py-10">
+            No system designs found.
+          </p>
         )}
       </div>
     </div>
