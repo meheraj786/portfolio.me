@@ -26,7 +26,7 @@ const Skill = () => {
                 {cat}
               </h3>
 
-              <Flex className="gap-3 flex-wrap justify-start">
+              <Flex className="gap-3 flex-wrap justify-start flex-row">
                 {skills
                   .filter((skill) => skill.category === cat)
                   .map((skill, index) => (

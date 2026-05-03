@@ -22,58 +22,43 @@ const SystemDesignCard: React.FC<SystemDesignCardProps> = ({
   // learnings,
 }) => {
   return (
-    <Link href={`/system-designs/${slug}`}>
-    <div className="flex flex-col md:flex-row items-start gap-6 bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-300 border border-gray-100">
-      {/* Left: Diagram Image */}
-      {/* <div className="w-full md:w-64 h-48 relative shrink-0 rounded-xl overflow-hidden">
-        <Image
-          src={diagramUrl}
-          alt={`${title} Architecture Diagram`}
-          fill
-          className="object-cover rounded-xl hover:scale-105 transition-transform duration-500"
-        />
-      </div> */}
+    <Link href={`/system-designs/${slug}`} className="block group">
+      <div className="flex flex-col md:flex-row items-start gap-6 bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-300 border border-gray-100">
+        {/* Content Area - min-w-0 is CRITICAL for flex containers to prevent overflow */}
+        <div className="flex-1 min-w-0 w-full">
+          <h3 className="font-semibold text-lg text-black mb-2 group-hover:text-blue-600 transition-colors">
+            {title}
+          </h3>
 
-      {/* Right: Content */}
-      <div className="flex-1">
-        <h3 className=" font-semibold font-primary text-black mb-2">
-          {title}
-        </h3>
-
-        <p className="text-sm text-background font-body  line-clamp-3">
-          <div dangerouslySetInnerHTML={{ __html: description }}/>
-        </p>
-
-        {/* Key Features */}
-        {/* <div className="mb-4">
-          <h4 className="text-sm font-semibold text-background mb-2">Key Components & Choices:</h4>
-          <ul className="list-disc pl-5 text-sm text-background font-body">
-            {keyFeatures.map((feature, idx) => (
-              <li key={idx}>{feature}</li>
-            ))}
-          </ul>
-        </div> */}
-
-        {/* Learnings */}
-        {/* <p className="text-sm text-gray-600 italic mb-4">
-          <strong>Learnings:</strong> {learnings}
-        </p> */}
-
-        {/* Links */}
-        {github && (
-          <div className="flex justify-end">
-            <Link
-              href={github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-background text-xl hover:text-blue-600 transition-colors"
-            >
-              <FaGithub />
-            </Link>
+          {/* 
+            Fixed: Changed from <p> to <div> because dangerouslySetInnerHTML 
+            can contain block elements. Line-clamp is applied to this container.
+          */}
+          <div className="text-sm text-gray-600 line-clamp-3 overflow-hidden break-words">
+            <div dangerouslySetInnerHTML={{ __html: description }} />
           </div>
-        )}
+
+          <div className="mt-4 flex items-center justify-between">
+            <span className="text-xs font-medium text-blue-600 group-hover:underline">
+              Read Case Study →
+            </span>
+            
+            {github && (
+              <div className="flex justify-end pt-2">
+                <Link
+                  href={github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 text-gray-500 hover:text-black hover:bg-gray-100 rounded-full transition-all"
+                  onClick={(e) => e.stopPropagation()} // Prevent card click when clicking GitHub icon
+                >
+                  <FaGithub className="text-xl" />
+                </Link>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
-    </div>
     </Link>
   );
 };
