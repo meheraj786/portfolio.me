@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import Link from "next/link";
+import { createContactMessage } from "@/app/actions/contact";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -20,19 +21,9 @@ const Contact = () => {
     setStatus("loading");
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          access_key: "YOUR_WEB3FORMS_ACCESS_KEY", // https://web3forms.com থেকে free key নাও
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-          subject: "New Contact from Portfolio",
-        }),
-      });
+      const result = await createContactMessage(formData);
 
-      if (response.ok) {
+      if (result.success) {
         setStatus("success");
         setFormData({ name: "", email: "", message: "" });
       } else {

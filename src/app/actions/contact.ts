@@ -21,7 +21,7 @@ export async function createContactMessage(data: {
 export async function getContactMessages() {
   try {
     await connectDB();
-    const messages = await (ContactMessage as any)
+    const messages = await ContactMessage
       .find()
       .sort({ createdAt: -1 });
     return { success: true, messages };
@@ -33,7 +33,7 @@ export async function getContactMessages() {
 export async function deleteContactMessage(id: string) {
   try {
     await connectDB();
-    await (ContactMessage as any).findByIdAndDelete(id);
+    await ContactMessage.findByIdAndDelete(id);
     return { success: true };
   } catch (error) {
     return { success: false, error: "Failed to delete message" };
