@@ -8,7 +8,7 @@ const MouseFollower = () => {
     const cursor = cursorRef.current;
     if (!cursor) return;
 
-    let targetX = window.innerWidth / 2;  // শুরুতে মাঝখানে রাখা
+    let targetX = window.innerWidth / 2; 
     let targetY = window.innerHeight / 2;
     let currentX = targetX;
     let currentY = targetY;
