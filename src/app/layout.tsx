@@ -6,6 +6,7 @@ import Container from "@/layouts/Container";
 import MouseFollower from "@/components/MouseFollower";
 import Footer from "@/components/Footer";
 import { TanstackProvider } from "@/components/TanstackProvider";
+import { Analytics } from "@vercel/analytics/next";
 
 const jetBrainMono = JetBrains_Mono({
   variable: "--font-jetBrain-mono",
@@ -113,6 +114,7 @@ export default function RootLayout({
           <Navbar />
           <Container>
             <MouseFollower />
+            <Analytics />
             <div className="border mt-20 py-7 md:px-10 px-3 border-background/50 rounded-md min-h-[calc(100vh-200px)]">
               {children}
             </div>
