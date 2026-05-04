@@ -23,10 +23,10 @@ const MobileNav = () => {
       title: "About",
       link: "/about",
     },
-    {
-      title: "Skills",
-      link: "/skills",
-    },
+    // {
+    //   title: "Skills",
+    //   link: "/skills",
+    // },
     {
       title: "Projects",
       link: "/projects",
@@ -45,7 +45,7 @@ const MobileNav = () => {
     },
   ];
   return (
-    <div className="py-5 px-3 md:hidden fixed top-0 bg-white/10 backdrop-blur-xs left-0 right-0 z-50 font-body">
+    <div className="py-5 px-3 md:hidden fixed top-0 bg-white/80 backdrop-blur-xs left-0 right-0 z-50 font-primary">
       <Container>
         <Flex className={`flex-row ${isOpen ? "items-start" : "items-center"}`}>
           <Link

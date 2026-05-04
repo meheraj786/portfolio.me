@@ -26,8 +26,7 @@ export async function createSystemDesign(data: {
 export async function getSystemDesigns() {
   try {
     await connectDB();
-    const systemDesigns = await SystemDesign
-      .find()
+    const systemDesigns = await SystemDesign.find()
       .sort({ createdAt: -1 })
       .lean();
     return {
@@ -63,9 +62,9 @@ export async function updateSystemDesign(
 ) {
   try {
     await connectDB();
-    const systemDesign = await SystemDesign
-      .findByIdAndUpdate(id, data, { new: true })
-      .lean();
+    const systemDesign = await SystemDesign.findByIdAndUpdate(id, data, {
+      new: true,
+    }).lean();
     return {
       success: true,
       systemDesign: JSON.parse(JSON.stringify(systemDesign)),
