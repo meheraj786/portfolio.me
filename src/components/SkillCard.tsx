@@ -88,7 +88,7 @@ const SkillCard: React.FC<SkillCardProps> = ({ icon: Icon, name, link, color }) 
         backgroundColor: isHovered ? color : primaryColor,
         border: `1px solid ${isHovered ? color : "#333"}` 
       }}
-      className="flex items-center gap-2 px-3 py-1.5 transition-all duration-400 ease-in-out hover:scale-105 active:scale-95 rounded-sm shadow-sm"
+      className="flex items-center font-primary gap-2 px-3 py-1.5 transition-all duration-400 ease-in-out hover:scale-105 active:scale-95 rounded-sm shadow-sm"
     >
       <div className="text-white text-lg flex items-center transition-transform duration-300">
         <Icon />

@@ -3,7 +3,7 @@ import Image from "next/image";
 import React from "react";
 import image from "../../public/icCer.png";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
-import { Eye, SquareArrowOutUpRight } from "lucide-react";
+import { Eye, SquareArrowOutUpRight, ZoomIn } from "lucide-react";
 
 const edu = [
   {
@@ -65,8 +65,8 @@ const Edu = () => {
               alt="certificate"
               className="group-hover:scale-110 transition-all duration-300"
             />
-            <div className="hidden group-hover:flex justify-center transition-all duration-300 items-center z-50 absolute group-hover:scale-110 w-full h-full top-0 left-0 bg-white/10 backdrop-blur-[2px]">
-            <Eye className="text-background text-xl" />
+            <div className="md:hidden group-hover:flex justify-center transition-all duration-300 items-center z-50 absolute group-hover:scale-110 w-full h-full top-0 left-0 bg-white/5 backdrop-blur-[1px]">
+            <ZoomIn className="text-black/70  text-xl" />
             </div>
           </div>
           </DialogTrigger>

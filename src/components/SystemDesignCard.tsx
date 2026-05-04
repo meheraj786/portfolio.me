@@ -26,7 +26,7 @@ const SystemDesignCard: React.FC<SystemDesignCardProps> = ({
       <div className="flex flex-col md:flex-row items-start gap-6 bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-300 border border-gray-100">
         {/* Content Area - min-w-0 is CRITICAL for flex containers to prevent overflow */}
         <div className="flex-1 min-w-0 w-full">
-          <h3 className="font-semibold text-lg text-black mb-2 group-hover:text-blue-600 transition-colors">
+          <h3 className="font-semibold text-lg text-black mb-2 group-hover:text-gray-500 transition-colors">
             {title}
           </h3>
 
@@ -39,7 +39,7 @@ const SystemDesignCard: React.FC<SystemDesignCardProps> = ({
           </div>
 
           <div className="mt-4 flex items-center justify-between">
-            <span className="text-xs font-medium text-blue-600 group-hover:underline">
+            <span className="text-xs font-medium text-gray-500 group-hover:underline">
               Read Case Study →
             </span>
             
