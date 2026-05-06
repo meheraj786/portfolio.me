@@ -73,7 +73,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://meherajdev.vercel.app";
   const { systemDesign } = await getSystemDesignBySlug(params.slug);
 
   if (!systemDesign) return { title: "Case Study Not Found" };
