@@ -1,8 +1,7 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { Calendar, Clock, User } from "lucide-react";
+import { Calendar } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 import Link from "next/link";
@@ -21,11 +20,14 @@ export default async function ArticleDetailPage({
     notFound();
   }
 
-  const formattedDate = new Date(article.createdAt).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  const formattedDate = new Date(article.createdAt).toLocaleDateString(
+    "en-US",
+    {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    },
+  );
 
   return (
     <main className="min-h-screen bg-white py-12 px-4 md:px-8">
@@ -48,10 +50,18 @@ export default async function ArticleDetailPage({
 
         <div className="flex flex-wrap items-center gap-6 text-gray-600 mb-8">
           <div className="flex items-center justify-center gap-2">
-            <div className="w-5 h-5 rounded-full " >
-              <Image src="/meherajImg.png" alt="Meheraj Hosen" width={24} height={24} className="rounded-full" />
+            <div className="w-5 h-5 rounded-full ">
+              <Image
+                src="/meherajImg.png"
+                alt="Meheraj Hosen"
+                width={24}
+                height={24}
+                className="rounded-full"
+              />
             </div>
-            <Link href="/about" className="font-body cursor-pointer text-sm">Meheraj H.</Link>
+            <Link href="/about" className="font-body cursor-pointer text-sm">
+              Meheraj H.
+            </Link>
           </div>
           <div className="flex items-center gap-2">
             <Calendar className="w-5 h-5" />
