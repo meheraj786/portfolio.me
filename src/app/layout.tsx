@@ -20,7 +20,7 @@ const spaceMono = Space_Mono({
   subsets: ["latin"],
 });
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://meherajdev.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
