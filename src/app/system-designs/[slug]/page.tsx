@@ -62,7 +62,7 @@ export default async function CaseStudyDetailPage({
 // Static params for SSG
 export async function generateStaticParams() {
   const { systemDesigns = [] } = await getSystemDesigns();
-  return systemDesigns.map((study: any) => ({
+  return systemDesigns.map((study: { slug: string }) => ({
     slug: study.slug,
   }));
 }

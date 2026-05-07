@@ -16,7 +16,7 @@ const Projects = async () => {
       </h2>
       <div className="flex flex-col gap-y-3">
         {projects.length > 0 ? (
-          projects.map((p: any, idx: number) => (
+          projects.map((p: {title: string, description: string, tags: string[], images: string[], createdAt: string, githubLink: string, liveLink: string, slug: string}, idx: number) => (
             <ProjectCard
               key={idx}
               title={p.title}

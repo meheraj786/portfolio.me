@@ -102,7 +102,7 @@ export default async function ArticleDetailPage({
 
 export async function generateStaticParams() {
   const { articles = [] } = await getArticles();
-  return articles.map((article: any) => ({
+  return articles.map((article: { slug: string }) => ({
     slug: article.slug,
   }));
 }
