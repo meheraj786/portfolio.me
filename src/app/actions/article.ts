@@ -2,6 +2,7 @@
 
 import { connectDB } from "@/lib/db/connect";
 import Article from "@/models/Article";
+import { revalidatePath } from "next/cache";
 
 export async function createArticle(data: {
   title: string;
@@ -14,6 +15,10 @@ export async function createArticle(data: {
     await connectDB();
     const article = new Article(data);
     const savedArticle = await article.save();
+
+    // Revalidate the articles page
+    revalidatePath("/articles");
+
     return {
       success: true,
       article: JSON.parse(JSON.stringify(savedArticle)),
@@ -31,10 +36,7 @@ export async function getArticles(category: string = "ALL") {
     if (category && category !== "ALL") {
       query.category = category;
     }
-    const articles = await Article
-      .find(query)
-      .sort({ createdAt: -1 })
-      .lean();
+    const articles = await Article.find(query).sort({ createdAt: -1 }).lean();
     return { success: true, articles: JSON.parse(JSON.stringify(articles)) };
   } catch (error) {
     return { success: false, error: "Failed to fetch articles" };
@@ -73,16 +75,23 @@ export async function updateArticle(
 ) {
   try {
     await connectDB();
-    const article = await Article
-      .findByIdAndUpdate(id, data, {
-        new: true,
-      })
-      .lean();
+    const article = await Article.findByIdAndUpdate(id, data, {
+      new: true,
+    }).lean();
+
+    // Revalidate the articles pages
+    revalidatePath("/articles");
+    revalidatePath("/articles/[slug]");
+
     return { success: true, article: JSON.parse(JSON.stringify(article)) };
   } catch (error) {
     return { success: false, error: "Failed to update article" };
   }
 }
+
+// Revalidate the articles pages
+revalidatePath("/articles");
+revalidatePath("/articles/[slug]");
 
 export async function deleteArticle(id: string) {
   try {

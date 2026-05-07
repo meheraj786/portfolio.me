@@ -2,6 +2,7 @@
 
 import { connectDB } from "@/lib/db/connect";
 import Project from "@/models/Project";
+import { revalidatePath } from "next/cache";
 
 export async function createProject(data: {
   title: string;
@@ -16,6 +17,10 @@ export async function createProject(data: {
     await connectDB();
     const project = new Project(data);
     const savedProject = await project.save();
+    
+    // Revalidate the projects page
+    revalidatePath("/projects");
+    
     return {
       success: true,
       project: JSON.parse(JSON.stringify(savedProject)),
@@ -50,6 +55,11 @@ export async function updateProject(id: string, data: any) {
   try {
     await connectDB();
     const project = await Project
+    
+    // Revalidate the projects pages
+    revalidatePath("/projects");
+    revalidatePath("/projects/[slug]");
+    
       .findByIdAndUpdate(id, data, {
         new: true,
       })
@@ -60,6 +70,11 @@ export async function updateProject(id: string, data: any) {
   }
 }
 
+    // Revalidate the projects pages
+    revalidatePath("/projects");
+    revalidatePath("/projects/[slug]");
+    
+    
 export async function deleteProject(id: string) {
   try {
     await connectDB();

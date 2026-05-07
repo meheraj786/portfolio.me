@@ -2,6 +2,7 @@
 
 import { connectDB } from "@/lib/db/connect";
 import SystemDesign from "@/models/SystemDesign";
+import { revalidatePath } from "next/cache";
 
 export async function createSystemDesign(data: {
   title: string;
@@ -13,6 +14,10 @@ export async function createSystemDesign(data: {
     await connectDB();
     const systemDesign = new SystemDesign(data);
     const savedSystemDesign = await systemDesign.save();
+
+    // Revalidate the system designs page
+    revalidatePath("/system-designs");
+
     return {
       success: true,
       systemDesign: JSON.parse(JSON.stringify(savedSystemDesign)),
@@ -65,6 +70,11 @@ export async function updateSystemDesign(
     const systemDesign = await SystemDesign.findByIdAndUpdate(id, data, {
       new: true,
     }).lean();
+
+    // Revalidate the system designs pages
+    revalidatePath("/system-designs");
+    revalidatePath("/system-designs/[slug]");
+
     return {
       success: true,
       systemDesign: JSON.parse(JSON.stringify(systemDesign)),
@@ -78,6 +88,11 @@ export async function deleteSystemDesign(id: string) {
   try {
     await connectDB();
     await SystemDesign.findByIdAndDelete(id);
+
+    // Revalidate the system designs pages
+    revalidatePath("/system-designs");
+    revalidatePath("/system-designs/[slug]");
+
     return { success: true };
   } catch (error) {
     return { success: false, error: "Failed to delete system design" };
