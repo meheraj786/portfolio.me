@@ -78,7 +78,7 @@ export default async function ArticleDetailPage({
 
         {/* Social Share Buttons */}
         <ShareButtons
-          articleUrl={`${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/articles/${article.slug}`}
+          articleUrl={`${process.env.NEXT_PUBLIC_BASE_URL || "http://meherajdev.vercel.app"}/articles/${article.slug}`}
           title={article.title}
           description={article.title}
         />
@@ -112,7 +112,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://meherajdev.vercel.app";
   const { article } = await getArticleBySlug(params.slug);
 
   if (!article) return { title: "Not Found" };
