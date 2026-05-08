@@ -54,27 +54,20 @@ export async function getProjectBySlug(slug: string) {
 export async function updateProject(id: string, data: any) {
   try {
     await connectDB();
-    const project = await Project
-    
+    const project = await Project.findByIdAndUpdate(id, data, {
+      new: true,
+    }).lean();
+
     // Revalidate the projects pages
     revalidatePath("/projects");
     revalidatePath("/projects/[slug]");
-    
-      .findByIdAndUpdate(id, data, {
-        new: true,
-      })
-      .lean();
+
     return { success: true, project: JSON.parse(JSON.stringify(project)) };
   } catch (error) {
     return { success: false, error: "Failed to update project" };
   }
 }
 
-    // Revalidate the projects pages
-    revalidatePath("/projects");
-    revalidatePath("/projects/[slug]");
-    
-    
 export async function deleteProject(id: string) {
   try {
     await connectDB();

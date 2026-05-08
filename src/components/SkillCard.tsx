@@ -62,9 +62,11 @@
 
 // export default SkillCard;
 
-"use client";
+'use client'
+
+import React from "react";
 import Link from "next/link";
-import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 interface SkillCardProps {
   icon: React.ElementType;
@@ -74,30 +76,36 @@ interface SkillCardProps {
 }
 
 const SkillCard: React.FC<SkillCardProps> = ({ icon: Icon, name, link, color }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
-  const primaryColor = "#171717"; 
-
   return (
-    <Link
-      href={link}
-      target="_blank"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      style={{ 
-        backgroundColor: isHovered ? color : primaryColor,
-        border: `1px solid ${isHovered ? color : "#333"}` 
-      }}
-      className="flex items-center font-primary gap-2 px-3 py-1.5 transition-all duration-400 ease-in-out hover:scale-105 active:scale-95 rounded-sm shadow-sm"
-    >
-      <div className="text-white text-lg flex items-center transition-transform duration-300">
-        <Icon />
-      </div>
-      <p className="text-[13px] text-white font-bold uppercase tracking-wider whitespace-nowrap">
-        {name}
-      </p>
+    <Link href={link} target="_blank">
+      <motion.div
+        whileHover={{ scale: 1.05, y: -2 }}
+        whileTap={{ scale: 0.95 }}
+        className="flex items-center gap-3 px-4 py-2 border border-primary/20 bg-primary/5 hover:border-primary/60 transition-all duration-300 relative group overflow-hidden"
+      >
+        {/* Glow Background on Hover */}
+        <div 
+          className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none"
+          style={{ backgroundColor: color }}
+        />
+        
+        <div 
+          className="text-lg flex items-center transition-all duration-300 group-hover:drop-shadow-[0_0_8px_var(--tw-shadow-color)]"
+          style={{ color: color, filter: `drop-shadow(0 0 2px ${color}44)` }}
+        >
+          <Icon />
+        </div>
+        
+        <span className="text-[11px] font-primary font-bold text-offWhite/80 group-hover:text-white uppercase tracking-widest whitespace-nowrap">
+          {name}
+        </span>
+
+        {/* Scanline sub-overlay for each card */}
+        <div className="absolute inset-0 bg-scanline opacity-0 group-hover:opacity-10 pointer-events-none" />
+      </motion.div>
     </Link>
   );
 };
 
 export default SkillCard;
+

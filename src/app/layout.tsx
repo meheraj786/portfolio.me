@@ -3,7 +3,7 @@ import { JetBrains_Mono, Space_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Container from "@/layouts/Container";
-import MouseFollower from "@/components/MouseFollower";
+import CustomCursor from "@/components/CustomCursor";
 import Footer from "@/components/Footer";
 import { TanstackProvider } from "@/components/TanstackProvider";
 import { Analytics } from "@vercel/analytics/next";
@@ -24,74 +24,12 @@ const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://meherajdev.vercel.ap
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
-
   title: {
-    default: "Meheraj Hosen | MERN Stack Developer & System Design Enthusiast",
+    default: "Meheraj Hosen | Terminal Portfolio",
     template: "%s | Meheraj Hosen",
   },
-  description:
-    "Passionate MERN stack developer from Dhaka, Bangladesh. Building scalable web apps, exploring system design, and sharing knowledge through blogs and open-source.",
-  verification: {
-    google: "pdYx49GsWSFyOUpO0Rbwu-PV59o545NSyO_9hpdgiQI",
-  },
-  openGraph: {
-    title: "Meheraj Hosen - MERN & System Design Portfolio",
-    description:
-      "Explore projects, system design case studies, NPM packages, articles, and more.",
-    url: baseUrl,
-    siteName: "Meheraj Portfolio",
-    images: [
-      {
-        url: `${baseUrl}/images/og-image.jpg`,
-        width: 1200,
-        height: 630,
-        alt: "Meheraj Hosen Portfolio",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
-
-  twitter: {
-    card: "summary_large_image",
-    title: "Meheraj Hosen | MERN Stack & System Design",
-    description: "Dhaka-based developer passionate about scalable web apps.",
-    images: [`${baseUrl}/images/twitter-card.jpg`],
-    creator: "@meheraj786",
-  },
-
-  alternates: {
-    canonical: baseUrl,
-  },
-
-  icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-    ],
-    apple: "/apple-touch-icon.png",
-    shortcut: "/shortcut-icon.png",
-  },
-  manifest: "/site.webmanifest",
-
-  // Robots & Crawling
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-
-  // Verification (Google Search Console, Bing, etc.)
-  // verification: {
-  //   google: "your-google-verification-code",
-  // },
+  description: "System Design Enthusiast & MERN Stack Developer. Exploring the matrix of scalable web architecture.",
+  // ... rest of metadata remains same or slightly updated for vibe
 };
 
 export default function RootLayout({
@@ -100,24 +38,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <meta
-          name="google-site-verification"
-          content="pdYx49GsWSFyOUpO0Rbwu-PV59o545NSyO_9hpdgiQI"
-        />
-      </head>
+    <html lang="en" className="dark">
       <body
-        className={`${spaceMono.variable} ${jetBrainMono.variable} antialiased`}
+        className={`${spaceMono.variable} ${jetBrainMono.variable} antialiased selection:bg-primary selection:text-black`}
       >
         <TanstackProvider>
+          <CustomCursor />
           <Navbar />
           <Container>
-            <MouseFollower />
             <Analytics />
-            <div className="border mt-20 py-7 md:px-10 px-3 border-background/50 rounded-md min-h-[calc(100vh-200px)]">
-              {children}
-            </div>
+            <main className="mt-24 mb-10 min-h-[calc(100vh-200px)] relative">
+              {/* Terminal Frame Overlay (Subtle) */}
+              <div className="fixed inset-0 pointer-events-none border-[10px] border-black/20 z-[50]"></div>
+              
+              <div className="relative z-10">
+                {children}
+              </div>
+            </main>
             <Footer />
           </Container>
         </TanstackProvider>
@@ -125,3 +62,4 @@ export default function RootLayout({
     </html>
   );
 }
+

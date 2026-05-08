@@ -1,16 +1,17 @@
-"use client";
+'use client'
+
 import React from "react";
-import Flex from "@/layouts/Flex";
-import { FaGithub, FaNpm } from "react-icons/fa"; // FaNpm আছে react-icons এ
+import { motion } from "framer-motion";
+import { Github, Package, ExternalLink, Box } from "lucide-react";
 import Link from "next/link";
 
 interface NpmPackageCardProps {
-  title: string;               // Package name, e.g. "smooth-cursor-follower"
+  title: string;
   description: string;
-  tags?: string[];             // optional: ["React", "Animation", "UI"]
-  github: string;              // GitHub repo URL
-  npm: string;                 // Full NPM page URL, e.g. "https://www.npmjs.com/package/smooth-cursor-follower"
-  downloads?: string;          // optional: "1.2k weekly downloads"
+  tags?: string[];
+  github: string;
+  npm: string;
+  downloads?: string;
 }
 
 const NpmPackageCard: React.FC<NpmPackageCardProps> = ({
@@ -22,60 +23,75 @@ const NpmPackageCard: React.FC<NpmPackageCardProps> = ({
   downloads,
 }) => {
   return (
-    <div className="flex flex-col bg-white rounded-2xl p-6 pb-2 hover:shadow-xl transition-all duration-300 border border-gray-100">
-      {/* Title & Downloads/Date */}
-      <div className="flex justify-between items-start mb-2">
-        <h3 className=" font-semibold font-primary text-black">
-          {title}
-        </h3>
-        {downloads && (
-          <span className="text-xs text-gray-500 font-body">
-            {downloads}
-          </span>
-        )}
+    <motion.div 
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="relative border border-primary/20 bg-primary/5 hover:border-primary/50 transition-all duration-300 p-5 group"
+    >
+      <div className="flex flex-col gap-4">
+        {/* Header */}
+        <div className="flex justify-between items-start">
+          <div className="flex items-center gap-2">
+            <Package size={18} className="text-primary" />
+            <h3 className="text-lg font-primary font-bold text-white group-hover:text-primary transition-colors">
+              {title}
+            </h3>
+          </div>
+          {downloads && (
+            <div className="text-[10px] font-primary text-secondary/60 bg-secondary/5 px-2 py-0.5 border border-secondary/20 uppercase tracking-tighter">
+              {downloads}
+            </div>
+          )}
+        </div>
+
+        {/* Description */}
+        <p className="font-body text-sm text-offWhite/70 line-clamp-2">
+          {description}
+        </p>
+
+        {/* Tags */}
+        <div className="flex flex-wrap gap-2">
+          {tags.slice(0, 4).map((tag, index) => (
+            <span
+              key={index}
+              className="text-[9px] font-primary text-primary/40 uppercase tracking-widest"
+            >
+              #{tag}
+            </span>
+          ))}
+        </div>
+
+        {/* Footer Actions */}
+        <div className="flex items-center justify-between pt-4 border-t border-primary/10">
+          <div className="flex items-center gap-2 font-primary text-[10px] text-primary/30 uppercase">
+            <Box size={12} />
+            <span>NPM_PACKAGE_V1.0</span>
+          </div>
+          
+          <div className="flex gap-4">
+            <Link 
+              href={github} 
+              target="_blank"
+              className="text-offWhite/40 hover:text-primary transition-colors"
+            >
+              <Github size={18} />
+            </Link>
+            <Link 
+              href={npm} 
+              target="_blank"
+              className="text-offWhite/40 hover:text-secondary transition-colors" 
+            >
+              <ExternalLink size={18} />
+            </Link>
+          </div>
+        </div>
       </div>
 
-      {/* Description */}
-      <p className="text-sm text-background mt-1 font-body line-clamp-3">
-        {description}
-      </p>
-
-      {/* Tags */}
-      {tags.length > 0 && (
-        <Flex className="mt-3">
-          <div className="flex flex-wrap gap-2">
-            {tags.map((tag, index) => (
-              <span
-                key={index}
-                className="text-xs font-body bg-background text-gray-300 px-2 py-1 rounded-md border border-neutral-700"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </Flex>
-      )}
-
-      {/* Links */}
-      <Flex className=" flex-row justify-end items-center gap-x-4 text-background text-[20px]">
-        <Link
-          href={github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-blue-600 transition-colors"
-        >
-          <FaGithub size={18} />
-        </Link>
-        <Link
-          href={npm}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-red-600 transition-colors" 
-        >
-          <FaNpm size={20} />
-        </Link>
-      </Flex>
-    </div>
+      {/* Terminal decorative bits */}
+      <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-primary/40" />
+      <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-primary/40" />
+    </motion.div>
   );
 };
 

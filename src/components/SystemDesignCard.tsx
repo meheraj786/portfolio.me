@@ -1,64 +1,77 @@
-"use client";
+'use client'
+
 import React from "react";
 import Link from "next/link";
-import { FaGithub } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { Github, Layout, ArrowRight, Binary } from "lucide-react";
 
 interface SystemDesignCardProps {
   title: string;
   description: string;
-  keyFeatures?: string[];
-  diagramUrl?: string;
   github?: string | null;
-  learnings?: string;
   slug: string;
 }
 
 const SystemDesignCard: React.FC<SystemDesignCardProps> = ({
   title,
   description,
-  // keyFeatures,
   github,
   slug,
-  // learnings,
 }) => {
   return (
     <Link href={`/system-designs/${slug}`} className="block group">
-      <div className="flex flex-col md:flex-row items-start gap-6 bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-300 border border-gray-100">
-        {/* Content Area - min-w-0 is CRITICAL for flex containers to prevent overflow */}
-        <div className="flex-1 min-w-0 w-full">
-          <h3 className="font-semibold text-lg text-black mb-2 group-hover:text-gray-500 transition-colors">
-            {title}
-          </h3>
-
-          {/* 
-            Fixed: Changed from <p> to <div> because dangerouslySetInnerHTML 
-            can contain block elements. Line-clamp is applied to this container.
-          */}
-          <div className="text-sm text-gray-600 line-clamp-3 overflow-hidden break-words">
-            <div dangerouslySetInnerHTML={{ __html: description }} />
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.98 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        className="relative border border-primary/20 bg-primary/5 hover:border-primary/50 transition-all duration-300 p-6"
+      >
+        <div className="flex flex-col md:flex-row gap-6">
+          {/* Icon Area */}
+          <div className="w-12 h-12 shrink-0 border border-secondary/30 bg-secondary/5 flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-background transition-all duration-300">
+            <Binary size={24} />
           </div>
 
-          <div className="mt-4 flex items-center justify-between">
-            <span className="text-xs font-medium text-gray-500 group-hover:underline">
-              Read Case Study →
-            </span>
-            
-            {github && (
-              <div className="flex justify-end pt-2">
+          {/* Content Area */}
+          <div className="flex-1 space-y-3">
+            <div className="flex justify-between items-start">
+              <h3 className="text-xl font-primary font-bold text-white group-hover:text-primary transition-colors">
+                {title}
+              </h3>
+              <div className="flex items-center gap-2 text-[10px] font-primary text-offWhite/30 uppercase tracking-widest">
+                <Layout size={12} />
+                HLD_SPEC
+              </div>
+            </div>
+
+            <div className="font-body text-sm text-offWhite/60 line-clamp-2 overflow-hidden">
+              <div dangerouslySetInnerHTML={{ __html: description }} />
+            </div>
+
+            <div className="flex items-center justify-between pt-4 border-t border-primary/10">
+              <div className="flex items-center gap-2 text-primary group-hover:gap-4 transition-all duration-300 text-[10px] font-primary uppercase font-bold tracking-widest">
+                Explore_Architecture
+                <ArrowRight size={14} />
+              </div>
+              
+              {github && (
                 <Link
                   href={github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 text-gray-500 hover:text-black hover:bg-gray-100 rounded-full transition-all"
-                  onClick={(e) => e.stopPropagation()} // Prevent card click when clicking GitHub icon
+                  className="p-2 text-offWhite/40 hover:text-primary transition-all"
+                  onClick={(e) => e.stopPropagation()} 
                 >
-                  <FaGithub className="text-xl" />
+                  <Github size={18} />
                 </Link>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
-      </div>
+
+        {/* Decorative elements */}
+        <div className="absolute top-0 right-0 w-8 h-8 border-t border-r border-primary/20 -z-10" />
+      </motion.div>
     </Link>
   );
 };

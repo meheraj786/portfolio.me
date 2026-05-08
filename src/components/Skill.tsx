@@ -1,32 +1,42 @@
-"use client";
+'use client'
+
 import React from "react";
 import SkillCard from "./SkillCard";
-import Flex from "@/layouts/Flex";
 import { skills } from "@/layouts/seed";
-import Link from "next/link";
+import { Cpu, Terminal } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Skill = () => {
   const categories = ["Frontend", "Backend", "Database", "Tools"];
 
   return (
-    <div className="py-10 ">
-      <div className="max-w-6xl mx-auto px-4">
-        <h2
-          className='relative font-primary font-bold text-primary mb-10 inline-block
-          after:content-[""] after:absolute after:left-0 after:bottom-0 pb-3 after:h-[3px] after:bg-primary after:w-0
-          hover:after:w-full after:transition-all after:duration-300'
-        >
-          &#123; My Skills &#125;
-        </h2>
+    <section className="py-20">
+      <div className="max-w-6xl mx-auto space-y-12">
+        {/* Section Header */}
+        <div className="flex items-center gap-4">
+          <h2 className="text-primary font-primary text-2xl md:text-3xl font-bold flex items-center gap-3">
+            <span className="text-offWhite/20 text-sm font-normal">01.</span>
+            CORE_CAPABILITIES
+            <span className="h-[1px] w-24 md:w-64 bg-primary/30"></span>
+          </h2>
+        </div>
 
-        <div className="space-y-10">
-          {categories.map((cat) => (
-            <div key={cat} className="space-y-4">
-              <h3 className="text-gray-400 text-xs font-semibold uppercase tracking-[3px]">
-                {cat}
-              </h3>
-
-              <Flex className="gap-3 flex-wrap justify-start flex-row">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+          {categories.map((cat, catIdx) => (
+            <motion.div 
+              key={cat} 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: catIdx * 0.1 }}
+              viewport={{ once: true }}
+              className="terminal-container p-0! overflow-hidden"
+            >
+              <div className="terminal-header">
+                <Cpu size={14} className="text-secondary" />
+                <span className="text-[10px] font-primary text-secondary/50 ml-2 uppercase tracking-widest">{cat}_MODULES</span>
+              </div>
+              
+              <div className="p-6 flex flex-wrap gap-3">
                 {skills
                   .filter((skill) => skill.category === cat)
                   .map((skill, index) => (
@@ -35,24 +45,23 @@ const Skill = () => {
                       icon={skill.icon}
                       name={skill.name}
                       link={skill.link}
-                      color={skill.color || "#333"}
+                      color={skill.color || "#00ff9f"}
                     />
                   ))}
-              </Flex>
-            </div>
+              </div>
+            </motion.div>
           ))}
         </div>
 
-        {/* <div className="text-center md:text-left mt-10">
-          <Link href="/skills">
-            <button className="text-primary font-primary cursor-pointer bg-transparent px-6 py-2 rounded-sm transition-all duration-200 border border-primary hover:bg-primary hover:text-white uppercase text-sm font-bold tracking-widest">
-              View All Skills
-            </button>
-          </Link>
-        </div> */}
+        {/* Status Line */}
+        <div className="flex items-center gap-4 pt-6 text-[10px] font-primary text-primary/30 uppercase tracking-[0.3em]">
+          <Terminal size={14} />
+          <span>Skills_Index: 100%_Mapped // Ready_For_Deployment</span>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
 export default Skill;
+
