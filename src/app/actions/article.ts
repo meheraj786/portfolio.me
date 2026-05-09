@@ -89,14 +89,15 @@ export async function updateArticle(
   }
 }
 
-// Revalidate the articles pages
-revalidatePath("/articles");
-revalidatePath("/articles/[slug]");
-
 export async function deleteArticle(id: string) {
   try {
     await connectDB();
     await Article.findByIdAndDelete(id);
+
+    // Revalidate the articles pages
+    revalidatePath("/articles");
+    revalidatePath("/articles/[slug]");
+
     return { success: true };
   } catch (error) {
     return { success: false, error: "Failed to delete article" };
