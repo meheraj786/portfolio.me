@@ -15,7 +15,6 @@ export async function createSystemDesign(data: {
     const systemDesign = new SystemDesign(data);
     const savedSystemDesign = await systemDesign.save();
 
-    // Revalidate the system designs page
     revalidatePath("/system-designs");
 
     return {
@@ -71,7 +70,6 @@ export async function updateSystemDesign(
       new: true,
     }).lean();
 
-    // Revalidate the system designs pages
     revalidatePath("/system-designs");
     revalidatePath("/system-designs/[slug]");
 
@@ -89,7 +87,6 @@ export async function deleteSystemDesign(id: string) {
     await connectDB();
     await SystemDesign.findByIdAndDelete(id);
 
-    // Revalidate the system designs pages
     revalidatePath("/system-designs");
     revalidatePath("/system-designs/[slug]");
 
