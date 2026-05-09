@@ -37,6 +37,7 @@ export async function getProjects() {
     const projects = await Project.find().sort({ createdAt: -1 }).lean();
     return { success: true, projects: JSON.parse(JSON.stringify(projects)) };
   } catch (error) {
+    console.error("Fetch Projects Error:", error);
     return { success: false, error: "Failed to fetch projects" };
   }
 }
@@ -47,6 +48,7 @@ export async function getProjectBySlug(slug: string) {
     const project = await Project.findOne({ slug }).lean();
     return { success: true, project: JSON.parse(JSON.stringify(project)) };
   } catch (error) {
+    console.error("Fetch Project by Slug Error:", error);
     return { success: false, error: "Failed to fetch project" };
   }
 }

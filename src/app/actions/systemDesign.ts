@@ -38,6 +38,7 @@ export async function getSystemDesigns() {
       systemDesigns: JSON.parse(JSON.stringify(systemDesigns)),
     };
   } catch (error) {
+    console.error("Fetch System Designs Error:", error);
     return { success: false, error: "Failed to fetch system designs" };
   }
 }
@@ -51,6 +52,7 @@ export async function getSystemDesignBySlug(slug: string) {
       systemDesign: JSON.parse(JSON.stringify(systemDesign)),
     };
   } catch (error) {
+    console.error("Fetch System Design by Slug Error:", error);
     return { success: false, error: "Failed to fetch system design" };
   }
 }

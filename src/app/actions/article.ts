@@ -39,6 +39,7 @@ export async function getArticles(category: string = "ALL") {
     const articles = await Article.find(query).sort({ createdAt: -1 }).lean();
     return { success: true, articles: JSON.parse(JSON.stringify(articles)) };
   } catch (error) {
+    console.error("Fetch Articles Error:", error);
     return { success: false, error: "Failed to fetch articles" };
   }
 }
@@ -49,6 +50,7 @@ export async function getAllCategories() {
     const categories = await Article.distinct("category");
     return { success: true, categories: ["ALL", ...categories] };
   } catch (error) {
+    console.error("Fetch Categories Error:", error);
     return { success: false, error: "Failed to fetch categories" };
   }
 }
@@ -59,6 +61,7 @@ export async function getArticleBySlug(slug: string) {
     const article = await Article.findOne({ slug }).lean();
     return { success: true, article: JSON.parse(JSON.stringify(article)) };
   } catch (error) {
+    console.error("Fetch Article by Slug Error:", error);
     return { success: false, error: "Failed to fetch article" };
   }
 }
