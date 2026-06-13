@@ -46,7 +46,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         {/* Title & Date */}
         <div className="flex justify-between items-start">
           <Link href={`/projects/${slug}`}>
-            <h3 className="text-lg font-semibold font-primary text-black hover:text-blue-600 transition-colors">
+            <h3 className="text-lg font-semibold font-primary text-black hover:text-gray-600 transition-colors">
               {title}
             </h3>
           </Link>
