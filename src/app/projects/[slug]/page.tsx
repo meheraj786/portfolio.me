@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { getProjectBySlug, getProjects } from "@/app/actions/project";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 export default async function ProjectDetailPage({
   params,
@@ -34,7 +35,10 @@ export default async function ProjectDetailPage({
           </div>
           <div className="flex gap-4">
             <Link href={project.githubLink} target="_blank">
-              <Button variant="outline" className="flex items-center text-black! gap-2">
+              <Button
+                variant="outline"
+                className="flex items-center text-black! gap-2"
+              >
                 <FaGithub /> GitHub
               </Button>
             </Link>
@@ -45,22 +49,35 @@ export default async function ProjectDetailPage({
             </Link>
           </div>
         </div>
-
         {/* Project Images */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
           {project.images.map((image: string, idx: number) => (
-            <div key={idx} className="relative h-64 rounded-xl overflow-hidden shadow-lg">
-              <Image
-                src={image}
-                alt={`${project.title} - ${idx + 1}`}
-                fill
-                className="object-cover hover:scale-105 transition-transform duration-500"
-              />
-            </div>
+            <Dialog key={idx}>
+              <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
+                <DialogTrigger asChild>
+                  <Image
+                    src={image}
+                    alt={`${project.title} - ${idx + 1}`}
+                    fill
+                    className="object-cover cursor-pointer hover:scale-105 transition-transform duration-500"
+                  />
+                </DialogTrigger>
+              </div>
+
+              <DialogContent className="max-w-7xl w-[90vw] h-[80vh] p-0 bg-transparent border-none sm:rounded-none">
+                <div className="relative w-full h-full">
+                  <Image
+                    src={image}
+                    alt={`${project.title} - ${idx + 1}`}
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 1200px) 100vw, 1200px"
+                  />
+                </div>
+              </DialogContent>
+            </Dialog>
           ))}
         </div>
-
-        {/* Project Description */}
         <div className="prose prose-lg max-w-none font-body text-gray-800 mb-10">
           <h2 className="text-2xl font-bold mb-4">About this Project</h2>
           <div dangerouslySetInnerHTML={{ __html: project.description }} />
@@ -95,6 +112,8 @@ export async function generateMetadata({
 
   return {
     title: `${project.title} | Meheraj Hosen`,
-    description: project.description.replace(/<[^>]*>?/gm, "").substring(0, 160),
+    description: project.description
+      .replace(/<[^>]*>?/gm, "")
+      .substring(0, 160),
   };
 }

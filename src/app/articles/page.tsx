@@ -40,7 +40,7 @@ const Articles = async ({
       </Flex>
       <div className="flex flex-col gap-y-3">
         {articles.length > 0 ? (
-          articles.map((p: any, idx: number) => (
+          articles.map((p: {title: string, description: string, image: string, tags: string[], slug: string, createdAt: string, link: string, github: string, author: string}, idx: number) => (
             <ArticleCard
               key={idx}
               title={p.title}

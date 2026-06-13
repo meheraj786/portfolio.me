@@ -54,7 +54,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         </div>
 
         {/* Description */}
-        <p className="text-sm text-background mt-1 font-body line-clamp-2">
+        <p className="text-sm text-background mt-1 font-body  line-clamp-2">
           <span dangerouslySetInnerHTML={{ __html: description }} />
         </p>
 
