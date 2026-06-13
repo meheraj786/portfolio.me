@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { getProjectBySlug, getProjects } from "@/app/actions/project";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { ArrowLeft } from "lucide-react";
 
 export default async function ProjectDetailPage({
   params,
@@ -20,6 +21,14 @@ export default async function ProjectDetailPage({
 
   return (
     <main className="min-h-screen bg-white py-12 px-4 md:px-8">
+      {/* back to the projects page */}
+      <Link
+        href="/projects"
+        className="inline-flex items-center gap-2 text-gray-600 hover:text-black mb-8 transition-colors font-body"
+      >
+        <ArrowLeft className="w-5 h-5" />
+        Back to Projects
+      </Link>
       <div className="max-w-4xl mx-auto">
         {/* Project Header */}
         <div className="mb-10">
