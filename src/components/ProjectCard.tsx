@@ -54,9 +54,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         </div>
 
         {/* Description */}
+        <Link href={`/projects/${slug}`}>
         <p className="text-sm text-background mt-1 font-body  line-clamp-2">
           <span dangerouslySetInnerHTML={{ __html: description }} />
         </p>
+        </Link>
 
         {/* Tags */}
         <Flex className="mt-2">
