@@ -74,7 +74,7 @@ const Edu = () => {
             <Image
               src={item.certificate}
               alt="certificate"
-              className="w-full h-full"
+              className="w-[80xw] h-[80vh] object-contain"
               width={500}
               height={500}
             />
