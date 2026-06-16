@@ -69,7 +69,7 @@ const result = await streamText({
   system: systemPrompt,
   messages: trimmedMessages,  // use trimmed, not full messages
   temperature: 0.7,
-  maxTokens: 600,  // reduce from 800
+  maxOutputTokens: 2000,
 });
 
     return result.toTextStreamResponse();
