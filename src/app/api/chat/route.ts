@@ -25,7 +25,6 @@ export async function POST(req: NextRequest) {
       .map((s) => `${s.name} (${s.category})`)
       .join(", ");
 
-// Truncate description to avoid bloat
 const contextData = `
 **About Me:**
 I am Meheraj, a Full Stack Developer from Bangladesh specializing in Next.js, TypeScript, Tailwind CSS, and MongoDB.
@@ -51,6 +50,7 @@ You are friendly, professional, concise, and helpful.
 Here is accurate and up-to-date information about Meheraj:
 
 ${contextData}
+you can see more information about Meheraj from his portfolio website at https://meherajdev.vercel.app/ and github at https://github.com/meheraj786
 
 **Rules:**
 - Always answer using the information provided above.
@@ -61,13 +61,12 @@ ${contextData}
 
 
 
-// Only keep last 6 messages to save tokens
 const trimmedMessages = messages.slice(-6);
 
 const result = await streamText({
   model: groq('llama-3.3-70b-versatile'),
   system: systemPrompt,
-  messages: trimmedMessages,  // use trimmed, not full messages
+  messages: trimmedMessages,  
   temperature: 0.7,
   maxOutputTokens: 2000,
 });
