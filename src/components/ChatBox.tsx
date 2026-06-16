@@ -86,62 +86,55 @@ export default function ChatBox() {
           position: fixed;
           bottom: 28px;
           right: 28px;
-          height: 44px;
-          padding: 0 18px 0 14px;
-          background: #0a0a0a;
-          border: 1px solid #333;
+          height: 54px;
+          padding: 0 22px 0 16px;
+          background: #111;
+          border: 1.5px solid rgba(255,255,255,0.25);
           border-radius: 100px;
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 10px;
           cursor: pointer;
           z-index: 9999;
           color: #f0f0f0;
-          font-size: 13px;
+          font-size: 14px;
           font-weight: 500;
           letter-spacing: -0.01em;
           white-space: nowrap;
-          box-shadow:
-            0 0 0 1px rgba(255,255,255,0.04),
-            0 4px 24px rgba(0,0,0,0.4),
-            0 0 20px rgba(255,255,255,0.06),
-            0 0 40px rgba(255,255,255,0.03);
-          transition: box-shadow 0.25s, transform 0.18s, border-color 0.25s;
-          animation: trigger-glow 3s ease-in-out infinite;
+          transition: transform 0.18s;
+          animation: trigger-glow 2.5s ease-in-out infinite;
         }
         @keyframes trigger-glow {
           0%, 100% {
+            border-color: rgba(255,255,255,0.18);
             box-shadow:
-              0 0 0 1px rgba(255,255,255,0.04),
-              0 4px 24px rgba(0,0,0,0.4),
-              0 0 16px rgba(255,255,255,0.05),
-              0 0 40px rgba(255,255,255,0.02);
-            border-color: #333;
+              0 0 8px 2px rgba(255,255,255,0.08),
+              0 0 24px 4px rgba(255,255,255,0.05),
+              0 4px 20px rgba(0,0,0,0.5);
           }
           50% {
+            border-color: rgba(255,255,255,0.65);
             box-shadow:
-              0 0 0 1px rgba(255,255,255,0.08),
-              0 4px 24px rgba(0,0,0,0.4),
-              0 0 28px rgba(255,255,255,0.12),
-              0 0 60px rgba(255,255,255,0.05);
-            border-color: #555;
+              0 0 16px 4px rgba(255,255,255,0.22),
+              0 0 48px 12px rgba(255,255,255,0.10),
+              0 0 80px 20px rgba(255,255,255,0.04),
+              0 4px 20px rgba(0,0,0,0.5);
           }
         }
         .chatbox-trigger:hover {
           transform: scale(1.04);
-          border-color: #666;
-          box-shadow:
-            0 0 0 1px rgba(255,255,255,0.1),
-            0 8px 32px rgba(0,0,0,0.5),
-            0 0 36px rgba(255,255,255,0.15),
-            0 0 80px rgba(255,255,255,0.06);
           animation: none;
+          border-color: rgba(255,255,255,0.8);
+          box-shadow:
+            0 0 20px 6px rgba(255,255,255,0.28),
+            0 0 60px 16px rgba(255,255,255,0.12),
+            0 4px 24px rgba(0,0,0,0.5);
         }
         .chatbox-trigger-icon {
-          width: 22px;
-          height: 22px;
+          width: 28px;
+          height: 28px;
           background: #fff;
-          border-radius: 6px;
+          border-radius: 8px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -153,17 +146,20 @@ export default function ChatBox() {
           flex-direction: column;
           align-items: flex-start;
           line-height: 1;
+          gap: 3px;
         }
         .chatbox-trigger-label span:first-child {
-          font-size: 11px;
-          color: #555;
+          font-size: 10px;
+          color: #666;
           font-weight: 400;
-          margin-bottom: 2px;
+          text-transform: uppercase;
+          letter-spacing: 0.06em;
         }
         .chatbox-trigger-label span:last-child {
-          font-size: 13px;
-          color: #f0f0f0;
-          font-weight: 500;
+          font-size: 14px;
+          color: #fff;
+          font-weight: 600;
+          letter-spacing: -0.02em;
         }
 
         .chatbox-window {
