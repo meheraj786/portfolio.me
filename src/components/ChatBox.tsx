@@ -86,23 +86,84 @@ export default function ChatBox() {
           position: fixed;
           bottom: 28px;
           right: 28px;
-          width: 56px;
-          height: 56px;
-          background: #ffffff;
-          border: 1.5px solid #e5e5e5;
-          border-radius: 50%;
+          height: 44px;
+          padding: 0 18px 0 14px;
+          background: #0a0a0a;
+          border: 1px solid #333;
+          border-radius: 100px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          cursor: pointer;
+          z-index: 9999;
+          color: #f0f0f0;
+          font-size: 13px;
+          font-weight: 500;
+          letter-spacing: -0.01em;
+          white-space: nowrap;
+          box-shadow:
+            0 0 0 1px rgba(255,255,255,0.04),
+            0 4px 24px rgba(0,0,0,0.4),
+            0 0 20px rgba(255,255,255,0.06),
+            0 0 40px rgba(255,255,255,0.03);
+          transition: box-shadow 0.25s, transform 0.18s, border-color 0.25s;
+          animation: trigger-glow 3s ease-in-out infinite;
+        }
+        @keyframes trigger-glow {
+          0%, 100% {
+            box-shadow:
+              0 0 0 1px rgba(255,255,255,0.04),
+              0 4px 24px rgba(0,0,0,0.4),
+              0 0 16px rgba(255,255,255,0.05),
+              0 0 40px rgba(255,255,255,0.02);
+            border-color: #333;
+          }
+          50% {
+            box-shadow:
+              0 0 0 1px rgba(255,255,255,0.08),
+              0 4px 24px rgba(0,0,0,0.4),
+              0 0 28px rgba(255,255,255,0.12),
+              0 0 60px rgba(255,255,255,0.05);
+            border-color: #555;
+          }
+        }
+        .chatbox-trigger:hover {
+          transform: scale(1.04);
+          border-color: #666;
+          box-shadow:
+            0 0 0 1px rgba(255,255,255,0.1),
+            0 8px 32px rgba(0,0,0,0.5),
+            0 0 36px rgba(255,255,255,0.15),
+            0 0 80px rgba(255,255,255,0.06);
+          animation: none;
+        }
+        .chatbox-trigger-icon {
+          width: 22px;
+          height: 22px;
+          background: #fff;
+          border-radius: 6px;
           display: flex;
           align-items: center;
           justify-content: center;
-          cursor: pointer;
-          z-index: 9999;
-          box-shadow: 0 4px 24px rgba(0,0,0,0.10);
-          transition: box-shadow 0.18s, transform 0.18s;
-          color: #111;
+          color: #0a0a0a;
+          flex-shrink: 0;
         }
-        .chatbox-trigger:hover {
-          box-shadow: 0 8px 32px rgba(0,0,0,0.16);
-          transform: scale(1.06);
+        .chatbox-trigger-label {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          line-height: 1;
+        }
+        .chatbox-trigger-label span:first-child {
+          font-size: 11px;
+          color: #555;
+          font-weight: 400;
+          margin-bottom: 2px;
+        }
+        .chatbox-trigger-label span:last-child {
+          font-size: 13px;
+          color: #f0f0f0;
+          font-weight: 500;
         }
 
         .chatbox-window {
@@ -393,7 +454,20 @@ export default function ChatBox() {
 
       <div className="chatbox-root">
         <button className="chatbox-trigger" onClick={() => setIsOpen(o => !o)} aria-label="Open chat">
-          {isOpen ? <X size={22} /> : <MessageCircle size={22} />}
+          {isOpen ? (
+            <>
+              <div className="chatbox-trigger-icon"><X size={13} /></div>
+              <span style={{ fontSize: 13, color: '#f0f0f0', fontWeight: 500 }}>Close</span>
+            </>
+          ) : (
+            <>
+              <div className="chatbox-trigger-icon"><Bot size={13} /></div>
+              <div className="chatbox-trigger-label">
+                <span>Ask me anything</span>
+                <span>Meheraj AI</span>
+              </div>
+            </>
+          )}
         </button>
 
         {isOpen && (
