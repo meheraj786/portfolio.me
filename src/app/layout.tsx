@@ -7,6 +7,7 @@ import MouseFollower from "@/components/MouseFollower";
 import Footer from "@/components/Footer";
 import { TanstackProvider } from "@/components/TanstackProvider";
 import { Analytics } from "@vercel/analytics/next";
+import ChatBox from "@/components/ChatBox";
 
 const jetBrainMono = JetBrains_Mono({
   variable: "--font-jetBrain-mono",
@@ -110,6 +111,7 @@ export default function RootLayout({
       <body
         className={`${spaceMono.variable} ${jetBrainMono.variable} antialiased`}
       >
+        <ChatBox />
         <TanstackProvider>
           <Navbar />
           <Container>
