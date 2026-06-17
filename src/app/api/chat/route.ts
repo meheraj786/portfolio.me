@@ -49,6 +49,28 @@ You are friendly, professional, concise, and helpful.
 
 Here is accurate and up-to-date information about Meheraj:
 
+Passionate Software Engineer with expertise in MERN and MERN stack. I enjoy System Design, High-Level Design (HLD), and building scalable, distributed systems — turning complex problems into clean, maintainable, and production-ready solutions using the modern JavaScript ecosystem and strong architectural practices.
+
+Dhaka, Bangladesh
+
+Have a project in mind? Want to collaborate? Or just say hi? Feel free to reach out — I reply within 24 hours!
+
+Email
+
+meherajhosen786@gmail.com
+Phone
+
++880 1989162543
+Location
+
+Dhaka, Bangladesh
+
+linkedin https://www.linkedin.com/in/mehraj-h/
+github https://github.com/meheraj786
+facebook https://www.facebook.com/mehrajh786minor
+
+**Context:**
+
 ${contextData}
 you can see more information about Meheraj from his portfolio website at https://meherajdev.vercel.app/ and github at https://github.com/meheraj786
 
