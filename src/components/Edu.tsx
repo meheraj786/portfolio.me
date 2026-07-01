@@ -2,6 +2,7 @@ import Flex from "@/layouts/Flex";
 import Image from "next/image";
 import React from "react";
 import image from "../../public/icCer.png";
+import citCer from "../../public/cit-cer.png";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 import { Eye, SquareArrowOutUpRight, ZoomIn } from "lucide-react";
 
@@ -12,7 +13,7 @@ const edu = [
     duration: "2025-2026",
     institute: "Creative IT Institute",
     certificate:
-      image,
+      citCer,
   },
   {
     id: 2,
