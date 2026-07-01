@@ -34,46 +34,200 @@ import chat from "../../public/chat.png";
 import collabrix from "../../public/collabrix.png";
 import cookpal from "../../public/cookpal.png";
 
-
-
 export const skills = [
   // Frontend
-  { icon: FaHtml5, name: "HTML5", link: "https://developer.mozilla.org/en-US/docs/Web/HTML", color: "#E34F26", category: "Frontend" },
-  { icon: FaCss3Alt, name: "CSS3", link: "https://developer.mozilla.org/en-US/docs/Web/CSS", color: "#1572B6", category: "Frontend" },
-  { icon: FaJs, name: "JavaScript", link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript", color: "#F7DF1E", category: "Frontend" },
-  { icon: SiTypescript, name: "TypeScript", link: "https://www.typescriptlang.org/", color: "#3178C6", category: "Frontend" },
-  { icon: FaReact, name: "React.js", link: "https://react.dev/", color: "#61DAFB", category: "Frontend" },
-  { icon: SiNextdotjs, name: "Next.js", link: "https://nextjs.org/", color: "#000000", category: "Frontend" },
-  { icon: SiTailwindcss, name: "TailwindCSS", link: "https://tailwindcss.com/", color: "#06B6D4", category: "Frontend" },
-  { icon: SiRedux, name: "Redux", link: "https://redux.js.org/", color: "#764ABC", category: "Frontend" },
-  { icon: SiAstro, name: "Astro", link: "https://astro.build/", color: "#FF5D01", category: "Frontend" },
+  {
+    icon: FaHtml5,
+    name: "HTML5",
+    link: "https://developer.mozilla.org/en-US/docs/Web/HTML",
+    color: "#E34F26",
+    category: "Frontend",
+  },
+  {
+    icon: FaCss3Alt,
+    name: "CSS3",
+    link: "https://developer.mozilla.org/en-US/docs/Web/CSS",
+    color: "#1572B6",
+    category: "Frontend",
+  },
+  {
+    icon: FaJs,
+    name: "JavaScript",
+    link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+    color: "#F7DF1E",
+    category: "Frontend",
+  },
+  {
+    icon: SiTypescript,
+    name: "TypeScript",
+    link: "https://www.typescriptlang.org/",
+    color: "#3178C6",
+    category: "Frontend",
+  },
+  {
+    icon: FaReact,
+    name: "React.js",
+    link: "https://react.dev/",
+    color: "#61DAFB",
+    category: "Frontend",
+  },
+  {
+    icon: SiNextdotjs,
+    name: "Next.js",
+    link: "https://nextjs.org/",
+    color: "#000000",
+    category: "Frontend",
+  },
+  {
+    icon: SiTailwindcss,
+    name: "TailwindCSS",
+    link: "https://tailwindcss.com/",
+    color: "#06B6D4",
+    category: "Frontend",
+  },
+  {
+    icon: SiRedux,
+    name: "Redux",
+    link: "https://redux.js.org/",
+    color: "#764ABC",
+    category: "Frontend",
+  },
+  {
+    icon: SiAstro,
+    name: "Astro",
+    link: "https://astro.build/",
+    color: "#FF5D01",
+    category: "Frontend",
+  },
 
   // Backend
-  { icon: FaNodeJs, name: "Node.js", link: "https://nodejs.org/", color: "#339933", category: "Backend" },
-  { icon: SiExpress, name: "Express.js", link: "https://expressjs.com/", color: "#000000", category: "Backend" },
+  {
+    icon: FaNodeJs,
+    name: "Node.js",
+    link: "https://nodejs.org/",
+    color: "#339933",
+    category: "Backend",
+  },
+  {
+    icon: SiExpress,
+    name: "Express.js",
+    link: "https://expressjs.com/",
+    color: "#000000",
+    category: "Backend",
+  },
 
   // Database & ORM
-  { icon: SiMongodb, name: "MongoDB", link: "https://www.mongodb.com/", color: "#47A248", category: "Database" },
-  { icon: SiPostgresql, name: "PostgreSQL", link: "https://www.postgresql.org/", color: "#336791", category: "Database" },
-  { icon: SiMysql, name: "MySQL", link: "https://www.mysql.com/", color: "#4479A1", category: "Database" },
-  { icon: SiPrisma, name: "Prisma", link: "https://www.prisma.io/", color: "#2D3748", category: "Database" },
+  {
+    icon: SiMongodb,
+    name: "MongoDB",
+    link: "https://www.mongodb.com/",
+    color: "#47A248",
+    category: "Database",
+  },
+  {
+    icon: SiPostgresql,
+    name: "PostgreSQL",
+    link: "https://www.postgresql.org/",
+    color: "#336791",
+    category: "Database",
+  },
+  {
+    icon: SiMysql,
+    name: "MySQL",
+    link: "https://www.mysql.com/",
+    color: "#4479A1",
+    category: "Database",
+  },
+  {
+    icon: SiPrisma,
+    name: "Prisma",
+    link: "https://www.prisma.io/",
+    color: "#2D3748",
+    category: "Database",
+  },
 
   // Testing
-  { icon: SiJest, name: "Jest", link: "https://jestjs.io/", color: "#C21325", category: "Testing" },
+  {
+    icon: SiJest,
+    name: "Jest",
+    link: "https://jestjs.io/",
+    color: "#C21325",
+    category: "Testing",
+  },
 
   // Tools & Others
-  { icon: SiPostman, name: "Postman", link: "https://www.postman.com/", color: "#FF6C37", category: "Tools" },
-  { icon: FaGitAlt, name: "Git", link: "https://git-scm.com/", color: "#F05032", category: "Tools" },
-  { icon: FaDocker, name: "Docker", link: "https://www.docker.com/", color: "#2496ED", category: "Tools" },
-  { icon: FaFigma, name: "Figma", link: "https://www.figma.com/", color: "#F24E1E", category: "Tools" },
-  
+  {
+    icon: SiPostman,
+    name: "Postman",
+    link: "https://www.postman.com/",
+    color: "#FF6C37",
+    category: "Tools",
+  },
+  {
+    icon: FaGitAlt,
+    name: "Git",
+    link: "https://git-scm.com/",
+    color: "#F05032",
+    category: "Tools",
+  },
+  {
+    icon: FaDocker,
+    name: "Docker",
+    link: "https://www.docker.com/",
+    color: "#2496ED",
+    category: "Tools",
+  },
+  {
+    icon: FaFigma,
+    name: "Figma",
+    link: "https://www.figma.com/",
+    color: "#F24E1E",
+    category: "Tools",
+  },
+
   // Added Skills (based on your GitHub)
-  { icon: SiVite, name: "Vite", link: "https://vitejs.dev/", color: "#646CFF", category: "Frontend" },
-  { icon: SiZod, name: "Zod", link: "https://zod.dev/", color: "#3C82F6", category: "Tools" },
-  { icon: SiReactquery, name: "TanStack Query", link: "https://tanstack.com/query/latest", color: "#FF4154", category: "Frontend" },
-  { icon: SiSocketdotio, name: "Socket.io", link: "https://socket.io/", color: "#010101", category: "Backend" },
-  { icon: SiNginx, name: "Nginx", link: "https://nginx.org/", color: "#009639", category: "Tools" },
-  { icon: SiLinux, name: "Linux", link: "https://www.linux.org/", color: "#FCC624", category: "Tools" },
+  {
+    icon: SiVite,
+    name: "Vite",
+    link: "https://vitejs.dev/",
+    color: "#646CFF",
+    category: "Frontend",
+  },
+  {
+    icon: SiZod,
+    name: "Zod",
+    link: "https://zod.dev/",
+    color: "#3C82F6",
+    category: "Tools",
+  },
+  {
+    icon: SiReactquery,
+    name: "TanStack Query",
+    link: "https://tanstack.com/query/latest",
+    color: "#FF4154",
+    category: "Frontend",
+  },
+  {
+    icon: SiSocketdotio,
+    name: "Socket.io",
+    link: "https://socket.io/",
+    color: "#010101",
+    category: "Backend",
+  },
+  {
+    icon: SiNginx,
+    name: "Nginx",
+    link: "https://nginx.org/",
+    color: "#009639",
+    category: "Tools",
+  },
+  {
+    icon: SiLinux,
+    name: "Linux",
+    link: "https://www.linux.org/",
+    color: "#FCC624",
+    category: "Tools",
+  },
 ];
 
 export const projects = [
@@ -198,7 +352,7 @@ performance.
     date: "January 2026",
     link: "https://yourblog.com/mouse-follower-guide",
     github: "https://github.com/yourusername/mouse-follower-demo",
-    author: "Meheraj Hosen",
+    author: "Mehraj Hosen",
     readTime: "6 min read",
   },
 
@@ -267,7 +421,7 @@ Proper JWT handling is critical for application security.
     date: "October 2025",
     link: "https://yourblog.com/jwt-handbook",
     github: "https://github.com/yourusername/jwt-auth-guide",
-    author: "Meheraj Hosen",
+    author: "Mehraj Hosen",
     readTime: "9 min read",
   },
 
@@ -310,7 +464,7 @@ React Compiler automatically memoizes components, removing the need for manual
     date: "December 2025",
     link: "https://yourblog.com/frontend-trends-2026",
     github: null,
-    author: "Meheraj Hosen",
+    author: "Mehraj Hosen",
     readTime: "7 min read",
   },
 
@@ -353,7 +507,7 @@ Use Kafka or RabbitMQ for asynchronous processing.
     date: "November 2025",
     link: "https://yourblog.com/system-design-intro",
     github: "https://github.com/yourusername/system-design-examples",
-    author: "Meheraj Hosen",
+    author: "Mehraj Hosen",
     readTime: "10 min read",
   },
 
@@ -392,7 +546,7 @@ PWAs significantly improve user experience on slow networks.
     date: "September 2025",
     link: "https://yourblog.com/pwa-complete-guide",
     github: "https://github.com/yourusername/pwa-starter",
-    author: "Meheraj Hosen",
+    author: "Mehraj Hosen",
     readTime: "12 min read",
   },
 ];
@@ -401,7 +555,8 @@ export const caseStudies = [
   {
     slug: "scalable-ride-sharing-platform-pathao-uber",
     title: "Scalable Ride-Sharing Platform (like Pathao/Uber)",
-    description: "Designed and implemented a high-level architecture for a ride-sharing service handling 1M+ daily rides with low latency. Covered microservices, real-time matching, payment integration, fault tolerance, and scaling strategies.",
+    description:
+      "Designed and implemented a high-level architecture for a ride-sharing service handling 1M+ daily rides with low latency. Covered microservices, real-time matching, payment integration, fault tolerance, and scaling strategies.",
     keyFeatures: [
       "Microservices (User, Ride, Driver, Payment)",
       "Kafka for event-driven communication",
@@ -409,14 +564,16 @@ export const caseStudies = [
       "Load balancing, Circuit breakers, Rate limiting",
       "Real-time updates via WebSockets",
     ],
-    diagramUrl: "/images/system-design/ride-sharing-diagram.png", 
-    github: "https://github.com/meheraj786/ride-sharing-system-design", 
-    learnings: "Learned trade-offs between monolith vs microservices, eventual consistency in distributed systems.",
+    diagramUrl: "/images/system-design/ride-sharing-diagram.png",
+    github: "https://github.com/meheraj786/ride-sharing-system-design",
+    learnings:
+      "Learned trade-offs between monolith vs microservices, eventual consistency in distributed systems.",
   },
   {
-slug: "ai-powered-recommendation-system",
+    slug: "ai-powered-recommendation-system",
     title: "AI-Powered Recommendation System",
-    description: "Built a scalable recommendation engine similar to Netflix/YouTube suggestions. Focused on collaborative filtering, content-based filtering, hybrid approach, and handling cold-start problems.",
+    description:
+      "Built a scalable recommendation engine similar to Netflix/YouTube suggestions. Focused on collaborative filtering, content-based filtering, hybrid approach, and handling cold-start problems.",
     keyFeatures: [
       "User-Item matrix with collaborative filtering",
       "TensorFlow/PyTorch for ML models",
@@ -426,12 +583,14 @@ slug: "ai-powered-recommendation-system",
     ],
     diagramUrl: "/images/system-design/recommendation-system-diagram.png",
     github: "https://github.com/meheraj786/ai-recommendation-system",
-    learnings: "Understood data pipelines, model serving, personalization at scale.",
+    learnings:
+      "Understood data pipelines, model serving, personalization at scale.",
   },
   {
-slug: "youtube-like-video-streaming-platform",
+    slug: "youtube-like-video-streaming-platform",
     title: "YouTube-like Video Streaming Platform",
-    description: "High-level design for a video upload, processing, storage, and streaming service. Handled transcoding, CDN distribution, adaptive bitrate, search, and recommendations.",
+    description:
+      "High-level design for a video upload, processing, storage, and streaming service. Handled transcoding, CDN distribution, adaptive bitrate, search, and recommendations.",
     keyFeatures: [
       "Video upload + transcoding pipeline (FFmpeg/Lambda)",
       "S3 + CloudFront CDN",
@@ -441,10 +600,10 @@ slug: "youtube-like-video-streaming-platform",
     ],
     diagramUrl: "/images/system-design/youtube-clone-diagram.png",
     github: null,
-    learnings: "Mastered content delivery networks, eventual consistency, and high-throughput systems.",
+    learnings:
+      "Mastered content delivery networks, eventual consistency, and high-throughput systems.",
   },
 ];
-
 
 // npmPackagesData.ts
 export const npmPackages = [

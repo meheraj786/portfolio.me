@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
       <head>
-        <title>Meheraj Hosen</title>
+        <title>Mehraj Hosen</title>
         <link rel="icon" href="../public/banner.jpg" />
         <meta
           name="description"

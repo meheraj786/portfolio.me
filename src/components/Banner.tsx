@@ -16,14 +16,15 @@ const Banner = () => {
     <Flex className="w-full overflow-hidden gap-y-5 md:gap-y-0">
       <div className="md:w-1/2">
         <h1 className="text-black font-medium  md:text-4xl text-3xl font-primary">
-          &lt;Meheraj Hosen/&gt;
+          &lt;Mehraj Hosen/&gt;
         </h1>
         <p className="text-background/90 text-sm my-5 font-body">
-          Passionate <b>Software Engineer</b> with expertise in <b>MERN</b> and <b>MERN</b> stack. I
-          enjoy System Design, <b>High-Level Design (HLD)</b>, and building scalable,
-          distributed systems — turning complex problems into clean,
-          maintainable, and production-ready solutions using the modern
-          JavaScript ecosystem and strong architectural practices.
+          Passionate <b>Software Engineer</b> with expertise in <b>MERN</b> and{" "}
+          <b>MERN</b> stack. I enjoy System Design,{" "}
+          <b>High-Level Design (HLD)</b>, and building scalable, distributed
+          systems — turning complex problems into clean, maintainable, and
+          production-ready solutions using the modern JavaScript ecosystem and
+          strong architectural practices.
         </p>
         <p className="mb-8 text-background/90 text-sm font-body">
           Dhaka, Bangladesh

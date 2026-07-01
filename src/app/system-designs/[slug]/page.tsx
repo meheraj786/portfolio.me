@@ -73,13 +73,14 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://meherajdev.vercel.app";
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BASE_URL || "http://meherajdev.vercel.app";
   const { systemDesign } = await getSystemDesignBySlug(params.slug);
 
   if (!systemDesign) return { title: "Case Study Not Found" };
 
   return {
-    title: `${systemDesign.title} | Meheraj Hosen`,
+    title: `${systemDesign.title} | Mehraj Hosen`,
     description: systemDesign.description.replace(/<[^>]*>?/gm, ""),
     openGraph: {
       title: systemDesign.title,

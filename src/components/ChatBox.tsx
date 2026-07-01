@@ -1,26 +1,26 @@
-'use client';
+"use client";
 
-import { useState, useRef, useEffect } from 'react';
-import { Send, X, MessageCircle, Bot, Sparkles } from 'lucide-react';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+import { useState, useRef, useEffect } from "react";
+import { Send, X, MessageCircle, Bot, Sparkles } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 type Message = {
   id: string;
-  role: 'user' | 'assistant';
+  role: "user" | "assistant";
   content: string;
 };
 
 export default function ChatBox() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   useEffect(() => {
@@ -33,45 +33,53 @@ export default function ChatBox() {
 
     const userMessage: Message = {
       id: Date.now().toString(),
-      role: 'user',
+      role: "user",
       content: input.trim(),
     };
 
-    setMessages(prev => [...prev, userMessage]);
-    setInput('');
+    setMessages((prev) => [...prev, userMessage]);
+    setInput("");
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: [...messages, userMessage] }),
       });
 
-      if (!response.ok) throw new Error('Failed');
+      if (!response.ok) throw new Error("Failed");
 
       const reader = response.body?.getReader();
       const decoder = new TextDecoder();
-      let assistantMessage = '';
+      let assistantMessage = "";
       const assistantId = (Date.now() + 1).toString();
 
-      setMessages(prev => [...prev, { id: assistantId, role: 'assistant', content: '' }]);
+      setMessages((prev) => [
+        ...prev,
+        { id: assistantId, role: "assistant", content: "" },
+      ]);
 
       while (true) {
         const { done, value } = await reader!.read();
         if (done) break;
         assistantMessage += decoder.decode(value, { stream: true });
-        setMessages(prev =>
-          prev.map(m => m.id === assistantId ? { ...m, content: assistantMessage } : m)
+        setMessages((prev) =>
+          prev.map((m) =>
+            m.id === assistantId ? { ...m, content: assistantMessage } : m,
+          ),
         );
       }
     } catch (error) {
       console.error(error);
-      setMessages(prev => [...prev, {
-        id: (Date.now() + 1).toString(),
-        role: 'assistant',
-        content: 'Something went wrong. Please try again.',
-      }]);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: (Date.now() + 1).toString(),
+          role: "assistant",
+          content: "Something went wrong. Please try again.",
+        },
+      ]);
     } finally {
       setIsLoading(false);
     }
@@ -449,18 +457,28 @@ export default function ChatBox() {
       `}</style>
 
       <div className="chatbox-root">
-        <button className="chatbox-trigger" onClick={() => setIsOpen(o => !o)} aria-label="Open chat">
+        <button
+          className="chatbox-trigger"
+          onClick={() => setIsOpen((o) => !o)}
+          aria-label="Open chat"
+        >
           {isOpen ? (
             <>
-              <div className="chatbox-trigger-icon"><X size={13} /></div>
-              <span style={{ fontSize: 13, color: '#f0f0f0', fontWeight: 500 }}>Close</span>
+              <div className="chatbox-trigger-icon">
+                <X size={13} />
+              </div>
+              <span style={{ fontSize: 13, color: "#f0f0f0", fontWeight: 500 }}>
+                Close
+              </span>
             </>
           ) : (
             <>
-              <div className="chatbox-trigger-icon"><Bot size={13} /></div>
+              <div className="chatbox-trigger-icon">
+                <Bot size={13} />
+              </div>
               <div className="chatbox-trigger-label">
                 <span>Ask me anything</span>
-                <span>Meheraj AI</span>
+                <span>Mehraj AI</span>
               </div>
             </>
           )}
@@ -474,14 +492,18 @@ export default function ChatBox() {
                   <Bot size={18} />
                 </div>
                 <div>
-                  <div className="chatbox-header-title">Ask Meheraj</div>
+                  <div className="chatbox-header-title">Ask Mehraj</div>
                   <div className="chatbox-header-sub">
                     <span className="chatbox-status-dot" />
                     AI · Always online
                   </div>
                 </div>
               </div>
-              <button className="chatbox-close" onClick={() => setIsOpen(false)} aria-label="Close chat">
+              <button
+                className="chatbox-close"
+                onClick={() => setIsOpen(false)}
+                aria-label="Close chat"
+              >
                 <X size={18} />
               </button>
             </div>
@@ -492,26 +514,31 @@ export default function ChatBox() {
                   <div className="chatbox-empty-icon">
                     <Sparkles size={22} />
                   </div>
-                  <div className="chatbox-empty-title">What do you want to know?</div>
+                  <div className="chatbox-empty-title">
+                    What do you want to know?
+                  </div>
                   <div className="chatbox-empty-sub">
-                    Ask about Meheraj's projects, stack, experience, or anything else.
+                    Ask about Mehraj's projects, stack, experience, or anything
+                    else.
                   </div>
                   <div className="chatbox-pills">
-                    {['Projects', 'Tech stack', 'Experience', 'Contact'].map(q => (
-                      <button
-                        key={q}
-                        className="chatbox-pill"
-                        onClick={() => setInput(q)}
-                      >
-                        {q}
-                      </button>
-                    ))}
+                    {["Projects", "Tech stack", "Experience", "Contact"].map(
+                      (q) => (
+                        <button
+                          key={q}
+                          className="chatbox-pill"
+                          onClick={() => setInput(q)}
+                        >
+                          {q}
+                        </button>
+                      ),
+                    )}
                   </div>
                 </div>
               ) : (
-                messages.map(m => (
+                messages.map((m) => (
                   <div key={m.id} className={`chatbox-row ${m.role}`}>
-                    {m.role === 'assistant' && (
+                    {m.role === "assistant" && (
                       <div className="chatbox-bot-icon">
                         <Bot size={14} />
                       </div>
@@ -534,7 +561,9 @@ export default function ChatBox() {
                   </div>
                   <div className="chatbox-bubble assistant">
                     <div className="chatbox-typing">
-                      <span /><span /><span />
+                      <span />
+                      <span />
+                      <span />
                     </div>
                   </div>
                 </div>
@@ -551,7 +580,7 @@ export default function ChatBox() {
                     className="chatbox-input"
                     type="text"
                     value={input}
-                    onChange={e => setInput(e.target.value)}
+                    onChange={(e) => setInput(e.target.value)}
                     placeholder="Ask me anything..."
                     disabled={isLoading}
                     autoComplete="off"
@@ -566,7 +595,9 @@ export default function ChatBox() {
                   </button>
                 </div>
               </form>
-              <div className="chatbox-footer-note">Powered by AI · Meheraj's Portfolio</div>
+              <div className="chatbox-footer-note">
+                Powered by AI · Mehraj's Portfolio
+              </div>
             </div>
           </div>
         )}

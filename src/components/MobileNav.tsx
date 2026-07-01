@@ -52,7 +52,7 @@ const MobileNav = () => {
             href="/"
             className="text-black text-xl font-primary font-medium"
           >
-            &lt;Meheraj/&gt;
+            &lt;Mehraj/&gt;
           </Link>
 
           {isOpen && (

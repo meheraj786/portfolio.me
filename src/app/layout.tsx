@@ -21,14 +21,15 @@ const spaceMono = Space_Mono({
   subsets: ["latin"],
 });
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://meherajdev.vercel.app";
+const baseUrl =
+  process.env.NEXT_PUBLIC_BASE_URL || "http://meherajdev.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
 
   title: {
-    default: "Meheraj Hosen | MERN Stack Developer & System Design Enthusiast",
-    template: "%s | Meheraj Hosen",
+    default: "Mehraj Hosen | MERN Stack Developer & System Design Enthusiast",
+    template: "%s | Mehraj Hosen",
   },
   description:
     "Passionate MERN stack developer from Dhaka, Bangladesh. Building scalable web apps, exploring system design, and sharing knowledge through blogs and open-source.",
@@ -36,17 +37,17 @@ export const metadata: Metadata = {
     google: "pdYx49GsWSFyOUpO0Rbwu-PV59o545NSyO_9hpdgiQI",
   },
   openGraph: {
-    title: "Meheraj Hosen - MERN & System Design Portfolio",
+    title: "Mehraj Hosen - MERN & System Design Portfolio",
     description:
       "Explore projects, system design case studies, NPM packages, articles, and more.",
     url: baseUrl,
-    siteName: "Meheraj Portfolio",
+    siteName: "Mehraj Portfolio",
     images: [
       {
         url: `${baseUrl}/images/og-image.jpg`,
         width: 1200,
         height: 630,
-        alt: "Meheraj Hosen Portfolio",
+        alt: "Mehraj Hosen Portfolio",
       },
     ],
     locale: "en_US",
@@ -55,7 +56,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Meheraj Hosen | MERN Stack & System Design",
+    title: "Mehraj Hosen | MERN Stack & System Design",
     description: "Dhaka-based developer passionate about scalable web apps.",
     images: [`${baseUrl}/images/twitter-card.jpg`],
     creator: "@meheraj786",

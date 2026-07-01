@@ -53,14 +53,14 @@ export default async function ArticleDetailPage({
             <div className="w-5 h-5 rounded-full ">
               <Image
                 src="/meherajImg.png"
-                alt="Meheraj Hosen"
+                alt="Mehraj Hosen"
                 width={24}
                 height={24}
                 className="rounded-full"
               />
             </div>
             <Link href="/about" className="font-body cursor-pointer text-sm">
-              Meheraj H.
+              Mehraj H.
             </Link>
           </div>
           <div className="flex items-center gap-2">
@@ -112,7 +112,8 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }) {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://meherajdev.vercel.app";
+  const baseUrl =
+    process.env.NEXT_PUBLIC_BASE_URL || "http://meherajdev.vercel.app";
   const { article } = await getArticleBySlug(params.slug);
 
   if (!article) return { title: "Not Found" };
@@ -123,7 +124,7 @@ export async function generateMetadata({
       : `${baseUrl}${article.image}`;
 
   return {
-    title: `${article.title} | Meheraj Hosen`,
+    title: `${article.title} | Mehraj Hosen`,
     description: article.description,
     openGraph: {
       title: article.title,

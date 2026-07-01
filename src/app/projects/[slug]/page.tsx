@@ -120,7 +120,7 @@ export async function generateMetadata({
   if (!project) return { title: "Project Not Found" };
 
   return {
-    title: `${project.title} | Meheraj Hosen`,
+    title: `${project.title} | Mehraj Hosen`,
     description: project.description
       .replace(/<[^>]*>?/gm, "")
       .substring(0, 160),

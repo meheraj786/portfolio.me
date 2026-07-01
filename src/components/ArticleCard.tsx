@@ -23,61 +23,59 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   tags = [],
   date,
   slug,
-  author = "By Meheraj H.",
+  author = "By Mehraj H.",
 }) => {
   return (
-    <Link href={"/articles/" + slug} >
-    <div className="flex group flex-col md:flex-row cursor-pointer items-start gap-4 bg-white rounded-2xl p-4 hover:shadow-xl transition-all duration-300">
-      {/* Left: Thumbnail / Cover Image */}
-      <div className="w-full md:w-48 h-32 relative shrink-0 rounded-xl overflow-hidden">
-        <Image
-          src={image}
-          alt={title}
-          fill
-          className="object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
-        />
-      </div>
-
-      {/* Right: Content */}
-      <div className="flex-1">
-        {/* Title & Date + Author */}
-        <div className="flex justify-between items-start">
-          <div>
-            <h3 className="text-lg font-semibold font-primary line-clamp-1 pr-2 text-black">
-              {title}
-            </h3>
-            {author && (
-              <p className="text-sm text-gray-600 mt-0.5 font-body">
-                {author}
-              </p>
-            )}
-          </div>
-          <span className="text-xs  text-background">{date}</span>
+    <Link href={"/articles/" + slug}>
+      <div className="flex group flex-col md:flex-row cursor-pointer items-start gap-4 bg-white rounded-2xl p-4 hover:shadow-xl transition-all duration-300">
+        {/* Left: Thumbnail / Cover Image */}
+        <div className="w-full md:w-48 h-32 relative shrink-0 rounded-xl overflow-hidden">
+          <Image
+            src={image}
+            alt={title}
+            fill
+            className="object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
+          />
         </div>
 
-        {/* Description */}
-        <p className="text-sm text-background mt-2 font-body line-clamp-3">
-          <div dangerouslySetInnerHTML={{ __html: description }} />
-        </p>
-
-        {/* Tags + Links */}
-        <Flex className="mt-3 justify-between items-end">
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2">
-            {tags.map((tag, index) => (
-              <span
-                key={index}
-                className="text-xs font-body bg-background text-gray-300 px-2 py-1 rounded-md border border-neutral-700"
-              >
-                {tag}
-              </span>
-            ))}
+        {/* Right: Content */}
+        <div className="flex-1">
+          {/* Title & Date + Author */}
+          <div className="flex justify-between items-start">
+            <div>
+              <h3 className="text-lg font-semibold font-primary line-clamp-1 pr-2 text-black">
+                {title}
+              </h3>
+              {author && (
+                <p className="text-sm text-gray-600 mt-0.5 font-body">
+                  {author}
+                </p>
+              )}
+            </div>
+            <span className="text-xs  text-background">{date}</span>
           </div>
 
+          {/* Description */}
+          <p className="text-sm text-background mt-2 font-body line-clamp-3">
+            <div dangerouslySetInnerHTML={{ __html: description }} />
+          </p>
 
-        </Flex>
+          {/* Tags + Links */}
+          <Flex className="mt-3 justify-between items-end">
+            {/* Tags */}
+            <div className="flex flex-wrap gap-2">
+              {tags.map((tag, index) => (
+                <span
+                  key={index}
+                  className="text-xs font-body bg-background text-gray-300 px-2 py-1 rounded-md border border-neutral-700"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </Flex>
+        </div>
       </div>
-    </div>
     </Link>
   );
 };

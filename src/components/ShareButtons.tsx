@@ -2,7 +2,14 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Twitter, Linkedin, Facebook, MessageCircle, Link as LinkIcon, Share2 } from "lucide-react";
+import {
+  Twitter,
+  Linkedin,
+  Facebook,
+  MessageCircle,
+  Link as LinkIcon,
+  Share2,
+} from "lucide-react";
 
 interface ShareButtonsProps {
   articleUrl: string;
@@ -10,10 +17,16 @@ interface ShareButtonsProps {
   description: string;
 }
 
-export default function ShareButtons({ articleUrl, title, description }: ShareButtonsProps) {
+export default function ShareButtons({
+  articleUrl,
+  title,
+  description,
+}: ShareButtonsProps) {
   const [copied, setCopied] = useState(false);
 
-  const shareText = encodeURIComponent(`${title} by Meheraj Hosen\n${description}\nRead more:`);
+  const shareText = encodeURIComponent(
+    `${title} by Mehraj Hosen\n${description}\nRead more:`,
+  );
 
   const shareLinks = {
     twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(articleUrl)}&text=${shareText}&via=meheraj786`,
@@ -26,7 +39,7 @@ export default function ShareButtons({ articleUrl, title, description }: ShareBu
     try {
       await navigator.clipboard.writeText(articleUrl);
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000); 
+      setTimeout(() => setCopied(false), 2000);
     } catch (err) {
       console.error("Copy failed", err);
     }

@@ -25,29 +25,35 @@ export async function POST(req: NextRequest) {
       .map((s) => `${s.name} (${s.category})`)
       .join(", ");
 
-const contextData = `
+    const contextData = `
 **About Me:**
-I am Meheraj, a Full Stack Developer from Bangladesh specializing in Next.js, TypeScript, Tailwind CSS, and MongoDB.
+I am Mehraj, a Full Stack Developer from Bangladesh specializing in Next.js, TypeScript, Tailwind CSS, and MongoDB.
 
 **Skills:**
 ${skillsText}
 
 **Projects:**
-${projects.map((p: IProject, i: number) =>
-  `${i + 1}. **${p.title}** — ${p.description?.slice(0, 120) || 'N/A'} | Tags: ${p.tags?.slice(0, 5).join(', ') || 'N/A'}`
-).join('\n')}
+${projects
+  .map(
+    (p: IProject, i: number) =>
+      `${i + 1}. **${p.title}** — ${p.description?.slice(0, 120) || "N/A"} | Tags: ${p.tags?.slice(0, 5).join(", ") || "N/A"}`,
+  )
+  .join("\n")}
 
 **System Designs:**
-${systemDesigns.map((s: ISystemDesign, i: number) =>
-  `${i + 1}. **${s.title}** — ${s.description?.slice(0, 120) || 'N/A'}`
-).join('\n')}
+${systemDesigns
+  .map(
+    (s: ISystemDesign, i: number) =>
+      `${i + 1}. **${s.title}** — ${s.description?.slice(0, 120) || "N/A"}`,
+  )
+  .join("\n")}
 `;
 
     // 5. Build System Prompt
-    const systemPrompt = `You are "Ask Meheraj" — Meheraj's personal AI assistant.
+    const systemPrompt = `You are "Ask Mehraj" — Mehraj's personal AI assistant.
 You are friendly, professional, concise, and helpful.
 
-Here is accurate and up-to-date information about Meheraj:
+Here is accurate and up-to-date information about Mehraj:
 
 Passionate Software Engineer with expertise in MERN and MERN stack. I enjoy System Design, High-Level Design (HLD), and building scalable, distributed systems — turning complex problems into clean, maintainable, and production-ready solutions using the modern JavaScript ecosystem and strong architectural practices.
 
@@ -72,26 +78,24 @@ facebook https://www.facebook.com/mehrajh786minor
 **Context:**
 
 ${contextData}
-you can see more information about Meheraj from his portfolio website at https://meherajdev.vercel.app/ and github at https://github.com/meheraj786
+you can see more information about Mehraj from his portfolio website at https://meherajdev.vercel.app/ and github at https://github.com/meheraj786
 
 **Rules:**
 - Always answer using the information provided above.
 - If the user asks about something not mentioned, politely say you don't have that information yet.
-- Speak in first person as if you are representing Meheraj.
+- Speak in first person as if you are representing Mehraj.
 - Use Markdown for better readability.
 - Keep answers clear and to the point.`;
 
+    const trimmedMessages = messages.slice(-6);
 
-
-const trimmedMessages = messages.slice(-6);
-
-const result = await streamText({
-  model: groq('llama-3.3-70b-versatile'),
-  system: systemPrompt,
-  messages: trimmedMessages,  
-  temperature: 0.7,
-  maxOutputTokens: 2000,
-});
+    const result = await streamText({
+      model: groq("llama-3.3-70b-versatile"),
+      system: systemPrompt,
+      messages: trimmedMessages,
+      temperature: 0.7,
+      maxOutputTokens: 2000,
+    });
 
     return result.toTextStreamResponse();
   } catch (error) {

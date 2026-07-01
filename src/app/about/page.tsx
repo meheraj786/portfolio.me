@@ -33,7 +33,7 @@ const About = () => {
         </div>
         <div className="md:flex-1 mt-10 md:mt-0">
           <p className="text-background/90 text-sm my-5 md:text-right text-left font-body">
-            I'm Meheraj — a Full Stack Developer based in Dhaka, Bangladesh. I
+            I'm Mehraj — a Full Stack Developer based in Dhaka, Bangladesh. I
             specialize in building modern web applications using the MERN and
             PERN stack. From designing beautiful interfaces with React and
             Tailwind to creating robust backends with Node.js, Express, and

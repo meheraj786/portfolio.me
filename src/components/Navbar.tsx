@@ -52,7 +52,7 @@ const Navbar = () => {
               href="/"
               className="text-black text-xl font-primary font-medium"
             >
-              &lt;Meheraj/&gt;
+              &lt;Mehraj/&gt;
             </Link>
             <ul className="flex justify-end gap-x-3 text-sm items-center flex-1">
               {menuItems.map((item, idx) => (

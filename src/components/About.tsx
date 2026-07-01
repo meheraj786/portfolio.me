@@ -31,11 +31,10 @@ const About = () => {
       </div>
       <div className="md:flex-1">
         <p className="text-background/90 text-sm my-5 md:text-right text-left font-body">
-          Hi, I&apos;m
-          Meheraj — a passionate full-stack developer specializing in MERN
-          (MongoDB, Express, React, Node.js) and PERN (PostgreSQL, Express,
-          React, Node.js) stacks. I build scalable, high-performance web
-          applications with clean code, responsive UIs, and robust backends.
+          Hi, I&apos;m Mehraj — a passionate full-stack developer specializing
+          in MERN (MongoDB, Express, React, Node.js) and PERN (PostgreSQL,
+          Express, React, Node.js) stacks. I build scalable, high-performance
+          web applications with clean code, responsive UIs, and robust backends.
           I&apos;ve successfully delivered multiple freelance projects — from
           startups to mid-sized businesses — including e-commerce platforms,
           SaaS dashboards, admin panels, and real-time features. I also enjoy

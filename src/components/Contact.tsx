@@ -1,6 +1,13 @@
 "use client";
 import React, { useState } from "react";
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaPhone,
+  FaMapMarkerAlt,
+  FaGithub,
+  FaLinkedin,
+  FaTwitter,
+} from "react-icons/fa";
 import Link from "next/link";
 import { createContactMessage } from "@/app/actions/contact";
 
@@ -10,9 +17,13 @@ const Contact = () => {
     email: "",
     message: "",
   });
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -50,7 +61,8 @@ const Contact = () => {
           {/* Left: Contact Info */}
           <div className="space-y-8">
             <p className="text-lg text-gray-700 font-body">
-              Have a project in mind? Want to collaborate? Or just say hi? Feel free to reach out — I reply within 24 hours!
+              Have a project in mind? Want to collaborate? Or just say hi? Feel
+              free to reach out — I reply within 24 hours!
             </p>
 
             <div className="space-y-6">
@@ -60,7 +72,10 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Email</p>
-                  <a href="mailto:meherajhosen786@gmail.com" className="text-black hover:text-blue-600 transition-colors">
+                  <a
+                    href="mailto:meherajhosen786@gmail.com"
+                    className="text-black hover:text-blue-600 transition-colors"
+                  >
                     meherajhosen786@gmail.com
                   </a>
                 </div>
@@ -72,7 +87,10 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Phone</p>
-                  <a href="tel:+8801989162543" className="text-black hover:text-blue-600 transition-colors">
+                  <a
+                    href="tel:+8801989162543"
+                    className="text-black hover:text-blue-600 transition-colors"
+                  >
                     +880 1989162543
                   </a>
                 </div>
@@ -91,22 +109,40 @@ const Contact = () => {
 
             {/* Social Links */}
             <div className="flex gap-6 mt-8">
-              <Link href="https://github.com/meheraj786" target="_blank" className="text-2xl text-black hover:text-gray-600 transition-colors">
+              <Link
+                href="https://github.com/meheraj786"
+                target="_blank"
+                className="text-2xl text-black hover:text-gray-600 transition-colors"
+              >
                 <FaGithub />
               </Link>
-              <Link href="https://linkedin.com/in/meheraj-hosen" target="_blank" className="text-2xl text-black hover:text-blue-600 transition-colors">
+              <Link
+                href="https://linkedin.com/in/meheraj-hosen"
+                target="_blank"
+                className="text-2xl text-black hover:text-blue-600 transition-colors"
+              >
                 <FaLinkedin />
               </Link>
-              <Link href="https://twitter.com/meheraj786" target="_blank" className="text-2xl text-black hover:text-sky-500 transition-colors">
+              <Link
+                href="https://twitter.com/meheraj786"
+                target="_blank"
+                className="text-2xl text-black hover:text-sky-500 transition-colors"
+              >
                 <FaTwitter />
               </Link>
             </div>
           </div>
 
           {/* Right: Contact Form */}
-          <form onSubmit={handleSubmit} className="space-y-6 bg-gray-50 p-8 rounded-2xl border border-gray-200 shadow-sm">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-6 bg-gray-50 p-8 rounded-2xl border border-gray-200 shadow-sm"
+          >
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
                 Your Name
               </label>
               <input
@@ -117,12 +153,15 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-black focus:outline-none focus:ring-2 focus:ring-black transition-all"
-                placeholder="Meheraj Hosen"
+                placeholder="Mehraj Hosen"
               />
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
                 Email Address
               </label>
               <input
@@ -138,7 +177,10 @@ const Contact = () => {
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
+              <label
+                htmlFor="message"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
                 Message
               </label>
               <textarea
@@ -149,7 +191,7 @@ const Contact = () => {
                 required
                 rows={5}
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-black focus:outline-none focus:ring-2 focus:ring-black transition-all resize-none"
-                placeholder="Hi Meheraj, I have an interesting project..."
+                placeholder="Hi Mehraj, I have an interesting project..."
               />
             </div>
 
@@ -158,14 +200,24 @@ const Contact = () => {
               disabled={status === "loading"}
               className="w-full bg-black text-white font-body py-3 px-6 rounded-lg hover:bg-gray-800 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {status === "loading" ? "Sending..." : status === "success" ? "Sent Successfully!" : status === "error" ? "Try Again" : "Send Message"}
+              {status === "loading"
+                ? "Sending..."
+                : status === "success"
+                  ? "Sent Successfully!"
+                  : status === "error"
+                    ? "Try Again"
+                    : "Send Message"}
             </button>
 
             {status === "success" && (
-              <p className="text-green-600 text-center mt-2">Thanks! I&apos;ll get back to you soon 🚀</p>
+              <p className="text-green-600 text-center mt-2">
+                Thanks! I&apos;ll get back to you soon 🚀
+              </p>
             )}
             {status === "error" && (
-              <p className="text-red-600 text-center mt-2">Something went wrong. Please try again.</p>
+              <p className="text-red-600 text-center mt-2">
+                Something went wrong. Please try again.
+              </p>
             )}
           </form>
         </div>
