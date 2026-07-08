@@ -20,7 +20,7 @@ const Banner = () => {
         </h1>
         <p className="text-background/90 text-sm my-5 font-body">
           Passionate <b>Software Engineer</b> with expertise in <b>MERN</b> and{" "}
-          <b>MERN</b> stack. I enjoy System Design,{" "}
+          <b>PERN</b> stack. I enjoy System Design,{" "}
           <b>High-Level Design (HLD)</b>, and building scalable, distributed
           systems — turning complex problems into clean, maintainable, and
           production-ready solutions using the modern JavaScript ecosystem and
