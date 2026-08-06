@@ -22,7 +22,7 @@ const spaceMono = Space_Mono({
 });
 
 const baseUrl =
-  process.env.NEXT_PUBLIC_BASE_URL || "http://meherajdev.vercel.app";
+  process.env.NEXT_PUBLIC_BASE_URL || "https://meherajmedev.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     description:
       "Explore projects, system design case studies, NPM packages, articles, and more.",
     url: baseUrl,
-    siteName: "Mehraj Portfolio",
+    siteName: "Mehraj Hosen", 
     images: [
       {
         url: `${baseUrl}/images/og-image.jpg`,
@@ -77,7 +77,6 @@ export const metadata: Metadata = {
   },
   manifest: "/site.webmanifest",
 
-  // Robots & Crawling
   robots: {
     index: true,
     follow: true,
@@ -89,11 +88,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-
-  // Verification (Google Search Console, Bing, etc.)
-  // verification: {
-  //   google: "your-google-verification-code",
-  // },
 };
 
 export default function RootLayout({
@@ -101,17 +95,22 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Mehraj Hosen",
+    url: baseUrl,
+  };
+
   return (
     <html lang="en">
-      <head>
-        <meta
-          name="google-site-verification"
-          content="pdYx49GsWSFyOUpO0Rbwu-PV59o545NSyO_9hpdgiQI"
-        />
-      </head>
       <body
         className={`${spaceMono.variable} ${jetBrainMono.variable} antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <ChatBox />
         <TanstackProvider>
           <Navbar />
