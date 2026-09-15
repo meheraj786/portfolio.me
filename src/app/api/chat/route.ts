@@ -90,11 +90,14 @@ you can see more information about Mehraj from his portfolio website at https://
     const trimmedMessages = messages.slice(-6);
 
     const result = await streamText({
-      model: groq("llama-3.3-70b-versatile"),
+      model: groq("openai/gpt-oss-120b"),
       system: systemPrompt,
       messages: trimmedMessages,
       temperature: 0.7,
       maxOutputTokens: 2000,
+      onError: ({ error }) => {
+        console.error("🔴 Streaming Error:", error);
+      },
     });
 
     return result.toTextStreamResponse();
