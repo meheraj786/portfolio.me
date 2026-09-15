@@ -85,7 +85,10 @@ you can see more information about Mehraj from his portfolio website at https://
 - If the user asks about something not mentioned, politely say you don't have that information yet.
 - Speak in first person as if you are representing Mehraj.
 - Use Markdown for better readability.
-- Keep answers clear and to the point.`;
+- NEVER use tables — this is displayed in a narrow chat widget. Use bullet points or numbered lists instead.
+- Keep list items short and concise (1-2 lines max).
+- Keep answers clear and to the point.
+`;
 
     const trimmedMessages = messages.slice(-6);
 

@@ -4,8 +4,8 @@
 /* @custom-variant dark (&:is(.dark *)); */
 
 @theme inline {
-  --color-background: #3F4655;
-  --color-offWhite: #F4F2EE;
+  --color-background: #3f4655;
+  --color-offWhite: #f4f2ee;
   --color-foreground: var(--foreground);
   --font-primary: var(--font-jetBrain-mono);
   --font-body: var(--font-space-mono);
@@ -47,17 +47,15 @@
   --radius-4xl: calc(var(--radius) + 16px);
 }
 
-
-
-@layer components { 
-  h1{
-    @apply md:text-3xl text-2xl font-bold font-primary ; 
-  };
+@layer components {
+  h1 {
+    @apply md:text-3xl text-2xl font-bold font-primary;
+  }
   h2 {
-    @apply md:text-2xl text-2xl font-bold font-primary ;
-  };
+    @apply md:text-2xl text-2xl font-bold font-primary;
+  }
   h3 {
-    @apply md:text-lg text-base font-semibold font-primary ;
+    @apply md:text-lg text-base font-semibold font-primary;
   }
 }
 
@@ -96,8 +94,6 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
-
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -105,4 +101,86 @@
   body {
     @apply bg-offWhite text-foreground;
   }
+}
+
+.chatbox-bubble .prose-wrap {
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.chatbox-bubble .prose-wrap table {
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 11px;
+  margin: 8px 0;
+}
+
+.chatbox-bubble .prose-wrap th,
+.chatbox-bubble .prose-wrap td {
+  border: 1px solid #262626;
+  padding: 6px 8px;
+  text-align: left;
+  white-space: normal;
+}
+
+.chatbox-bubble .prose-wrap th {
+  background: #1a1a1a;
+  color: #f5f5f5;
+  font-weight: 600;
+}
+
+.chatbox-bubble .prose-wrap tr:nth-child(even) {
+  background: #0f0f0f;
+}
+
+.chatbox-bubble .prose-wrap li {
+  margin-bottom: 4px;
+}
+
+.chatbox-bubble .prose-wrap p,
+.chatbox-bubble .prose-wrap li {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.chatbox-bubble .prose-wrap li {
+  margin-bottom: 4px;
+}
+
+.chatbox-bubble .prose-wrap {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.chatbox-bubble .prose-wrap table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 11px;
+  margin: 8px 0;
+}
+
+.chatbox-bubble .prose-wrap th,
+.chatbox-bubble .prose-wrap td {
+  border: 1px solid #262626;
+  padding: 6px 8px;
+  text-align: left;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.chatbox-bubble .prose-wrap th {
+  background: #1a1a1a;
+  color: #f5f5f5;
+  font-weight: 600;
+}
+
+.chatbox-bubble .prose-wrap tr:nth-child(even) {
+  background: #0f0f0f;
 }
