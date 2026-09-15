@@ -28,6 +28,8 @@ import {
   SiSocketdotio,
   SiNginx,
   SiLinux,
+  SiNestjs,
+  SiGithubactions,
 } from "react-icons/si";
 import bug from "../../public/bug.png";
 import chat from "../../public/chat.png";
@@ -115,6 +117,14 @@ export const skills = [
     color: "#000000",
     category: "Backend",
   },
+  //nestjs
+  {
+    icon: SiNestjs,
+    name: "Nest.js",
+    link: "https://nestjs.com/",
+    color: "#E0234E",
+    category: "Backend",
+  },
 
   // Database & ORM
   {
@@ -186,6 +196,15 @@ export const skills = [
   },
 
   // Added Skills (based on your GitHub)
+  // ci/cd
+
+  {
+    icon: SiGithubactions,
+    name: "GitHub Actions",
+    link: "https://github.com/features/actions",
+    color: "#2088FF",
+    category: "Tools",
+  },
   {
     icon: SiVite,
     name: "Vite",
