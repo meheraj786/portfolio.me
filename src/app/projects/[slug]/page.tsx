@@ -8,91 +8,107 @@ import { getProjectBySlug, getProjects } from "@/app/actions/project";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { ArrowLeft } from "lucide-react";
 
-export default async function ProjectDetailPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const { project } = await getProjectBySlug(params.slug);
+type PageProps = {
+  params: Promise<{ slug: string }> | { slug: string };
+};
+
+export default async function ProjectDetailPage({ params }: PageProps) {
+  const resolvedParams = params ? await params : null;
+  const slug = resolvedParams?.slug;
+
+  if (!slug) {
+    notFound();
+  }
+
+  const { project } = await getProjectBySlug(slug);
 
   if (!project) {
     notFound();
   }
 
   return (
-    <main className="min-h-screen bg-white py-12 px-4 md:px-8">
-      {/* back to the projects page */}
-      <Link
-        href="/projects"
-        className="inline-flex items-center gap-2 text-gray-600 hover:text-black mb-8 transition-colors font-body"
-      >
-        <ArrowLeft className="w-5 h-5" />
-        Back to Projects
-      </Link>
+    <main className="min-h-screen bg-white py-12 px-4 md:px-8 w-full max-w-full overflow-x-hidden">
       <div className="max-w-4xl mx-auto">
-        {/* Project Header */}
+        <Link
+          href="/projects"
+          className="inline-flex items-center gap-2 text-gray-600 hover:text-black mb-8 transition-colors font-body"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          Back to Projects
+        </Link>
+
         <div className="mb-10">
-          <h1 className="text-4xl font-bold font-primary text-black mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold font-primary text-black mb-4">
             {project.title}
           </h1>
           <div className="flex flex-wrap gap-2 mb-6">
-            {project.tags.map((tag: string, idx: number) => (
+            {project.tags?.map((tag: string, idx: number) => (
               <Badge key={idx} variant="secondary">
                 {tag}
               </Badge>
             ))}
           </div>
-          <div className="flex gap-4">
-            <Link href={project.githubLink} target="_blank">
-              <Button
-                variant="outline"
-                className="flex items-center text-black! gap-2"
-              >
-                <FaGithub /> GitHub
-              </Button>
-            </Link>
-            <Link href={project.liveLink} target="_blank">
-              <Button className="flex items-center gap-2">
-                <FaLink /> Live Demo
-              </Button>
-            </Link>
+          <div className="flex flex-wrap gap-4">
+            {project.githubLink && (
+              <Link href={project.githubLink} target="_blank">
+                <Button
+                  variant="outline"
+                  className="flex items-center !text-black gap-2"
+                >
+                  <FaGithub /> GitHub
+                </Button>
+              </Link>
+            )}
+            {project.liveLink && (
+              <Link href={project.liveLink} target="_blank">
+                <Button className="flex items-center gap-2">
+                  <FaLink /> Live Demo
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
-        {/* Project Images */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
-          {project.images.map((image: string, idx: number) => (
-            <Dialog key={idx}>
-              <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
-                <DialogTrigger asChild>
-                  <Image
-                    src={image}
-                    alt={`${project.title} - ${idx + 1}`}
-                    fill
-                    className="object-cover cursor-pointer hover:scale-105 transition-transform duration-500"
-                  />
-                </DialogTrigger>
-              </div>
 
-              <DialogContent className="max-w-7xl w-[90vw] h-[80vh] p-0 bg-transparent border-none sm:rounded-none">
-                <div className="relative w-full h-full">
-                  <Image
-                    src={image}
-                    alt={`${project.title} - ${idx + 1}`}
-                    fill
-                    className="object-contain"
-                    sizes="(max-width: 1200px) 100vw, 1200px"
-                  />
+        {project.images?.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+            {project.images.map((image: string, idx: number) => (
+              <Dialog key={idx}>
+                <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
+                  <DialogTrigger asChild>
+                    <Image
+                      src={image}
+                      alt={`${project.title} - ${idx + 1}`}
+                      fill
+                      className="object-cover cursor-pointer hover:scale-105 transition-transform duration-500"
+                    />
+                  </DialogTrigger>
                 </div>
-              </DialogContent>
-            </Dialog>
-          ))}
-        </div>
-        <div className="prose prose-lg max-w-none font-body text-gray-800 mb-10">
+
+                <DialogContent className="max-w-7xl w-[90vw] h-[80vh] p-0 bg-transparent border-none sm:rounded-none">
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={image}
+                      alt={`${project.title} - ${idx + 1}`}
+                      fill
+                      className="object-contain"
+                      sizes="(max-width: 1200px) 100vw, 1200px"
+                    />
+                  </div>
+                </DialogContent>
+              </Dialog>
+            ))}
+          </div>
+        )}
+
+        <div
+          className="prose prose-lg max-w-none font-body text-gray-800 mb-10
+            [&_table]:block [&_table]:w-full [&_table]:overflow-x-auto [&_table]:whitespace-normal
+            [&_pre]:overflow-x-auto [&_code]:break-words"
+        >
           <h2 className="text-2xl font-bold mb-4">About this Project</h2>
           <div dangerouslySetInnerHTML={{ __html: project.description }} />
         </div>
 
-        {/* Back Button */}
         <div className="text-center">
           <Link href="/projects">
             <Button variant="ghost">← Back to Projects</Button>
@@ -110,19 +126,20 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const { project } = await getProjectBySlug(params.slug);
+export async function generateMetadata({ params }: PageProps) {
+  const resolvedParams = params ? await params : null;
+  const slug = resolvedParams?.slug;
+
+  if (!slug) return { title: "Project Not Found" };
+
+  const { project } = await getProjectBySlug(slug);
 
   if (!project) return { title: "Project Not Found" };
 
   return {
     title: `${project.title} | Mehraj Hosen`,
     description: project.description
-      .replace(/<[^>]*>?/gm, "")
+      ?.replace(/<[^>]*>?/gm, "")
       .substring(0, 160),
   };
 }
