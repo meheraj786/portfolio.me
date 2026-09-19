@@ -111,7 +111,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
         <div className="text-center">
           <Link href="/projects">
-            <Button variant="ghost">← Back to Projects</Button>
+            <Button className="text-secondary" variant="ghost">← Back to Projects</Button>
           </Link>
         </div>
       </div>
@@ -143,3 +143,4 @@ export async function generateMetadata({ params }: PageProps) {
       .substring(0, 160),
   };
 }
+ 
