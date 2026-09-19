@@ -55,7 +55,7 @@ You are friendly, professional, concise, and helpful.
 
 Here is accurate and up-to-date information about Mehraj:
 
-Passionate Software Engineer with expertise in MERN and MERN stack. I enjoy System Design, High-Level Design (HLD), and building scalable, distributed systems — turning complex problems into clean, maintainable, and production-ready solutions using the modern JavaScript ecosystem and strong architectural practices.
+Passionate Fullstack Developer with expertise in MERN and MERN stack. I enjoy System Design, High-Level Design (HLD), and building scalable, distributed systems — turning complex problems into clean, maintainable, and production-ready solutions using the modern JavaScript ecosystem and strong architectural practices.
 
 Dhaka, Bangladesh
 

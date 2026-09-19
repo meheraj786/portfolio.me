@@ -30,6 +30,7 @@ import {
   SiLinux,
   SiNestjs,
   SiGithubactions,
+  SiRedis,
 } from "react-icons/si";
 import bug from "../../public/bug.png";
 import chat from "../../public/chat.png";
@@ -153,6 +154,15 @@ export const skills = [
     name: "Prisma",
     link: "https://www.prisma.io/",
     color: "#2D3748",
+    category: "Database",
+  },
+  // redis
+
+  {
+    icon: SiRedis,
+    name: "Redis",
+    link: "https://redis.io/",
+    color: "#DC382D",
     category: "Database",
   },
 
