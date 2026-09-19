@@ -1,13 +1,22 @@
-import Link from 'next/link'
-import React from 'react'
+import Link from "next/link";
+import React from "react";
 
 const Resume = () => {
   return (
-    <div className='flex md:justify-end justify-center gap-x-5 items-center mt-10 font-primary'>
-      <button className='text-white cursor-pointer bg-background px-5 py-1 rounded-sm transition-colors duration-200 border border-white hover:border-black hover:border hover:bg-white hover:text-black'>My Resume</button>
-      <Link href="/contact" className=' bg-white px-5 py-1 rounded-sm transition-colors duration-200 border border-background text-black hover:border-black hover:border hover:bg-gray-500 cursor-pointer hover:text-white'>Contact With Me</Link>
+    <div className="flex md:justify-end justify-center gap-x-5 items-center mt-10 font-primary">
+      <Link href="/resume.pdf">
+        <button className="text-white cursor-pointer bg-background px-5 py-1 rounded-sm transition-colors duration-200 border border-white hover:border-black hover:border hover:bg-white hover:text-black">
+          My Resume
+        </button>
+      </Link>
+      <Link
+        href="/contact"
+        className=" bg-white px-5 py-1 rounded-sm transition-colors duration-200 border border-background text-black hover:border-black hover:border hover:bg-gray-500 cursor-pointer hover:text-white"
+      >
+        Contact With Me
+      </Link>
     </div>
-  )
-}
+  );
+};
 
-export default Resume
+export default Resume;
